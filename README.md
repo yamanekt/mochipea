@@ -104,6 +104,18 @@ docker compose exec app php artisan migrate
 
 ## コマンド一覧
 
+## git
+<dl>
+ <dt>メインにpullする</dt>
+ <dd>git pull origin main</dd>
+ <dt>ブランチを分けて作業する</dt>
+ <dd>git checkout ブランチ名</dd>
+ <dt>作業終了後にプッシュする</dt>
+ <dd></dd>git add .<br>
+ git commit -m "コミット内容"<br>
+ git push origin ブランチ名</dd>
+</dl>
+
 ```bash
 # マイグレーション実行
 docker compose exec app php artisan migrate
