@@ -18,7 +18,16 @@
       <button type="button" class="generate-btn" onclick="generatePassword()">自動生成</button>
     </div>
 
-    <a href="{{ url('/goals') }}" class="main-btn">ルーム作成</a>
+    {{-- <a href="{{ url('/goals') }}" class="main-btn">ルーム作成</a> --}}
+    <form method="POST" action="/create-room">
+    @csrf
+
+    <input type="hidden" id="roomNumber" name="roomNumber">
+
+    <button type="submit" class="main-btn">
+        ルーム作成
+    </button>
+</form>
   </div>
 
   <script src="{{ asset('js/make.js') }}"></script>
