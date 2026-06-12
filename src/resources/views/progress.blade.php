@@ -18,7 +18,7 @@
       <p><strong>目標値：</strong>10000歩</p>
     </div>
 
-    <form action="{{ url('/progress') }}" method="post">
+    <form action="{{ url('/progress') }}" method="get">
       @csrf
       <label for="value">達成数</label>
       <input type="number" id="value" name="value" placeholder="達成した数を入力" required>

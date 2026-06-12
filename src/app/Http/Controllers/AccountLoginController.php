@@ -12,7 +12,7 @@ class AccountLoginController extends Controller
     // 登録画面表示
     public function showRegister()
     {
-        return view('auth.register');
+        return view('register');
     }
 
     // 登録処理
@@ -52,7 +52,6 @@ class AccountLoginController extends Controller
     // ログイン画面表示
     public function showLogin()
     {
-        return view('auth.login');
     }
 
     // ログイン処理

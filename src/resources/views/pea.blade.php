@@ -11,7 +11,7 @@
   <div class="bg"></div>
   <div class="container">
 
-    <a href="{{ url('/make') }}" class="box">
+    <a href="{{ url('/goals') }}" class="box">
       <h1>部屋を作る</h1>
       <p>表示された部屋番号を相手に伝えてください</p>
     </a>
