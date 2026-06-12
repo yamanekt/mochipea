@@ -11,7 +11,7 @@
   <h1>新規登録</h1>
   <h2>アカウント作成</h2>
 
-  <form action="{{ url('/register') }}" method="post">
+  <form action="{{ url('/register') }}" method="get">
     @csrf
     <label>ユーザー名 *</label>
     <input type="text" name="name" required>

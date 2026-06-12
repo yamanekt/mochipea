@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <title>ログイン</title>
-  <link rel="stylesheet" href="{{ asset('css/rogin.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
 
 <div class="container">
   <h2>サインイン</h2>
 
-  <form id="loginForm" action="{{ url('/home') }}" method="post">
+  <form id="loginForm" action="{{ url('/home') }}" method="get">
     @csrf
     <div class="input-group">
       <label for="userId">Eメール</label>
