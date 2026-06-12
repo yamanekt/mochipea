@@ -13,6 +13,7 @@
         <h1>新規登録</h1>
         <h2>アカウント作成</h2>
 
+<<<<<<< HEAD
         <form action="{{ url('/register') }}" method="post">
             @if ($errors->any())
                 <ul>
@@ -24,6 +25,12 @@
             @csrf
             <label>ユーザー名 *</label>
             <input type="text" name="name" required>
+=======
+  <form action="{{ url('/register') }}" method="get">
+    @csrf
+    <label>ユーザー名 *</label>
+    <input type="text" name="name" required>
+>>>>>>> e2ac57d6a87cd1bdf46c9d7e69d62492c551e7b6
 
             <label>Eメール *</label>
             <input type="email" name="email" required>
