@@ -1,0 +1,66 @@
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  text-align: center;
+  background-color: #efe6e6;
+  margin: 0;
+  padding: 50px;
+}
+
+h1 {
+  color: #010101;
+}
+.container {
+  display: flex;           
+  justify-content: center;
+  gap: 50px;               
+  flex-wrap: wrap;         
+}
+.box {
+  background-color: rgba(248, 240, 240, 0.85);
+  border: 2px solid #f5f3f3;
+  border-radius: 16px;
+  padding: 40px 60px;
+  max-width: 500px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+   width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+   margin: 0;
+  padding: 50px;
+  box-sizing: content-box;
+}
+/* テキスト装飾 */
+h1 {
+  margin-top: 0;
+  color: #191818;
+}
+p{
+    color:#1c1b1b;
+}
+.photo {
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.photo:hover {
+  transform: scale(1.05);
+}
+.box:hover {
+  transform: scale(1.05);
+}
+.bg {
+    position: fixed;
+    inset: 0;
+
+background-image: url("../images/ChatGPT Image 2026年6月9日 14_34_42.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}
