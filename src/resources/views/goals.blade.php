@@ -11,7 +11,7 @@
     <h1>目標登録</h1>
     <h2>目標設定</h2>
 
-    <form action="{{ url('/home') }}" method="post">
+    <form action="{{ url('/make') }}" method="get">
       @csrf
       <label>目標カテゴリ *</label>
       <input type="text" name="category" required>
