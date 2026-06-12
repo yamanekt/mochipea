@@ -24,12 +24,17 @@
         </button>
     </div>
 
-    <p id="copyMessage"></p>
+    {{-- <a href="{{ url('/goals') }}" class="main-btn">ルーム作成</a> --}}
+    <form method="POST" action="/create-room">
+    @csrf
 
-    <a href="{{ url('/goals') }}" class="main-btn">
-        戻る
-    </a>
-</div>
+    <input type="hidden" id="roomNumber" name="roomNumber">
+
+    <button type="submit" class="main-btn">
+        ルーム作成
+    </button>
+</form>
+  </div>
 
 <script src="{{ asset('js/make.js') }}"></script>
 </body>
