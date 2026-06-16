@@ -48,7 +48,6 @@ class PairCodeCheckController extends Controller
         // 親ユーザーID
         $parentUserId = $pairCode->user_id;
 
-
         // すでにペアが存在しているか確認
         $exists = DB::table('pairs')
             ->where(function ($query) use ($parentUserId, $childUserId) {
