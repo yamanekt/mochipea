@@ -5,8 +5,16 @@
     <title>ルーム作成</title>
     <link rel="stylesheet" href="{{ asset('css/make.css') }}">
 </head>
+<<<<<<< HEAD
+<bod
+  <div class="bg"></div>
+  <div class="container">
+    <h1>ルーム作成</h1>
+    <h2>パスワード設定</h2>
+=======
 <body>
 <div class="bg"></div>
+>>>>>>> 9733eda5e1794c5c4df4c39cafed9ca2d2bb0a2a
 
 <div class="container">
     <h1>ルーム作成</h1>
