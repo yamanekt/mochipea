@@ -11,7 +11,7 @@
     <h1>ルーム入室</h1>
     <h2>部屋を探す</h2>
 
-    <form action="{{ url('/goals') }}" method="post">
+    <form action="{{ url('/goals') }}" method="get">
       @csrf
       <label>4桁の部屋番号 *</label>
       <input type="text" name="code" minlength="4" maxlength="4" required>
