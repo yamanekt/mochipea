@@ -14,3 +14,4 @@ class Goal extends Model
     'deadline',
 ];
 }
+
