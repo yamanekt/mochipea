@@ -5,7 +5,7 @@
   <title>ルーム作成</title>
   <link rel="stylesheet" href="{{ asset('css/make.css') }}">
 </head>
-<body>
+<bod
   <div class="bg"></div>
   <div class="container">
     <h1>ルーム作成</h1>
