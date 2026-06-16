@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountLoginController;
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\MenuController;
 use App\Http\Controllers\RoomController;
@@ -18,12 +19,16 @@ Route::get('/room/{roomId}', function ($roomId) {
 
 Route::get('/', [RoomController::class, 'home']);
 
-Route::post('/create-room', [RoomController::class, 'create']);
+// Route::post('/create-room', [RoomController::class, 'create']);
 
-Route::get('/room/{roomId}', [RoomController::class, 'show']);
+// Route::get('/room/{roomId}', [RoomController::class, 'show']);
 
-Route::get('/login', fn() => view('login'));
-Route::get('/register', fn() => view('register'));
+Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
+Route::post('/login', [AccountLoginController::class, 'login']);
+Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
+Route::get('/register', [AccountLoginController::class, 'showRegister'])->name('register');
+Route::post('/register', [AccountLoginController::class, 'register']);
+
 Route::get('/home', fn() => view('home'));
 Route::get('/pea', fn() => view('pea'));
 Route::get('/make', fn() => view('make'));
