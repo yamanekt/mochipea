@@ -1,51 +1,17 @@
 <?php
 
-use App\Http\Controllers\AccountLoginController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\MenuController;
-use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountLoginController;
-use App\Http\Controllers\AccountRegisterController;
-use App\Http\Controllers\PairCodeCheckController;
 
-
-
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/room/{roomId}', function ($roomId) {
-    return view('room', [
-        'roomId' => $roomId
-    ]);
-});
-
-Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])
-    ->name('pair.code.check');
-
-Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])
-    ->name('pair.code.check.post');
-
-
-Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
-Route::post('/login', [AccountLoginController::class, 'login']);
-Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
-Route::post('/register', [AccountRegisterController::class, 'register']);
-
-
-
-Route::get('/', [RoomController::class, 'home']);
-
-// Route::post('/create-room', [RoomController::class, 'create']);
-
-// Route::get('/room/{roomId}', [RoomController::class, 'show']);
-
+// 認証
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [AccountLoginController::class, 'login']);
 Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
 Route::get('/register', [AccountLoginController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountLoginController::class, 'register']);
 
+// 画面表示
+Route::get('/', fn() => view('home'));
 Route::get('/home', fn() => view('home'));
 Route::get('/pea', fn() => view('pea'));
 Route::get('/make', fn() => view('make'));

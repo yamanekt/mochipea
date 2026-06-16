@@ -51,15 +51,16 @@ class AccountLoginController extends Controller
     // ログイン画面表示
     public function showLogin()
     {
+        return view('login');
     }
 
     // ログイン処理
     public function login(Request $request)
     {
         $result = [
-            "status"  => true,
+            "status" => true,
             "message" => null,
-            "result"  => false,
+            "result" => false,
         ];
 
         // POSTデータ取得
@@ -68,14 +69,14 @@ class AccountLoginController extends Controller
 
         // メールチェック
         if ($email === null || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $result["status"]  = false;
+            $result["status"] = false;
             $result["message"] = "メールアドレスを正しく入力してください。";
         }
 
         // パスワードチェック
         if ($result["status"]) {
             if ($password === null || $password === "") {
-                $result["status"]  = false;
+                $result["status"] = false;
                 $result["message"] = "パスワードを入力してください。";
             }
         }
@@ -88,25 +89,25 @@ class AccountLoginController extends Controller
 
                 // ユーザーが存在しない
                 if ($user === null) {
-                    $result["status"]  = false;
+                    $result["status"] = false;
                     $result["message"] = "メールアドレスまたはパスワードが違います。";
 
-                // パスワードが違う
+                    // パスワードが違う
                 } elseif (!Hash::check($password, $user->password)) {
-                    $result["status"]  = false;
+                    $result["status"] = false;
                     $result["message"] = "メールアドレスまたはパスワードが違います。";
 
-                // ログイン成功
+                    // ログイン成功
                 } else {
                     $request->session()->regenerate();
 
                     session([
-                        "user_id"    => $user->id,
-                        "user_name"  => $user->name,
+                        "user_id" => $user->id,
+                        "user_name" => $user->name,
                         "user_email" => $user->email,
                     ]);
 
-                    $result["result"]  = true;
+                    $result["result"] = true;
                     $result["message"] = "ログインに成功しました！";
 
                     return redirect('/')
@@ -114,7 +115,7 @@ class AccountLoginController extends Controller
                 }
 
             } catch (\Exception $e) {
-                $result["status"]  = false;
+                $result["status"] = false;
                 $result["message"] = "DBエラー：" . $e->getMessage();
             }
         }

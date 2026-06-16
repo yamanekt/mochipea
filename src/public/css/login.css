@@ -1,62 +1,62 @@
-
-      .container {
-      background-color: #ebebf0;
-      padding: 40px 50px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      width: 350px;
-
+.container {
+    background-color: #ebebf0;
+    padding: 40px 50px;
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    width: 350px;
 
 
 
-      }
+
+}
+
 body {
-  font-family: sans-serif;
-  background: #f0f2f5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
- }
+    font-family: sans-serif;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 
 label {
-   display: block;
-      text-align: left;
-      margin-top: 20px;
-      margin-bottom: 8px;
-      font-weight: bold;
+    display: block;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 input {
-  width: calc(100% - 16px);
-      padding: 10px;
-      border: 1px solid #020202;
-      border-radius: 6px;
-      background-color: #f6f7fa;
-      color: #141414;
-      font-size: 15px;
+    width: calc(100% - 16px);
+    padding: 10px;
+    border: 1px solid #020202;
+    border-radius: 6px;
+    background-color: #f6f7fa;
+    color: #141414;
+    font-size: 15px;
 }
 
 h2 {
-  text-align: center;
-  margin-bottom: 20px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 .input-group {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 button {
-  margin-top: 5px;
-  width: 350px;
-  padding: 12px;
-  border: none;
-  border-radius: 14px;
-  font-size: 18px;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
+    margin-top: 5px;
+    width: 350px;
+    padding: 12px;
+    border: none;
+    border-radius: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
 
-  background: linear-gradient(135deg, #1400ff, #3b00ff);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+    background: linear-gradient(135deg, #1400ff, #3b00ff);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
 }
