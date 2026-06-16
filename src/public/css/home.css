@@ -7,6 +7,7 @@ body {
 }
 
 h1 {
+    font-size: 50px;
     color: #010101;
 }
 
@@ -22,9 +23,7 @@ h1 {
 .bg {
     position: fixed;
     inset: 0;
-
-    background-image: url("../images/ChatGPT Image 2026年6月9日 14_34_42.png");
-
+background-image: url("../images/background_mobile.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,12 +39,12 @@ h1 {
     max-width: 500px;
     text-align: center;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 350px;
+    width: 700px;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
     margin: 0;
-    padding: 60px;
+    padding: 120px;
     box-sizing: content-box;
 }
 
@@ -58,6 +57,11 @@ h1 {
 p {
     color: #1c1b1b;
 }
+
+p {
+    font-size: 30px;
+}
+
 
 .photo {
     width: 300px;

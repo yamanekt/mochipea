@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>ホーム</title>
-  <img src="{{ asset('images/mochipea.png') }}" alt="もちぺあ" width="66" class="photo">
-  <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+ <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 <body>
   <p> </p>

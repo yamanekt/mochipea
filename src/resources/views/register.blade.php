@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ja">
 
 <head>
@@ -10,8 +10,13 @@
 <body>
 
     <div class="container">
+
+  <div class="bg"></div>
+        <a href="{{ url('/login') }}" class="back-btn">戻る</a>
+
         <h1>新規登録</h1>
-        <h2>アカウント作成</h2>
+        <h2></h2>
+
 
         <form action="{{ url('/register') }}" method="post">
             @if ($errors->any())
@@ -21,7 +26,6 @@
                     @endforeach
                 </ul>
             @endif
-
             <form action="{{ url('/register') }}" method="get">
                 @csrf
                 <label>ユーザー名 *</label>
@@ -37,7 +41,9 @@
                 <input type="password" name="password_confirmation" required>
 
                 <button type="submit" class="main-btn">アカウント作成</button>
+
             </form>
+
     </div>
 
 </body>
