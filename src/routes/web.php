@@ -4,7 +4,7 @@ use App\Http\Controllers\AccountLoginController;
 use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\MenuController;
 use App\Http\Controllers\RoomController;
-
+use App\Http\Controllers\GoalsController;
 
 Route::get('/', function () {
     return view('home');
@@ -15,6 +15,8 @@ Route::get('/room/{roomId}', function ($roomId) {
         'roomId' => $roomId
     ]);
 });
+
+Route::post('/goals/store', [GoalsController::class, 'store']);
 
 
 Route::get('/', [RoomController::class, 'home']);
