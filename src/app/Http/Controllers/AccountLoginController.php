@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AccountLoginController extends Controller
@@ -57,36 +56,84 @@ class AccountLoginController extends Controller
     // ログイン処理
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ], [
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスを正しく入力してください。',
-            'password.required' => 'パスワードを入力してください。',
-        ]);
+        $result = [
+            "status"  => true,
+            "message" => null,
+            "result"  => false,
+        ];
 
-        $credentials = $request->only('email', 'password');
+        // POSTデータ取得
+        $email = $request->input('email');
+        $password = $request->input('password');
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
+        // メールチェック
+        if ($email === null || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $result["status"]  = false;
+            $result["message"] = "メールアドレスを正しく入力してください。";
+        }
 
-            return redirect()
-                ->intended('/home')
-                ->with('success', 'ログインに成功しました！');
+        // パスワードチェック
+        if ($result["status"]) {
+            if ($password === null || $password === "") {
+                $result["status"]  = false;
+                $result["message"] = "パスワードを入力してください。";
+            }
+        }
+
+        // ログイン処理
+        if ($result["status"]) {
+            try {
+                // 入力されたメールアドレスのユーザーを探す
+                $user = User::where('email', $email)->first();
+
+                // ユーザーが存在しない
+                if ($user === null) {
+                    $result["status"]  = false;
+                    $result["message"] = "メールアドレスまたはパスワードが違います。";
+
+                // パスワードが違う
+                } elseif (!Hash::check($password, $user->password)) {
+                    $result["status"]  = false;
+                    $result["message"] = "メールアドレスまたはパスワードが違います。";
+
+                // ログイン成功
+                } else {
+                    $request->session()->regenerate();
+
+                    session([
+                        "user_id"    => $user->id,
+                        "user_name"  => $user->name,
+                        "user_email" => $user->email,
+                    ]);
+
+                    $result["result"]  = true;
+                    $result["message"] = "ログインに成功しました！";
+
+                    return redirect('/')
+                        ->with('success', $result["message"]);
+                }
+
+            } catch (\Exception $e) {
+                $result["status"]  = false;
+                $result["message"] = "DBエラー：" . $e->getMessage();
+            }
         }
 
         return back()
             ->withErrors([
-                'email' => 'メールアドレスまたはパスワードが違います。',
+                'login' => $result["message"],
             ])
-            ->onlyInput('email');
+            ->withInput();
     }
 
     // ログアウト処理
     public function logout(Request $request)
     {
-        Auth::logout();
+        $request->session()->forget([
+            'user_id',
+            'user_name',
+            'user_email',
+        ]);
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
