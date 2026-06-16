@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\AccountLoginController;
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\MenuController;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\PairCodeCheckController;
+use App\Http\Controllers\CorrentListController;
+
 
 
 
@@ -18,6 +20,11 @@ Route::get('/room/{roomId}', function ($roomId) {
         'roomId' => $roomId
     ]);
 });
+
+Route::get(
+    '/current-goals',
+    [CorrentListController::class, 'index']
+)->name('current-goals');
 
 Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])
     ->name('pair.code.check');
@@ -50,6 +57,5 @@ Route::get('/pea', fn() => view('pea'));
 Route::get('/make', fn() => view('make'));
 Route::get('/join', fn() => view('join'));
 Route::get('/goals', fn() => view('goals'));
-Route::get('/current-goals', fn() => view('current-goals'));
 Route::get('/situation', fn() => view('situation'));
 Route::get('/progress', fn() => view('progress'));
