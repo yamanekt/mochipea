@@ -1,11 +1,40 @@
 <?php
 
 use App\Http\Controllers\AccountLoginController;
+use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\MenuController;
+use App\Http\Controllers\RoomController;
+use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\CorrentListController;
 use App\Http\Controllers\PairCodeCheckController;
-use App\Http\Controllers\RoomController;
-use Illuminate\Support\Facades\Route;
+
+
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/room/{roomId}', function ($roomId) {
+    return view('room', [
+        'roomId' => $roomId
+    ]);
+});
+
+Route::post('/goals/store', [GoalsController::class, 'store']);
+Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])
+    ->name('pair.code.check');
+
+Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])
+    ->name('pair.code.check.post');
+
+
+Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
+Route::post('/login', [AccountLoginController::class, 'login']);
+Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
+Route::post('/register', [AccountRegisterController::class, 'register']);
+
+
 
 Route::get('/', [RoomController::class, 'home']);
 
