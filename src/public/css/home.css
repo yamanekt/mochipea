@@ -1,11 +1,17 @@
 body {
     font-family: "Noto Sans JP", sans-serif;
-    text-align: center;
-    background-color: #efe6e6;
-    margin: 0;
-    padding: 50px;
-}
 
+    display: flex;
+    justify-content: center; /* 横中央 */
+    align-items: center;     /* 縦中央 */
+
+    min-height: 100vh;
+
+    text-align: center;
+
+    margin: 0;
+    padding: 0;
+}
 h1 {
     font-size: 50px;
     color: #010101;
@@ -88,4 +94,55 @@ p {
 
 .box:hover {
     transform: scale(1.05);
+}
+/* ===== オープニング演出 ===== */
+.intro {
+    position: fixed;
+    inset: 0;
+
+    background: white; /* 背景色（好きに変えてOK） */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    animation: fadeOut 2.5s forwards;
+}
+
+.intro img {
+    width: 80%;
+    max-width: 800px;
+
+    animation: scaleUp 2s ease;
+}
+
+/* ちょっとズーム */
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 消える */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }

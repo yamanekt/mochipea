@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
@@ -9,25 +9,33 @@
 
 <body>
 
+<div class="bg"></div>
+
+<div class="page">
+
     <div class="container">
 
-  <div class="bg"></div>
         <a href="{{ url('/login') }}" class="back-btn">戻る</a>
 
-        <h1>新規登録</h1>
-        <h2></h2>
+        <img src="{{ asset('images/welcome2.png') }}" alt="welcome" class="top-image">
 
+        <h1>Welcome!</h1>
+        <div class="sub-title">新規登録</div>
 
-        <form action="{{ url('/register') }}" method="post">
-            @if ($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li style="color:red">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
-            <form action="{{ url('/register') }}" method="get">
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li style="color:red">{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
+
+        <!-- 👇 フォームエリア -->
+        <div class="form-area">
+
+            <form action="{{ url('/register') }}" method="post">
                 @csrf
+
                 <label>ユーザー名 *</label>
                 <input type="text" name="name" required>
 
@@ -40,12 +48,20 @@
                 <label>パスワード確認 *</label>
                 <input type="password" name="password_confirmation" required>
 
-                <button type="submit" class="main-btn">アカウント作成</button>
-
+                <button type="submit">
+                    アカウント作成
+                </button>
             </form>
+
+            <!-- 👇 キャラ（ボタンを指す） -->
+            <img src="{{ asset('images/IMG_0639.png') }}" class="point-char">
+
+        </div>
 
     </div>
 
-</body>
+</div>
 
+</body>
 </html>
+``
