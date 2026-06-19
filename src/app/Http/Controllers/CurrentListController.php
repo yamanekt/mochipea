@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CorrentListController extends Controller
 {
@@ -19,8 +19,8 @@ class CorrentListController extends Controller
         }
 
         /*
-         * goal_progressテーブルから、
-         * 目標ごとの進捗valueの合計を取得する
+         * goal_progress テーブルから、
+         * 目標ごとの自分の進捗 value の合計を取得
          */
         $progressSubQuery = DB::table('goal_progress')
             ->select(
@@ -69,18 +69,17 @@ class CorrentListController extends Controller
                 'goals.category',
                 'goals.target_value',
                 'goals.unit',
-                'goals.end_date',
+                'goals.deadline',
+                'goals.status',
                 'partner.name as partner_name',
-                DB::raw(
-                    'COALESCE(progress.current_value, 0) AS current_value'
-                )
+                DB::raw('COALESCE(progress.current_value, 0) AS current_value')
             )
 
-            ->orderBy('goals.end_date', 'asc')
+            ->orderBy('goals.deadline', 'asc')
             ->get();
 
         /*
-         * 取得した目標に進捗率と状態を追加
+         * 取得した目標に進捗率と表示用の状態を追加
          */
         $goals->transform(function ($goal) {
             // 進捗率を計算
@@ -88,27 +87,21 @@ class CorrentListController extends Controller
                 $goal->progress_rate = round(
                     ($goal->current_value / $goal->target_value) * 100
                 );
-
-                // 100%を超えた場合は100%にする
-                $goal->progress_rate = min(
-                    $goal->progress_rate,
-                    100
-                );
             } else {
                 $goal->progress_rate = 0;
             }
 
-            // 状態を判定
-            if ($goal->progress_rate >= 100) {
-                $goal->status = '達成済み';
+            // 表示用の状態を判定
+            if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
+                $goal->display_status = '終了';
+            } elseif ($goal->progress_rate >= 100) {
+                $goal->display_status = '目標達成中';
             } else {
-                $goal->status = '進行中';
+                $goal->display_status = '進行中';
             }
-
             return $goal;
         });
 
-        // current-goals.blade.phpへデータを渡す
         return view('current-goals', compact('goals'));
     }
 }

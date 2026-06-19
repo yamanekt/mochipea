@@ -46,10 +46,10 @@
 
         <p>
           期限：
-          {{ \Carbon\Carbon::parse($goal->end_date)->format('Y/m/d') }}
+          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
         </p>
 
-        <p>状態：{{ $goal->status }}</p>
+        <p>状態：{{ $goal->display_status }}</p>
       </div>
 
     @empty
