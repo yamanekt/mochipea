@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Goal extends Model
 {
     protected $fillable = [
+    'pair_id',
     'category',
     'title',
     'target_value',
@@ -14,4 +15,3 @@ class Goal extends Model
     'deadline',
 ];
 }
-
