@@ -25,6 +25,8 @@ Route::get('/current-goals', [CorrentListController::class, 'index'])->name('cur
 Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])->name('pair.code.check');
 Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
 
+// 画面表示
+Route::get('/', fn() => view('home'));
 Route::get('/home', fn() => view('home'));
 Route::get('/pea', fn() => view('pea'));
 Route::get('/make', fn() => view('make'));
