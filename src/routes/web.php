@@ -6,9 +6,8 @@ use app\Http\Controllers\MenuController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\AccountRegisterController;
-use App\Http\Controllers\CorrentListController;
 use App\Http\Controllers\PairCodeCheckController;
-
+use App\Http\Controllers\CurrentGoalsController;
 
 
 Route::get('/', function () {
@@ -33,7 +32,7 @@ Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login'
 Route::post('/login', [AccountLoginController::class, 'login']);
 Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountRegisterController::class, 'register']);
-
+Route::post('/create-room', [RoomController::class, 'create']);
 
 
 Route::get('/', [RoomController::class, 'home']);

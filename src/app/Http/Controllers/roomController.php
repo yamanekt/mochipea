@@ -14,7 +14,7 @@ class RoomController extends Controller
     }
 
     //4桁のパスワード
-    public function create(Request $request)
+public function create(Request $request)
 {
     $roomId = strtoupper(Str::random(6));
 
@@ -23,7 +23,7 @@ class RoomController extends Controller
         'password' => $request->roomNumber
     ]);
 
-    return redirect('/room/' . $roomId);
+    return redirect('/pea');
 }
 
     public function show($roomId)

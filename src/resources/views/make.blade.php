@@ -21,27 +21,9 @@
     <h2></h2>
 
     <label>あなたのペアコード</label>
-
     <div class="password-area">
-        <div id="roomCode" class="code-box"></div>
-
-        <button type="button"
-                class="share-btn"
-                onclick="shareCode()">
-            共有
-        </button>
-    </div>
-
-    {{-- <a href="{{ url('/goals') }}" class="main-btn">ルーム作成</a> --}}
-    <form method="POST" action="/create-room">
-    @csrf
-
-    <input type="hidden" id="roomNumber" name="roomNumber">
-
-    <button type="submit" class="main-btn">
-        ルーム作成
-    </button>
-</form>
+        <div id="roomCode" class="code-box">
+            </div> <button type="button" class="share-btn" onclick="shareCode()"> 共有 </button> </div> <form method="POST" action="/create-room"> @csrf <input type="hidden" id="roomNumber" name="roomNumber"> <button type="submit" class="main-btn"> ルーム作成 </button> </form>
   </div>
 
 <script src="{{ asset('js/make.js') }}"></script>

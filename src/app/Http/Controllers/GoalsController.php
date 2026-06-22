@@ -27,6 +27,6 @@ class GoalsController extends Controller
             'deadline' => $request->deadline,
         ]);
 
-        return redirect('/');
+        return redirect('/make');
     }
 }
