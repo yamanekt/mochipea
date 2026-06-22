@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class CorrentListController extends Controller
+class CurrentListController extends Controller
 {
     public function index()
     {
