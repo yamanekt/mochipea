@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\AccountLoginController;
+// web.php — ルーティング定義ファイル
+// 「どのURLにアクセスしたら、どの処理（Controller）を呼ぶか」を決める
+// Route::get(URL, 処理) → ページを見る / Route::post(URL, 処理) → フォーム送信
+
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\MenuController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\GoalsController;
+use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\CurrentGoalsController;

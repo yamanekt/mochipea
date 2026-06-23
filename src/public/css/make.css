@@ -10,13 +10,26 @@ body {
 .bg {
     position: fixed;
     inset: 0;
-    background-image: url("../images/ChatGPT Image 2026年6月9日 14_34_42.png");
+    background-image: url("../images/background_mobile.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     z-index: -1;
 }
+input[type="text"] {
+  width: 100%;
+  height: 60px;
 
+  padding: 0 15px;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  border: 2px solid #ccc;
+  border-radius: 10px;
+
+  box-sizing: border-box;
+}
 .container {
     background-color: rgba(248, 240, 240, 0.9);
     border: 2px solid #f5f3f3;
