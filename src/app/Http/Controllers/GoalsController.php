@@ -35,6 +35,6 @@ class GoalsController extends Controller
             'deadline' => $request->deadline,    // 期限
         ]);
 
-        return redirect('/'); // ホームにリダイレクト
+        return redirect('/make');
     }
 }

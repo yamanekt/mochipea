@@ -18,22 +18,18 @@ class RoomController extends Controller
         return view('home');
     }
 
-    /**
-     * 部屋を作成する（未使用）
-     * Str::random(6) → ランダムな6文字の英数字を生成
-     * strtoupper() → 大文字に変換
-     */
-    public function create(Request $request)
-    {
-        $roomId = strtoupper(Str::random(6));
+    //4桁のパスワード
+public function create(Request $request)
+{
+    $roomId = strtoupper(Str::random(6));
 
         Room::create([
             'room_id' => $roomId,
             'password' => $request->roomNumber
         ]);
 
-        return redirect('/room/' . $roomId);
-    }
+    return redirect('/pea');
+}
 
     /**
      * 部屋を表示する（未使用）
