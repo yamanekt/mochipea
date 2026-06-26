@@ -7,59 +7,44 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
+use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
-use App\Http\Controllers\CurrentGoalsController;
+use App\Http\Controllers\CurrentListController;
 
-
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/room/{roomId}', function ($roomId) {
-    return view('room', [
-        'roomId' => $roomId
-    ]);
-});
-
-Route::post('/goals/store', [GoalsController::class, 'store']);
-Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])
-    ->name('pair.code.check');
-
-Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])
-    ->name('pair.code.check.post');
-
-
+// ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [AccountLoginController::class, 'login']);
 Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountRegisterController::class, 'register']);
-Route::post('/create-room', [RoomController::class, 'create']);
 
+// ── 認証必須ルート（ログインしていないと /login にリダイレクト）──
+Route::middleware('auth')->group(function () {
 
-Route::get('/', [RoomController::class, 'home']);
+    // ログアウト
+    Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
 
-Route::get('/room/{roomId}', function ($roomId) {
-    return view('room', ['roomId' => $roomId]);
+    // ホーム
+    Route::get('/', fn() => view('home'))->name('home');
+    Route::get('/home', fn() => view('home'));
+
+    // ペア設定メニュー
+    Route::get('/pea', fn() => view('pea'))->name('pea');
+
+    // 部屋を作る → 目標登録画面へ
+    Route::get('/goals', fn() => view('goals'))->name('goals');
+    Route::post('/goals/store', [GoalsController::class, 'store'])->name('goals.store');
+
+    // 部屋を作った後のコード表示
+    Route::get('/make', fn() => view('make'))->name('make');
+
+    // 部屋を探す（コード入力）
+    Route::get('/join', fn() => view('join'))->name('join');
+    Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
+
+    // 目標一覧（進捗付き）
+    Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
+
+    // その他画面
+    Route::get('/situation', fn() => view('situation'))->name('situation');
+    Route::get('/progress', fn() => view('progress'))->name('progress');
 });
-
-// 認証
-Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
-Route::post('/login', [AccountLoginController::class, 'login']);
-Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
-Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
-Route::post('/register', [AccountRegisterController::class, 'register']);
-
-// その他
-Route::get('/current-goals', [CorrentListController::class, 'index'])->name('current-goals');
-Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])->name('pair.code.check');
-Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
-
-// 画面表示
-Route::get('/', fn() => view('home'));
-Route::get('/home', fn() => view('home'));
-Route::get('/pea', fn() => view('pea'));
-Route::get('/make', fn() => view('make'));
-Route::get('/join', fn() => view('join'));
-Route::get('/goals', fn() => view('goals'));
-Route::get('/situation', fn() => view('situation'));
-Route::get('/progress', fn() => view('progress'));

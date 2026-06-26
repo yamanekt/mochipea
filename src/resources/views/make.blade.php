@@ -9,10 +9,6 @@
 
 <body>
     <div class="bg"></div>
-    <div class="container">
-        <h1>ルーム作成</h1>
-        <h2>パスワード設定</h2>
-    </div>
         <div class="container">
             <h1>ルーム作成</h1>
             <h2></h2>
