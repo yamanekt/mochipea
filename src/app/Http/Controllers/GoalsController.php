@@ -19,9 +19,10 @@ class GoalsController extends Controller
         'room_id' => $roomId,
         'password' => null
     ]);
-
+    dd(auth()->id());
     // Pair作成
     $pair = Pair::create([
+
         'user1_id' => auth()->id(),
         'user2_id' => auth()->id(),
         'pair_code' => $roomId
