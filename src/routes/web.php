@@ -32,6 +32,8 @@ Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login'
 Route::post('/login', [AccountLoginController::class, 'login']);
 Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountRegisterController::class, 'register']);
+Route::post('/create-room', [RoomController::class, 'create']);
+Route::get('/room/{roomId}', [RoomController::class, 'show']);
 
 
 
