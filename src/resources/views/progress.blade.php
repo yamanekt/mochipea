@@ -29,12 +29,15 @@
       <label for="progress_date">達成日</label>
       <input type="date" id="progress_date" name="progress_date" required>
 
-      <div class="button-group">
-        <button type="submit">登録</button>
-        <a href="{{ url('/situation') }}" class="back-btn">戻る</a>
-      </div>
-    </form>
+  <div class="button-area">
+    <button type="submit">登録</button>
 
-  </div>
+    <img src="{{ asset('images/IMG_0641.png') }}"
+         alt="キャラ"
+         class="point-char">
+         <a href="{{ url('/situation') }}" class="back-btn">戻る</a>  </form>
+
+</div>
+
 </body>
 </html>

@@ -1,5 +1,8 @@
 <?php
 
+// 目標の保存
+// ⚠️ 現在ダミーデータで動いている（要修正）
+
 namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -9,6 +12,10 @@ use App\Models\Pair;
 
 class GoalsController extends Controller
 {
+    /**
+     * 目標をDBに保存する
+     * Route: POST /goals/store
+     */
     public function store(Request $request)
 {
     // 4桁の部屋番号を作成
@@ -19,7 +26,7 @@ class GoalsController extends Controller
         'room_id' => $roomId,
         'password' => null
     ]);
-    dd(auth()->id());
+
     // Pair作成
     $pair = Pair::create([
 
@@ -39,6 +46,6 @@ class GoalsController extends Controller
     ]);
 
     // 部屋番号表示画面へ
-    return view('room', compact('room'));
+    return view('make', compact('room'));
 }
 }

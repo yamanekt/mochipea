@@ -3,45 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>進行中の目標</title>
+
   <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
 </head>
+
 <body>
   <div class="bg"></div>
+
   <div class="goal-list">
 
-    <div class="goal-card">
-      <p>目標名：毎日10000歩歩く</p>
-      <p>カテゴリ：運動</p>
-      <p>ペア相手：山田太郎</p>
-      <p>進捗：5000 / 10000 歩</p>
-      <p>進捗率：50%</p>
-      <p>期限：2026/06/30</p>
-      <p>状態：進行中</p>
-      <a href="{{ url('/situation') }}">詳細を見る</a>
-    </div>
+    @forelse ($goals as $goal)
 
-    <div class="goal-card">
-      <p>目標名：英単語1000語覚える</p>
-      <p>カテゴリ：勉強</p>
-      <p>ペア相手：佐藤花子</p>
-      <p>進捗：650 / 1000 語</p>
-      <p>進捗率：65%</p>
-      <p>期限：2026/07/15</p>
-      <p>状態：進行中</p>
-      <a href="#">詳細を見る</a>
-    </div>
+      <div class="goal-card">
+        <p>目標名：{{ $goal->title }}</p>
 
-    <div class="goal-card">
-      <p>目標名：AIM練習30時間</p>
-      <p>カテゴリ：ゲーム</p>
-      <p>ペア相手：田中一郎</p>
-      <p>進捗：30 / 30 時間</p>
-      <p>進捗率：100%</p>
-      <p>期限：2026/06/20</p>
-      <p>状態：達成済み</p>
-      <a href="#">詳細を見る</a>
-    </div>
+        <p>
+          カテゴリ：
+          @if ($goal->category === 'exercise')
+            運動
+          @elseif ($goal->category === 'study')
+            勉強
+          @elseif ($goal->category === 'game')
+            ゲーム
+          @else
+            {{ $goal->category }}
+          @endif
+        </p>
+
+        <p>ペア相手：{{ $goal->partner_name }}</p>
+
+        <p>
+          進捗：
+          {{ $goal->current_value }}
+          /
+          {{ $goal->target_value }}
+          {{ $goal->unit }}
+        </p>
+
+        <p>進捗率：{{ $goal->progress_rate }}%</p>
+
+        <p>
+          期限：
+          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
+        </p>
+
+        <p>状態：{{ $goal->display_status }}</p>
+      </div>
+
+    @empty
+
+      <div class="goal-card">
+        <p>現在登録されている目標はありません。</p>
+      </div>
+
+    @endforelse
 
   </div>
 </body>
