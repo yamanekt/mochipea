@@ -9,15 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Goal extends Model
 {
-    /**
-     * $fillable — create() で一括登録を許可するカラム
-     */
-    protected $fillable = [
-        'pair_id',
-        'category',
-        'title',
-        'target_value',
-        'unit',
-        'deadline',
-    ];
+   protected $fillable = [
+    'pair_id',
+    'category',
+    'title',
+    'target_value',
+    'unit',
+    'deadline',
+];
 }

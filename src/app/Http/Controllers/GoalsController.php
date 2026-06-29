@@ -4,9 +4,10 @@
 // ⚠️ 現在ダミーデータで動いている（要修正）
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Goal;
+use App\Models\Room;
 use App\Models\Pair;
 
 class GoalsController extends Controller
@@ -16,25 +17,35 @@ class GoalsController extends Controller
      * Route: POST /goals/store
      */
     public function store(Request $request)
-    {
-        // ⚠️ TODO: ここはダミー。本来はログインユーザーの既存ペアIDを取得して使う
-        $pair = Pair::create([
-            'user1_id' => 1,       // ← 本来は Auth::id()
-            'user2_id' => 1,       // ← 本来はペア相手のID
-            'pair_code' => '1234', // ← 本来はペアコード照合時のコード
-        ]);
+{
+    // 4桁の部屋番号を作成
+    $roomId = strtoupper(Str::random(4));
 
-        // goalsテーブルに目標を保存
-        // $request->category などはフォームのname属性と対応している
-        Goal::create([
-            'pair_id' => $pair->id,             // 上で作ったペアのID
-            'category' => $request->category,    // カテゴリ（運動/勉強/ゲームなど）
-            'title' => $request->title,          // 目標タイトル
-            'target_value' => $request->target_value, // 目標値（数値）
-            'unit' => $request->unit,            // 単位（回/分/ページなど）
-            'deadline' => $request->deadline,    // 期限
-        ]);
+    // Room作成
+    $room = Room::create([
+        'room_id' => $roomId,
+        'password' => null
+    ]);
 
-        return redirect('/make');
-    }
+    // Pair作成
+    $pair = Pair::create([
+
+        'user1_id' => auth()->id(),
+        'user2_id' => auth()->id(),
+        'pair_code' => $roomId
+    ]);
+
+    // Goal保存
+    Goal::create([
+        'pair_id' => $pair->id,
+        'category' => $request->category,
+        'title' => $request->title,
+        'target_value' => $request->target_value,
+        'unit' => $request->unit,
+        'deadline' => $request->deadline,
+    ]);
+
+    // 部屋番号表示画面へ
+    return view('make', compact('room'));
+}
 }

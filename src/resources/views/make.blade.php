@@ -18,9 +18,9 @@
                 <div id="roomCode" class="code-box">
                 </div> <button type="button" class="share-btn" onclick="shareCode()"> 共有 </button>
             </div>
-            <form method="POST" action="/create-room"> @csrf <input type="hidden" id="roomNumber" name="roomNumber">
-                <button type="submit" class="main-btn"> ルーム作成 </button>
-            </form>
+            <a href="{{ route('pea') }}" class="main-btn">
+    ルーム作成
+</a>
         </div>
 
         <script src="{{ asset('js/make.js') }}"></script>

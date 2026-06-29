@@ -3,7 +3,7 @@
 // web.php — ルーティング定義ファイル
 // 「どのURLにアクセスしたら、どの処理（Controller）を呼ぶか」を決める
 // Route::get(URL, 処理) → ページを見る / Route::post(URL, 処理) → フォーム送信
-
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
@@ -16,6 +16,8 @@ Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login'
 Route::post('/login', [AccountLoginController::class, 'login']);
 Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountRegisterController::class, 'register']);
+Route::post('/create-room', [RoomController::class, 'create']);
+Route::get('/room/{roomId}', [RoomController::class, 'show']);
 
 // ── 認証必須ルート（ログインしていないと /login にリダイレクト）──
 Route::middleware('auth')->group(function () {

@@ -1,8 +1,5 @@
 <?php
 
-// Pair モデル — pairsテーブルに対応
-// 2人のユーザーを「ペア」として結びつける
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
