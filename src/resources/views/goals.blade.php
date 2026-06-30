@@ -11,7 +11,7 @@
     <h1>目標登録</h1>
     <h2>目標設定</h2>
 
-    <form action="{{ url('/make') }}" method="get">
+<form action="{{ url('/goals/store') }}" method="POST">
       @csrf
       <label>目標カテゴリ *</label>
       <input type="text" name="category" required>
@@ -28,9 +28,13 @@
       <label>期限 *</label>
       <input type="date" name="deadline" required>
 
-      <div class="button">
-        <button type="submit" class="main-btn">目標決定</button>
-      </div>
+     <div class="button-area">
+    <button type="submit" class="main-btn">目標決定</button>
+
+    <img src="{{ asset('images/IMG_0641.png') }}"
+         alt="キャラ"
+         class="point-char">
+</div>
     </form>
   </div>
 </body>
