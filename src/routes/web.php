@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
-use App\Http\Controllers\CorrentListController;
+use App\Http\Controllers\CurrentListController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +21,7 @@ Route::get('/register', [AccountRegisterController::class, 'showRegister'])->nam
 Route::post('/register', [AccountRegisterController::class, 'register']);
 
 // その他
-Route::get('/current-goals', [CorrentListController::class, 'index'])->name('current-goals');
+Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
 Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])->name('pair.code.check');
 Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
 
