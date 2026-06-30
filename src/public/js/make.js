@@ -1,7 +1,4 @@
-window.onload = function () {
-
-    const code =
-        Math.floor(1000 + Math.random() * 9000);
+window.onload = function ($code) {
 
     document.getElementById("roomCode").textContent = code;
 };
