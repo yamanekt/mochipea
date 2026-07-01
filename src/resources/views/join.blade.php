@@ -6,7 +6,21 @@
   <link rel="stylesheet" href="{{ asset('css/make.css') }}">
 </head>
 <body>
-  <div class="bg"></div>
+  <div class="bg">
+
+<div class="rolling-area">
+
+    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r1">
+    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r2">
+    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r3">
+    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r4">
+    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r5">
+    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r6">
+    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r7">
+
+</div>
+
+  </div>
   <div class="container">
     <h1>ルーム入室</h1>
     <h2>部屋を探す</h2>
