@@ -9,7 +9,6 @@
 
 <body>
 
-``
     <div class="bg"></div>
 
     <div class="page">
@@ -37,8 +36,7 @@
                         <input type="password" id="password" name="password" required>
                     </div>
 
-                    <p class="error">{{ $errors->first('email') }}</p>
-                    <p class="error">{{ $errors->first('password') }}</p>
+                    <p class="error">{{ $errors->first('login') }}</p>
 
                     <button type="submit">ログイン</button>
                 </form>
@@ -50,7 +48,7 @@
                 <a href="{{ url('/register') }}" class="register-btn">
                     新規登録
                 </a>
-                       <!-- 👇 キャラクター画像 -->
+                <!-- 👇 キャラクター画像 -->
                 <img src="{{ asset('images/IMG_0639.png') }}" alt="キャラ" class="point-char">
 
             </div>
