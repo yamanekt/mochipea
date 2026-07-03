@@ -30,6 +30,6 @@ class GoalProgressController extends Controller
             'progress_date' => $request->progress_date,
         ]);
 
-        return redirect('/situation');
+        return redirect()->route('situation.show', $request->goal_id);
     }
 }

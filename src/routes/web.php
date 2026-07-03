@@ -11,6 +11,8 @@ use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\CurrentListController;
 use App\Http\Controllers\GoalProgressController;
+use App\Http\Controllers\SituationController;
+
 
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
@@ -48,13 +50,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
 
     // その他画面
-    Route::get('/situation', fn() => view('situation'))->name('situation');
-
-
+Route::get('/situation/{id}', [SituationController::class, 'show'])
+    ->name('situation.show');
     //達成入力
-Route::get('/progress/{goal}', [GoalProgressController::class, 'show'])
+Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
     ->name('progress.show');
 
-    Route::get('/progress/{id}', [GoalProgressController::class, 'index']);
-    Route::post('/progress', [GoalProgressController::class, 'store']);
+Route::post('/progress', [GoalProgressController::class, 'store'])
+    ->name('progress.store');
 });

@@ -17,7 +17,7 @@
     @forelse ($goals as $goal)
 
 <div class="goal-card"
-    onclick="location.href='{{ url('/situation') }}'"
+    onclick="location.href='{{ route('situation.show', $goal->id) }}'"
     style="cursor: pointer;">
 
     <p>目標名：{{ $goal->title }}</p>
