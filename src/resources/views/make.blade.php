@@ -17,7 +17,7 @@
             <div class="password-area">
                 @csrf
                 <div id="roomCode" class="code-box">
-                    {{ $room->room_id }}
+                    {{ $code }}
                 </div> <button type="button" class="share-btn" onclick="shareCode()"> 共有 </button>
             </div>
             <a href="{{ route('pea') }}" class="main-btn">
@@ -25,7 +25,6 @@
 </a>
         </div>
 
-        <script src="{{ asset('js/make.js') }}"></script>
     </body>
 
 </html>
