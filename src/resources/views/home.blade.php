@@ -13,7 +13,7 @@
 </div>
 
 <div class="bg"></div>
-
+<a href="{{ url('/login') }}" class="logout-btn">ログアウト</a>
 <div class="container">
 
   <a href="{{ url('/current-goals') }}" class="box">
