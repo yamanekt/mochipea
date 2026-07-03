@@ -8,18 +8,16 @@ use App\Models\GoalProgress;
 
 class GoalProgressController extends Controller
 {
-    // 達成入力画面
     public function show($id)
     {
         $goal = Goal::findOrFail($id);
 
-        $current = GoalProgress::where('goal_id', $goal->id)
+        $current = GoalProgress::where('goal_id', $id)
             ->sum('value');
 
         return view('progress', compact('goal', 'current'));
     }
 
-    // 達成記録保存
     public function store(Request $request)
     {
         GoalProgress::create([
