@@ -67,7 +67,7 @@ class CurrentListController extends Controller
                 : 0;
 
             if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
-                $goal->display_status = '終了';
+                $goal->display_status = '期限切れ';
             } elseif ($goal->progress_rate >= 100) {
                 $goal->display_status = '目標達成中';
             } else {
