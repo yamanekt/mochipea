@@ -31,7 +31,7 @@
       <p><strong>状態：</strong>進行中</p>
 
       <div class="button-area">
-        <a href="{{ url('/progress') }}" class="btn">達成入力</a>
+        <a href="{{ url('/progress/1') }}" class="btn">達成入力</a>
         <a href="{{ url('/current-goals') }}" class="btn">一覧へ戻る</a>
       </div>
     </div>

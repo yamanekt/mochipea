@@ -16,49 +16,50 @@
 
     @forelse ($goals as $goal)
 
-      <div class="goal-card">
-        <p>目標名：{{ $goal->title }}</p>
+<div class="goal-card"
+    onclick="location.href='{{ url('/situation') }}'"
+    style="cursor: pointer;">
 
-        <p>
-          カテゴリ：
-          @if ($goal->category === 'exercise')
+    <p>目標名：{{ $goal->title }}</p>
+
+    <p>
+        カテゴリ：
+        @if ($goal->category === 'exercise')
             運動
-          @elseif ($goal->category === 'study')
+        @elseif ($goal->category === 'study')
             勉強
-          @elseif ($goal->category === 'game')
+        @elseif ($goal->category === 'game')
             ゲーム
-          @else
+        @else
             {{ $goal->category }}
-          @endif
-        </p>
+        @endif
+    </p>
 
-        <p>ペア相手：{{ $goal->partner_name }}</p>
+    <p>ペア相手：{{ $goal->partner_name }}</p>
 
-        <p>
-          進捗：
-          {{ $goal->current_value }}
-          /
-          {{ $goal->target_value }}
-          {{ $goal->unit }}
-        </p>
+    <p>
+        進捗：
+        {{ $goal->current_value }}
+        /
+        {{ $goal->target_value }}
+        {{ $goal->unit }}
+    </p>
 
-        <p>進捗率：{{ $goal->progress_rate }}%</p>
+    <p>進捗率：{{ $goal->progress_rate }}%</p>
 
-        <p>
-          期限：
-          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
-        </p>
+    <p>期限：{{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}</p>
 
-        <p>状態：{{ $goal->display_status }}</p>
-      </div>
+    <p>状態：{{ $goal->display_status }}</p>
 
-    @empty
+</div>
 
-      <div class="goal-card">
-        <p>現在登録されている目標はありません。</p>
-      </div>
+@empty
 
-    @endforelse
+<div class="goal-card">
+    <p>現在登録されている目標はありません。</p>
+</div>
+
+@endforelse
 
   </div>
 </body>
