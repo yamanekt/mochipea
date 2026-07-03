@@ -1,28 +1,15 @@
-window.onload = function ($code) {
-
-    document.getElementById("roomCode").textContent = code;
-};
-
 async function shareCode() {
-
-    const code =
-        document.getElementById("roomCode").textContent;
-
-    const text =
-        `あなたのコードは${code}です`;
+    const code = document.getElementById("roomCode").textContent.trim();
+    const text = `部屋番号は${code}です。別のアカウントでログインして、この番号を入力してください。`;
 
     if (navigator.share) {
-
         await navigator.share({
-            title: "ルームコード",
-            text: text
+            title: "部屋番号",
+            text: text,
         });
 
-    } else {
-
-        await navigator.clipboard.writeText(text);
-
-        document.getElementById("copyMessage").textContent =
-            "コピーしました！";
+        return;
     }
+
+    await navigator.clipboard.writeText(text);
 }
