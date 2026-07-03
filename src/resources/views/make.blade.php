@@ -8,6 +8,8 @@
 </head>
 
 <body>
+
+
     <div class="bg"></div>
     <div class="container">
         <h1>部屋を作成しました</h1>

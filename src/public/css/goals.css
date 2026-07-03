@@ -162,3 +162,23 @@ background-image: url("../images/background_mobile.png");
 
     z-index: -1;
 }
+
+.back-btn,
+.back-btn:link,
+.back-btn:visited {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: inline-block;
+    background: #808080;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+    z-index: 9999;
+}
+
+.back-btn:hover {
+    background: #666;
+}
