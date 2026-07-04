@@ -8,9 +8,12 @@
 </head>
 
 <body>
-  <div class="bg"></div>
+ <div class="bg"></div>
 
-  <div class="goal-list">
+    <a href="{{ url('/home') }}" class="back-btn">戻る</a>
+
+    <div class="goal-list">
+
     @forelse ($goals as $goal)
       @php
         $progressRate = min(100, max(0, $goal->progress_rate));
