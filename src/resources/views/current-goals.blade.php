@@ -3,24 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>進行中の目標</title>
-
   <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
 </head>
 
 <body>
-  <div class="bg"></div>
+ <div class="bg"></div>
 
-  <div class="goal-list">
+    <a href="{{ url('/home') }}" class="back-btn">戻る</a>
+
+    <div class="goal-list">
 
     @forelse ($goals as $goal)
+      @php
+        $progressRate = min(100, max(0, $goal->progress_rate));
+        $isExpired = $goal->display_status === '期限切れ';
+      @endphp
 
-<div class="goal-card"
-    onclick="location.href='{{ route('situation.show', $goal->id) }}'"
-    style="cursor: pointer;">
-
-    <p>目標名：{{ $goal->title }}</p>
+      <div class="goal-card">
+        <p>目標名：{{ $goal->title }}</p>
 
     <p>
         カテゴリ：
@@ -45,21 +46,23 @@
         {{ $goal->unit }}
     </p>
 
-    <p>進捗率：{{ $goal->progress_rate }}%</p>
+        <p>進捗率：{{ $goal->progress_rate }}%</p>
 
-    <p>期限：{{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}</p>
+        <p>
+          期限：
+          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
+        </p>
 
-    <p>状態：{{ $goal->display_status }}</p>
+        <p>状態：{{ $goal->display_status }}</p>
+      </div>
 
-</div>
+    @empty
 
-@empty
+      <div class="goal-card">
+        <p>現在登録されている目標はありません。</p>
+      </div>
 
-<div class="goal-card">
-    <p>現在登録されている目標はありません。</p>
-</div>
-
-@endforelse
+    @endforelse
 
   </div>
 </body>
