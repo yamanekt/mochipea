@@ -6,6 +6,7 @@
   <title>ペア設定</title>
   <link rel="stylesheet" href="{{ asset('css/pea.css') }}">
 </head>
+
 <body>
 
   <div class="bg"></div>
@@ -36,5 +37,6 @@
 
     </div>
 
+        <script src="{{ asset('js/pea.js') }}"></script>
 </body>
 </html>

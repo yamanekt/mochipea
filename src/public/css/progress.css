@@ -159,3 +159,244 @@ button:hover {
     background-color: #6b7280;
     color: white;
 }
+/* ===== キャッチボール ===== */
+
+.catch-area{
+    position: relative;
+    width: 450px;
+    height: 180px;
+    margin: 40px auto 0;
+}
+
+.ghost{
+    position: absolute;
+    width: 140px;
+    height: auto;
+}
+
+.left-ghost{
+    left: 0;
+    bottom: 0;
+    animation: leftMove 1.8s infinite alternate;
+}
+
+.right-ghost{
+    right: 0;
+    bottom: 0;
+    animation: rightMove 1.8s infinite alternate;
+}
+
+.ball{
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: #ff9800;
+    border-radius: 50%;
+
+    left: 60px;
+    bottom: 90px;
+
+    animation: catchBall 1.8s linear infinite;
+}@keyframes catchBall{
+
+    0%{
+        left:60px;
+        bottom:90px;
+    }
+
+    25%{
+        left:180px;
+        bottom:150px;
+    }
+
+    50%{
+        left:340px;
+        bottom:90px;
+    }
+
+    75%{
+        left:180px;
+        bottom:150px;
+    }
+
+    100%{
+        left:60px;
+        bottom:90px;
+    }
+
+}
+
+@keyframes leftMove{
+    from{
+        transform: rotate(-5deg);
+    }
+    to{
+        transform: rotate(5deg);
+    }
+}
+
+@keyframes rightMove{
+    from{
+        transform: rotate(5deg);
+    }
+    to{
+        transform: rotate(-5deg);
+    }
+}
+.catch-area{
+    position: relative;
+    width: 520px;
+    height: 220px;
+    margin: 30px auto 0;
+}.ghost{
+    position:absolute;
+    width:180px;
+    height:auto;
+}.ball{
+    position:absolute;
+    width:22px;
+    height:22px;
+    background:#ff9800;
+    border-radius:50%;
+
+    left:80px;
+    bottom:110px;
+
+    animation:catchBall 1.8s linear infinite;
+}
+.catch-area{
+    position: relative;
+    width: 100%;
+    height: 170px;
+    margin-top: 40px;
+}
+
+.ghost{
+    position:absolute;
+    width:150px;
+    z-index:5;
+}
+
+.left-ghost{
+    left:-10px;
+    bottom:0;
+}
+
+.right-ghost{
+    right:-40px;
+    bottom:0;
+}@keyframes catchBall{
+
+    0%{
+        left:80px;
+        bottom:90px;
+    }
+
+    25%{
+        left:180px;
+        bottom:150px;
+    }
+
+    50%{
+        left:330px;
+        bottom:90px;
+    }
+
+    75%{
+        left:180px;
+        bottom:150px;
+    }
+
+    100%{
+        left:80px;
+        bottom:90px;
+    }
+
+}
+
+/* キャッチボールエリア */
+.catch-area{
+    position: relative;
+    width: 320px;
+    height: 160px;
+    margin: 40px auto 0;
+}
+
+/* キャラクター */
+.ghost{
+    position: absolute;
+    width: 110px;
+    height: auto;
+}
+
+.left-ghost{
+    left:0;
+    bottom:0;
+
+    animation:leftMove 1.8s infinite alternate;
+}
+
+.right-ghost{
+    right:0;
+    bottom:0;
+
+    animation:rightMove 1.8s infinite alternate;
+}
+
+/* ボール */
+.ball{
+    position:absolute;
+    width:18px;
+    height:18px;
+    background:#ff9800;
+    border-radius:50%;
+    left:45px;
+    bottom:70px;
+
+    animation:catchBall 1.8s linear infinite;
+}
+@keyframes catchBall{
+
+    0%{
+        left:55px;
+        bottom:70px;
+    }
+
+    25%{
+        left:120px;
+        bottom:120px;
+    }
+
+    50%{
+        left:250px;
+        bottom:70px;
+    }
+
+    75%{
+        left:120px;
+        bottom:120px;
+    }
+
+    100%{
+        left:55px;
+        bottom:70px;
+    }
+}
+
+@keyframes leftMove{
+    from{
+        transform:rotate(-5deg);
+    }
+    to{
+        transform:rotate(5deg);
+    }
+}
+
+@keyframes rightMove{
+    from{
+        transform:rotate(5deg);
+    }
+    to{
+        transform:rotate(-5deg);
+    }
+}

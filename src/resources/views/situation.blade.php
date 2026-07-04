@@ -41,6 +41,16 @@
 
         </div>
 
+<div class="catch-area">
+    <img src="{{ asset('images/IMG_0638.png') }}" class="ghost left-ghost" alt="左キャラ">
+
+    <div class="ball"></div>
+
+    <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost" alt="右キャラ">
+</div>
+
+
+
     </div>
 
 

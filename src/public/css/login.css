@@ -60,3 +60,21 @@ button {
     background: linear-gradient(135deg, #1400ff, #3b00ff);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
 }
+
+/* Microsoft Edge・Internet Explorer の「表示」アイコンを非表示 */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+/* Chrome・Edge(Chromium)・Safari の自動入力アイコンを非表示 */
+input::-webkit-credentials-auto-fill-button {
+    visibility: hidden;
+    display: none !important;
+    pointer-events: none;
+}
+input[type="password"]::-webkit-credentials-auto-fill-button {
+    visibility: hidden !important;
+    display: none !important;
+    pointer-events: none;
+}

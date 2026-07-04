@@ -162,3 +162,10 @@ button:hover {
     opacity: 0.9;
     transform: translateY(-2px);
 }
+::-ms-reveal {
+    display: none;
+}
+
+::-ms-clear {
+    display: none;
+}
