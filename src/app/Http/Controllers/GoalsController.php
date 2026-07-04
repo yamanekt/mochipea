@@ -1,51 +1,79 @@
 <?php
 
-// 目標の保存
-// ⚠️ 現在ダミーデータで動いている（要修正）
-
 namespace App\Http\Controllers;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+
 use App\Models\Goal;
-use App\Models\Room;
 use App\Models\Pair;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GoalsController extends Controller
 {
     /**
-     * 目標をDBに保存する
-     * Route: POST /goals/store
+     * Create a waiting room with the goal set by the room owner.
      */
     public function store(Request $request)
-{
-    // 4桁の部屋番号を作成
-    $roomId = strtoupper(Str::random(4));
+    {
+        $request->validate([
+            'category' => ['required', 'string', 'max:255'],
+            'title' => ['required', 'string', 'max:255'],
+            'target_value' => ['required', 'integer', 'min:1'],
+            'unit' => ['required', 'string', 'max:50'],
+            'deadline' => ['required', 'date'],
+        ]);
 
-    // Room作成
-    $room = Room::create([
-        'room_id' => $roomId,
-        'password' => null
-    ]);
+        $ownerId = auth()->id();
 
-    // Pair作成
-    $pair = Pair::create([
+        $room = DB::transaction(function () use ($request, $ownerId) {
+            $roomId = $this->generateRoomCode();
 
-        'user1_id' => auth()->id(),
-        'user2_id' => auth()->id(),
-        'pair_code' => $roomId
-    ]);
+            DB::table('rooms')->insert([
+                'room_id' => $roomId,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
 
-    // Goal保存
-    Goal::create([
-        'pair_id' => $pair->id,
-        'category' => $request->category,
-        'title' => $request->title,
-        'target_value' => $request->target_value,
-        'unit' => $request->unit,
-        'deadline' => $request->deadline,
-    ]);
+            $pair = Pair::create([
+                'user1_id' => $ownerId,
+                'user2_id' => $ownerId,
+                'pair_code' => $roomId,
+            ]);
 
-    // 部屋番号表示画面へ
-    return view('make', compact('room'));
-}
+            DB::table('pair_codes')->insert([
+                'user_id' => $ownerId,
+                'code' => $roomId,
+                'status' => 'waiting',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            Goal::create([
+                'pair_id' => $pair->id,
+                'category' => $request->category,
+                'title' => $request->title,
+                'target_value' => $request->target_value,
+                'unit' => $request->unit,
+                'deadline' => $request->deadline,
+            ]);
+
+            return (object) ['room_id' => $roomId];
+        });
+
+        return view('make', compact('room'));
+    }
+
+    private function generateRoomCode(): string
+    {
+        do {
+            $roomId = (string) random_int(1000, 9999);
+        } while (
+            DB::table('rooms')->where('room_id', $roomId)->exists()
+            || DB::table('pair_codes')
+                ->where('code', $roomId)
+                ->where('status', 'waiting')
+                ->exists()
+        );
+
+        return $roomId;
+    }
 }
