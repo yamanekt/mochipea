@@ -10,6 +10,7 @@
 <body>
  <div class="bg"></div>
 
+
     <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
     <div class="goal-list">
@@ -21,7 +22,13 @@
       @endphp
 
       <div class="goal-card">
-        <p>目標名：{{ $goal->title }}</p>
+        <div class="goal-card-header">
+          <p class="goal-title">目標名：{{ $goal->title }}</p>
+          <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
+            <span class="status-dot"></span>
+            {{ $goal->display_status }}
+          </span>
+        </div>
 
     <p>
         カテゴリ：
@@ -46,24 +53,26 @@
         {{ $goal->unit }}
     </p>
 
-        <p>進捗率：{{ $goal->progress_rate }}%</p>
+        <div class="progress-block">
+          <div class="progress-label">
+            <span>達成率</span>
+            <strong>{{ $goal->progress_rate }}%</strong>
+          </div>
+          <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
+            <div class="progress-fill" style="width: {{ $progressRate }}%;"></div>
+          </div>
+        </div>
 
         <p>
           期限：
           {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
         </p>
-
-        <p>状態：{{ $goal->display_status }}</p>
       </div>
-
     @empty
-
       <div class="goal-card">
         <p>現在登録されている目標はありません。</p>
       </div>
-
     @endforelse
-
   </div>
 </body>
 </html>
