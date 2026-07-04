@@ -58,6 +58,12 @@ Route::get('/progress', fn() => view('progress'));
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
 
     // その他画面
-    Route::get('/situation', fn() => view('situation'))->name('situation');
-    Route::get('/progress', fn() => view('progress'))->name('progress');
+Route::get('/situation/{id}', [SituationController::class, 'show'])
+    ->name('situation.show');
+    //達成入力
+Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
+    ->name('progress.show');
+
+Route::post('/progress', [GoalProgressController::class, 'store'])
+    ->name('progress.store');
 });

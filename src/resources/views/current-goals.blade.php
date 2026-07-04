@@ -21,57 +21,49 @@
       @endphp
 
       <div class="goal-card">
-        <div class="goal-card-header">
-          <p class="goal-title">目標名：{{ $goal->title }}</p>
-          <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
-            <span class="status-dot"></span>
-            {{ $goal->display_status }}
-          </span>
-        </div>
+        <p>目標名：{{ $goal->title }}</p>
 
-        <p>
-          カテゴリ：
-          @if ($goal->category === 'exercise')
+    <p>
+        カテゴリ：
+        @if ($goal->category === 'exercise')
             運動
-          @elseif ($goal->category === 'study')
+        @elseif ($goal->category === 'study')
             勉強
-          @elseif ($goal->category === 'game')
+        @elseif ($goal->category === 'game')
             ゲーム
-          @else
+        @else
             {{ $goal->category }}
-          @endif
-        </p>
+        @endif
+    </p>
 
-        <p>ペア相手：{{ $goal->partner_name }}</p>
+    <p>ペア相手：{{ $goal->partner_name }}</p>
 
-        <p>
-          進捗：
-          {{ $goal->current_value }}
-          /
-          {{ $goal->target_value }}
-          {{ $goal->unit }}
-        </p>
+    <p>
+        進捗：
+        {{ $goal->current_value }}
+        /
+        {{ $goal->target_value }}
+        {{ $goal->unit }}
+    </p>
 
-        <div class="progress-block">
-          <div class="progress-label">
-            <span>達成率</span>
-            <strong>{{ $goal->progress_rate }}%</strong>
-          </div>
-          <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
-            <div class="progress-fill" style="width: {{ $progressRate }}%;"></div>
-          </div>
-        </div>
+        <p>進捗率：{{ $goal->progress_rate }}%</p>
 
         <p>
           期限：
           {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
         </p>
+
+        <p>状態：{{ $goal->display_status }}</p>
       </div>
+
     @empty
+
       <div class="goal-card">
         <p>現在登録されている目標はありません。</p>
       </div>
+
     @endforelse
+
   </div>
 </body>
 </html>
