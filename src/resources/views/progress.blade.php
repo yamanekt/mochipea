@@ -24,58 +24,33 @@
         <p><strong>目標値：</strong>{{ $goal->target_value }}{{ $goal->unit }}</p>
     </div>
 
-    <form action="{{ url('/progress') }}" method="POST">
+    <form action="{{ url('/progress') }}" method="get">
+      @csrf
+      <label for="value">達成数</label>
+      <input type="number" id="value" name="value" placeholder="達成した数を入力" required>
 
-        @csrf
+      <label for="memo">メモ</label>
+      <textarea id="memo" name="memo" rows="5" placeholder="今日の内容や感想を入力"></textarea>
 
-        <input type="hidden" name="goal_id" value="{{ $goal->id }}">
+      <label for="progress_date">達成日</label>
+      <input type="date" id="progress_date" name="progress_date" required>
 
-        <label for="value">達成数</label>
-        <input
-            type="number"
-            id="value"
-            name="value"
-            placeholder="達成した数を入力"
-            required
-        >
+  <div class="button-area">
+    <button type="submit">登録</button>
 
-        <label for="memo">メモ</label>
-        <textarea
-            id="memo"
-            name="memo"
-            rows="5"
-            placeholder="今日の内容や感想を入力"
-        ></textarea>
+    <img src="{{ asset('images/IMG_0641.png') }}"
+         alt="キャラ"
+         class="point-char">
+         <a href="{{ url('/situation') }}" class="back-btn">戻る</a>  </form>
 
-        <label for="progress_date">達成日</label>
-        <input
-            type="date"
-            id="progress_date"
-            name="progress_date"
-            value="{{ date('Y-m-d') }}"
-            required
-        >
+</div>
+<!-- フォームの外 -->
+<div class="catch-area">
+    <img src="{{ asset('images/IMG_0638.png') }}" class="ghost left-ghost">
 
-        <div class="button-area">
+    <div class="ball"></div>
 
-            <button type="submit">
-                登録
-            </button>
-
-            <img
-                src="{{ asset('images/IMG_0641.png') }}"
-                alt="キャラ"
-                class="point-char"
-            >
-
-        </div>
-
-    </form>
-
-    <a href="{{ url('/situation') }}" class="back-btn">
-        戻る
-    </a>
-
+    <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost">
 </div>
 
 </body>

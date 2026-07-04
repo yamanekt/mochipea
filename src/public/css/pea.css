@@ -205,3 +205,26 @@ a {
     from{transform:translateX(0) rotate(0deg);}
     to{transform:translateX(calc(-100vw - 400px)) rotate(-2880deg);}
 }
+.rolling{
+    position:absolute;
+    right:-250px;
+    cursor:pointer;
+    pointer-events:auto;
+    transition:transform .2s;
+}
+
+.rolling:hover{
+    transform:scale(1.1);
+}
+
+/* 潰れた */
+.rolling.pop{
+
+    animation:none !important;
+
+    transform:scaleX(1.4) scaleY(0.5);
+
+    opacity:0;
+
+    transition:.25s;
+}

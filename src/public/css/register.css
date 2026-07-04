@@ -215,3 +215,17 @@ h1 {
 
     z-index: 30;
 }
+input[type="password"],
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 50px;
+}
+::-ms-reveal{
+    display:none;
+}
+
+::-ms-clear{
+    display:none;
+}
