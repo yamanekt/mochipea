@@ -182,3 +182,20 @@ background-image: url("../images/background_mobile.png");
 .back-btn:hover {
     background: #666;
 }
+
+.detail-btn,
+.detail-btn:link,
+.detail-btn:visited {
+    display: inline-block;
+    margin-top: 10px;
+    background: #808080;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.detail-btn:hover {
+    background: #666;
+}

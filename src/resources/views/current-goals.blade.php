@@ -67,6 +67,8 @@
           期限：
           {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
         </p>
+
+        <a href="{{ route('situation.show', $goal->id) }}" class="detail-btn">詳細を見る</a>
       </div>
     @empty
       <div class="goal-card">

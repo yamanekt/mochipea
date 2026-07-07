@@ -9,6 +9,8 @@ use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\CurrentListController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
+use App\Http\Controllers\SituationController;
+use App\Http\Controllers\GoalProgressController;
 
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
@@ -19,20 +21,8 @@ Route::post('/register', [AccountRegisterController::class, 'register']);
 // ── 認証必須ルート（ログインしていないと /login にリダイレクト）──
 Route::middleware('auth')->group(function () {
 
-// その他
-Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
-Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])->name('pair.code.check');
-Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
+    // ---画面表示---
 
-// 画面表示
-Route::get('/', fn() => view('home'));
-Route::get('/home', fn() => view('home'));
-Route::get('/pea', fn() => view('pea'));
-Route::get('/make', fn() => view('make'));
-Route::get('/join', fn() => view('join'));
-Route::get('/goals', fn() => view('goals'));
-Route::get('/situation', fn() => view('situation'));
-Route::get('/progress', fn() => view('progress'));
     // ログアウト
     Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
 
@@ -58,12 +48,12 @@ Route::get('/progress', fn() => view('progress'));
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
 
     // その他画面
-Route::get('/situation/{id}', [SituationController::class, 'show'])
-    ->name('situation.show');
+    Route::get('/situation/{id}', [SituationController::class, 'show'])
+        ->name('situation.show');
     //達成入力
-Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
-    ->name('progress.show');
+    Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
+        ->name('progress.show');
 
-Route::post('/progress', [GoalProgressController::class, 'store'])
-    ->name('progress.store');
+    Route::post('/progress', [GoalProgressController::class, 'store'])
+        ->name('progress.store');
 });
