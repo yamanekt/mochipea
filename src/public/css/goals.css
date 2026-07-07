@@ -177,8 +177,17 @@ background-image: url("../images/background_mobile.png");
     border-radius: 10px;
     font-weight: bold;
     z-index: 9999;
+
 }
 
 .back-btn:hover {
     background: #666;
+     padding-top: 90px;
+}
+.container {
+    margin-top: 90px;
+}
+
+body {
+    padding-top: 90px;
 }

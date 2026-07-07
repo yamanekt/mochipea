@@ -141,6 +141,7 @@ input[type="date"] {
 /* 戻るボタンも前 */
 .back-btn{
     z-index:20;
+     padding-top: 90px;
 }
 
 /* 共通 */
@@ -245,4 +246,63 @@ input[type="date"] {
     z-index: 10;
 
     pointer-events: none;   /* ←追加 */
+}
+.container {
+    background-color: rgba(248, 240, 240, 0.9);
+    border: 2px solid #f5f3f3;
+    border-radius: 20px;
+    padding: 40px;
+    width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    margin-top: 90px;
+}.back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0,0,0,.2);
+
+    z-index: 100;
+    transition: .2s;
+}
+
+.back-btn:hover {
+    background: #f3f3f3;
+}
+.back-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background-color: #808080;   /* 灰色 */
+    color: #fff;
+    text-decoration: none;
+
+    padding: 30px 50px;          /* ボタンを大きく */
+    font-size: 40px;             /* 文字を大きく */
+    font-weight: bold;
+
+    border-radius: 12px;
+    border: none;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+
+    z-index: 100;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #808080;   /* 少し濃い灰色 */
+    transform: scale(1.05);
 }

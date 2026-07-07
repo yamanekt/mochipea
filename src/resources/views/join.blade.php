@@ -9,6 +9,7 @@
 
 <body>
   <div class="bg"></div>
+  <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
   <div class="container">
     <h1>部屋に参加</h1>
     <h2>相手から受け取った部屋番号を入力してください</h2>

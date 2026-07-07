@@ -185,6 +185,7 @@ label {
 .container{
     position:relative;
     z-index:10;
+     margin-top: 90px;
 }
 
 /* 戻るボタンも前 */
@@ -282,4 +283,55 @@ label {
 @keyframes roll7{
     from{transform:translateX(0) rotate(0deg);}
     to{transform:translateX(calc(-100vw - 400px)) rotate(-2880deg);}
+}
+/* 戻るボタン */
+.back-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background: #9e9e9e;
+    color: #fff;
+    text-decoration: none;
+
+    padding: 10px 22px;
+    border-radius: 10px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    transition: .3s;
+    z-index: 9999;
+}
+
+.back-btn:hover{
+    background: #757575;
+    transform: scale(1.05);
+
+}
+/* 戻るボタン */
+.back-btn{
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    background: #9e9e9e;
+    color: #fff;
+    text-decoration: none;
+
+    padding: 20px 40px;   /* ボタンを大きく */
+    border-radius: 15px;
+
+    font-size: 35px;      /* 文字を大きく */
+    font-weight: bold;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,.3);
+    transition: .3s;
+    z-index: 9999;
+}
+
+.back-btn:hover{
+    background: #757575;
+    transform: scale(1.08);
 }
