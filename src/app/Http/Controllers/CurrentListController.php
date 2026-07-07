@@ -15,10 +15,6 @@ class CurrentListController extends Controller
     {
         $userId = Auth::id();
 
-        if (!$userId) {
-            return redirect('/login');
-        }
-
         $progressSubQuery = DB::table('goal_progress')
             ->select(
                 'goal_id',
