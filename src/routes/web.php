@@ -67,3 +67,5 @@ Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
 Route::post('/progress', [GoalProgressController::class, 'store'])
     ->name('progress.store');
 });
+Route::get('/current-goals/{id}', [GoalsController::class, 'show'])
+    ->name('goals.show');

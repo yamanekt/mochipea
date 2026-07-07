@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
      <link rel="stylesheet" href="{{ asset('css/background.css') }}">
+</head>
+<body>
+<div class="bg"></div>
+<link rel="stylesheet" href="{{ asset('css/background.css') }}">
 <div class="bg"></div>
 
 <a href="{{ url('/current-goals') }}" class="back-btn">戻る</a>
@@ -64,13 +67,6 @@
 
 </div>
 
-
-
-
-
-
-</head>
-<body>
 
 </body>
 </html>
