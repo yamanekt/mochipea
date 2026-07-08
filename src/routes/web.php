@@ -21,7 +21,19 @@ Route::post('/register', [AccountRegisterController::class, 'register']);
 // ── 認証必須ルート（ログインしていないと /login にリダイレクト）──
 Route::middleware('auth')->group(function () {
 
-    // ---画面表示---
+// その他
+Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
+Route::get('/pair-code-check', [PairCodeCheckController::class, 'show'])->name('pair.code.check');
+Route::post('/pair-code-check', [PairCodeCheckController::class, 'check'])->name('pair.code.check.post');
+
+// 画面表示
+Route::get('/', fn() => view('home'));
+Route::get('/home', fn() => view('home'));
+Route::get('/pea', fn() => view('pea'));
+Route::get('/make', fn() => view('make'));
+Route::get('/join', fn() => view('join'));
+Route::get('/goals', fn() => view('goals'));
+
 
     // ログアウト
     Route::post('/logout', [AccountLoginController::class, 'logout'])->name('logout');
@@ -48,12 +60,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
 
     // その他画面
-    Route::get('/situation/{id}', [SituationController::class, 'show'])
-        ->name('situation.show');
-    //達成入力
-    Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
-        ->name('progress.show');
 
-    Route::post('/progress', [GoalProgressController::class, 'store'])
-        ->name('progress.store');
+
+Route::get('/situation/{id}', [SituationController::class, 'show'])
+    ->name('situation.show');
+    //達成入力
+Route::get('/progress/{id}', [GoalProgressController::class, 'show'])
+    ->name('progress.show');
+
+Route::post('/progress', [GoalProgressController::class, 'store'])
+    ->name('progress.store');
 });
