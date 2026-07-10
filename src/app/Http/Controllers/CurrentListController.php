@@ -11,9 +11,10 @@ class CurrentListController extends Controller
     /**
      * Show only goals that belong to pairs joined by the current user.
      */
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
         $userId = Auth::id();
+        $sort = $request->get('sort', 'updated');
 
         $progressSubQuery = DB::table('goal_progress')
             ->select(
@@ -53,9 +54,23 @@ class CurrentListController extends Controller
                 'goals.status',
                 'partner.name as partner_name',
                 DB::raw('COALESCE(progress.current_value, 0) AS current_value')
-            )
-            ->orderBy('goals.deadline', 'asc')
-            ->get();
+            );
+  if ($sort === 'created') {
+    $goals->orderBy('goals.created_at', 'desc');
+} else {
+    $goals->leftJoin(
+        DB::raw('(SELECT goal_id, MAX(updated_at) AS last_update
+                  FROM goal_progress
+                  GROUP BY goal_id) gp'),
+        'gp.goal_id',
+        '=',
+        'goals.id'
+    )
+    ->orderByDesc('gp.last_update')
+    ->orderByDesc('goals.created_at');
+}
+
+$goals = $goals->get();
 
         $goals->transform(function ($goal) {
             $goal->progress_rate = $goal->target_value > 0
@@ -73,6 +88,6 @@ class CurrentListController extends Controller
             return $goal;
         });
 
-        return view('current-goals', compact('goals'));
+        return view('current-goals', compact('goals', 'sort'));
     }
 }

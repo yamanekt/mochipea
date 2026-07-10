@@ -6,14 +6,43 @@
   <title>進行中の目標</title>
   <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
 </head>
+<header>
 
+        <span class="sort-title">並び替え</span>
+
+    <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
+
+        <label class="sort-option">
+            <input
+                type="radio"
+                name="sort"
+                value="updated"
+                {{ $sort == 'updated' ? 'checked' : '' }}
+                onchange="this.form.submit()">
+            更新順
+        </label>
+
+        <label class="sort-option">
+            <input
+                type="radio"
+                name="sort"
+                value="created"
+                {{ $sort == 'created' ? 'checked' : '' }}
+                onchange="this.form.submit()">
+            登録順
+        </label>
+
+    </form>
 <body>
+
  <div class="bg"></div>
 
 
-    <a href="{{ url('/home') }}" class="back-btn">戻る</a>
+<a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
-    <div class="goal-list">
+
+
+<div class="goal-list">
 
     @forelse ($goals as $goal)
       @php

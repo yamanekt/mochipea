@@ -26,14 +26,29 @@
 
 <form action="{{ url('/goals/store') }}" method="POST">
       @csrf
-      <label>目標カテゴリ *</label>
-      <input type="text" name="category" required>
+<label for="category">目標カテゴリ *</label>
+
+<select name="category" id="category" required>
+    <option value="">選択してください</option>
+    <option value="exercise">運動</option>
+    <option value="study">勉強</option>
+    <option value="game">ゲーム</option>
+    <option value="other">その他</option>
+</select>
 
       <label>目標名 *</label>
       <input type="text" name="title" required>
 
       <label>目標値 *</label>
-      <input type="text" name="target_value" required>
+
+<input
+    type="text"
+    name="target_value"
+    inputmode="numeric"
+    pattern="[0-9]*"
+    oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+    required
+>
 
       <label>単位 *</label>
       <input type="text" name="unit" required>
