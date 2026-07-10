@@ -1,0 +1,147 @@
+body{
+    font-family:"Noto Sans JP",sans-serif;
+    margin:0;
+    padding:120px 40px 40px;
+}
+
+.detail-container{
+    max-width:1000px;
+    margin:auto;
+}
+
+.goal-title-box{
+
+    background:rgba(248,240,240,.9);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    font-size:42px;
+
+    font-weight:bold;
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+}
+
+.pair-area{
+
+    display:flex;
+
+    justify-content:space-around;
+
+    gap:60px;
+
+}
+
+.user-card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    width:320px;
+
+}
+
+.character{
+
+    width:170px;
+
+    margin:15px 0;
+
+}
+
+.speech{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:15px 25px;
+
+    font-size:24px;
+
+    position:relative;
+
+    margin-bottom:15px;
+
+}
+
+.speech::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:40px;
+
+    bottom:-18px;
+
+    border:10px solid transparent;
+
+    border-top:white 18px solid;
+
+}
+
+.percent{
+
+    width:180px;
+
+    background:#d9d9d9;
+
+    text-align:center;
+
+    font-size:34px;
+
+    font-weight:bold;
+
+    border-radius:10px;
+
+    margin-bottom:20px;
+
+    padding:8px;
+
+}
+
+.main-btn{
+
+    width:220px;
+
+    text-align:center;
+
+}
+
+.history-box{
+
+    width:220px;
+
+    height:220px;
+
+    margin-top:20px;
+
+    background:#b7f3ee;
+
+    border-radius:15px;
+
+    padding:15px;
+
+    overflow-y:auto;
+
+}
+.bg {
+    position: fixed;
+    inset: 0;
+background-image: url("../images/background_mobile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}

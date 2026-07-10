@@ -61,7 +61,12 @@ class GoalsController extends Controller
 
         return view('make', compact('room'));
     }
+public function show($id)
+{
+    $goal = Goal::findOrFail($id);
 
+    return view('situation', compact('goal'));
+}
     private function generateRoomCode(): string
     {
         do {
@@ -76,4 +81,11 @@ class GoalsController extends Controller
 
         return $roomId;
     }
+
+public function background($id)
+{
+    $goal = Goal::findOrFail($id);
+
+    return view('background', compact('goal'));
+}
 }

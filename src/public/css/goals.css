@@ -177,9 +177,35 @@ background-image: url("../images/background_mobile.png");
     border-radius: 10px;
     font-weight: bold;
     z-index: 9999;
+
 }
 
 .back-btn:hover {
+    background: #666;
+     padding-top: 90px;
+}
+.container {
+    margin-top: 90px;
+}
+
+body {
+    padding-top: 90px;
+}
+
+.detail-btn,
+.detail-btn:link,
+.detail-btn:visited {
+    display: inline-block;
+    margin-top: 10px;
+    background: #808080;
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.detail-btn:hover {
     background: #666;
 }
 

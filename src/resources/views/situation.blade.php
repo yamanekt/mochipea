@@ -55,8 +55,6 @@
 
             <h3>ペア相手</h3>
 
-
-
             <p>
                 達成数：
                 {{ $partnerValue }}{{ $goal->unit }}
@@ -102,55 +100,9 @@
                 <div class="ball"></div>
 
                 <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost" alt="右キャラ">
-            </div>
-
-
-
-            {{-- <p>
-                達成数：
-                {{ $partnerValue }}{{ $goal->unit }}
-            </p>
-
-            <p>
-                達成率：
-                {{ $partnerRate }}%
-            </p>
-
-            <hr>
-
-            <p>
-                <strong>期限：</strong>
-                {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
-            </p>
-
-            <p>
-                <strong>状態：</strong>
-
-                @if ($goal->status)
-                    {{ $goal->status }}
-                @else
-                    進行中
-                @endif
-            </p> --}}
-
-            {{-- <div class="button-area">
-
-                <a href="{{ route('progress.show', $goal->id) }}" class="btn">
-                    達成入力
-                </a>
-
-                <a href="{{ route('current-goals') }}" class="btn">
-                    一覧へ戻る
-                </a>
-
-            </div> --}}
-
+            </div>     
         </div>
-
-
     </div>
-
-
 </body>
 
 </html>

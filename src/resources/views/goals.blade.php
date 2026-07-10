@@ -6,7 +6,9 @@
   <link rel="stylesheet" href="{{ asset('css/goal.css') }}">
 </head>
 <body>
+     <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
   <div class="bg">
+
 <div class="rolling-area">
 
     <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r1">
