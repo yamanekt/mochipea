@@ -106,9 +106,58 @@
 
 
 
+<<<<<<< HEAD
+<p>
+    達成数：
+    {{ $partnerValue }}{{ $goal->unit }}
+</p>
+
+<p>
+    達成率：
+    {{ $partnerRate }}%
+</p>
+
+        <hr>
+
+        <p>
+            <strong>期限：</strong>
+            {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
+        </p>
+
+        <p>
+            <strong>状態：</strong>
+
+            @if($goal->status)
+                {{ $goal->status }}
+            @else
+                進行中
+            @endif
+        </p>
+
+        <div class="button-area">
+
+            <a href="{{ route('progress.show', $goal->id) }}" class="btn">
+                達成入力
+            </a>
+
+            <a href="{{ route('current-goals') }}" class="btn">
+                一覧へ戻る
+            </a>
+
         </div>
 
     </div>
+
+<<<<<<< HEAD
+</div>
+=======
+
+>>>>>>> 63a706ab7d78aa265e786c9bc0fe12193282e122
+=======
+        </div>
+
+    </div>
+>>>>>>> f5cf4c573e819e1d068611d40f0cd807126866d9
 </body>
 
 </html>

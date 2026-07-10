@@ -67,7 +67,10 @@
           期限：
           {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
         </p>
-      </div>
+
+       <a href="{{ route('background', $goal->id) }}" class="detail-btn">
+    詳細を見る
+</a>
     @empty
       <div class="goal-card">
         <p>現在登録されている目標はありません。</p>

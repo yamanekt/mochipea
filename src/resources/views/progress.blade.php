@@ -24,8 +24,9 @@
         <p><strong>目標値：</strong>{{ $goal->target_value }}{{ $goal->unit }}</p>
     </div>
 
-    <form action="{{ url('/progress') }}" method="get">
-      @csrf
+ <form action="{{ route('progress.store') }}" method="POST">
+    @csrf
+    <input type="hidden" name="goal_id" value="{{ $goal->id }}">
       <label for="value">達成数</label>
       <input type="number" id="value" name="value" placeholder="達成した数を入力" required>
 
@@ -41,7 +42,8 @@
     <img src="{{ asset('images/IMG_0641.png') }}"
          alt="キャラ"
          class="point-char">
-         <a href="{{ url('/situation') }}" class="back-btn">戻る</a>  </form>
+         <a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
+          </form>
 
 </div>
 <!-- フォームの外 -->

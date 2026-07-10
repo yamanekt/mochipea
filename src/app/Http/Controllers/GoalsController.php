@@ -81,4 +81,11 @@ public function show($id)
 
         return $roomId;
     }
+
+public function background($id)
+{
+    $goal = Goal::findOrFail($id);
+
+    return view('background', compact('goal'));
+}
 }
