@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <title>部屋に参加</title>
-  <link rel="stylesheet" href="{{ asset('css/make.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/join.css') }}">
 </head>
 
 <body>
   <div class="bg"></div>
   <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
+  <div id="pop-area"></div>
   <div class="container">
     <h1>部屋に参加</h1>
     <h2>相手から受け取った部屋番号を入力してください</h2>
@@ -24,6 +25,7 @@
       <button type="submit" class="main-btn">参加する</button>
     </form>
   </div>
+  <script src="{{ asset('js/join.js') }}"></script>
 </body>
 
 </html>
