@@ -1,173 +1,168 @@
 body {
     font-family: "Noto Sans JP", sans-serif;
-    background-color: #efe6e6;
     margin: 0;
-    padding: 50px;
-}
-
-.goal-list {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 30px;
-
-}
-
-.goal-card {
-    background-color: rgba(248, 240, 240, 0.9);
-    border: 2px solid #f5f3f3;
-    border-radius: 20px;
-    padding: 40px;
-    width: 300px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-    text-align: left;
-}
-
-.goal-card:hover {
-    transform: scale(1.05);
-}
-
-.goal-card p {
-    margin: 10px 0;
-    color: #1c1b1b;
-    line-height: 1.6;
-}
-
-.goal-card p:first-child {
-    font-size: 20px;
-    font-weight: bold;
-    color: #111;
-    margin-bottom: 15px;
-}
-
-.goal-card a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-}
-
-.goal-card a:hover {
-    background-color: #2563eb;
-}
-
-/* スマホ対応 */
-@media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-
-    .goal-list {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .goal-card {
-        width: 90%;
-        max-width: 400px;
-    }
+    padding: 120px 40px 40px;
 }
 
 .bg {
     position: fixed;
     inset: 0;
-background-image: url("../images/background_mobile.png");
+    background-image: url("../images/background_mobile.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     z-index: -1;
 }
+
 /* 戻るボタン */
-/* キャッチボールエリア */
-.catch-area{
-    position: relative;
+.back-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 120px;
+    height: 45px;
+
+    background: #6fd6f5;
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,.2);
+}
+
+.back-btn:hover {
+    background: #4fc0e3;
+}
+
+.detail-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.goal-title-box {
+    background: rgba(248,240,240,.9);
+    border-radius: 20px;
+    padding: 25px;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+
+.pair-area {
+    display: flex;
+    justify-content: space-around;
+    gap: 60px;
+}
+
+.user-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 320px;
-    height: 160px;
-    margin: 40px auto 0;
 }
 
-/* キャラクター */
-.ghost{
+.character {
+    width: 170px;
+    margin: 15px 0;
+}
+
+.speech {
+    background: #fff;
+    border-radius: 20px;
+    padding: 15px 25px;
+    font-size: 24px;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.speech::after {
+    content: "";
     position: absolute;
-    width: 110px;
-    height: auto;
+    left: 40px;
+    bottom: -18px;
+    border: 10px solid transparent;
+    border-top: 18px solid #fff;
 }
 
-.left-ghost{
-    left:0;
-    bottom:0;
+.percent {
+    width: 180px;
+    padding: 8px;
+    margin-bottom: 20px;
 
-    animation:leftMove 1.8s infinite alternate;
+    background: #d9d9d9;
+    border-radius: 10px;
+
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
 }
 
-.right-ghost{
-    right:0;
-    bottom:0;
+/* 記録を更新ボタン */
+.main-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    animation:rightMove 1.8s infinite alternate;
+    width: 220px;
+    height: 55px;
+
+    background: #6fd6f5;
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 22px;
+    font-weight: bold;
+
+    border-radius: 12px;
+    margin-bottom: 20px;
+
+    box-sizing: border-box;
 }
 
-/* ボール */
-.ball{
-    position:absolute;
-    width:18px;
-    height:18px;
-    background:#ff9800;
-    border-radius:50%;
-    left:45px;
-    bottom:70px;
-
-    animation:catchBall 1.8s linear infinite;
-}
-@keyframes catchBall{
-
-    0%{
-        left:55px;
-        bottom:70px;
-    }
-
-    25%{
-        left:120px;
-        bottom:120px;
-    }
-
-    50%{
-        left:250px;
-        bottom:70px;
-    }
-
-    75%{
-        left:120px;
-        bottom:120px;
-    }
-
-    100%{
-        left:55px;
-        bottom:70px;
-    }
+.main-btn:hover {
+    background: #4fc0e3;
 }
 
-@keyframes leftMove{
-    from{
-        transform:rotate(-5deg);
-    }
-    to{
-        transform:rotate(5deg);
-    }
+.history-box {
+    width: 220px;
+    height: 220px;
+
+    padding: 15px;
+
+    background: #b7f3ee;
+    border-radius: 15px;
+
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
-@keyframes rightMove{
-    from{
-        transform:rotate(5deg);
+@media (max-width: 768px) {
+    body {
+        padding: 100px 20px 20px;
     }
-    to{
-        transform:rotate(-5deg);
+
+    .pair-area {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .goal-title-box {
+        font-size: 28px;
+    }
+
+    .user-card {
+        width: 100%;
+        max-width: 320px;
     }
 }
 body{
