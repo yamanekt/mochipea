@@ -6,9 +6,18 @@
   <title>進行中の目標</title>
   <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
 </head>
-<header>
+<header class="page-menu">
 
-        <span class="sort-title">並び替え</span>
+    <a href="{{ url('/timeline') }}" class="menu-btn">
+        タイムライン
+    </a>
+
+    <div class="menu-btn current">
+        目標一覧
+    </div>
+
+</header>
+<header>
 
     <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
 
@@ -36,7 +45,9 @@
 <body>
 
  <div class="bg"></div>
-
+<div class="guide-character">
+    <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">
+</div>
 
 <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
