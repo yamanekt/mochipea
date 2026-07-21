@@ -30,7 +30,7 @@
             <img src="{{ asset('images/IMG_0640.png') }}" class="character">
 
             <div class="percent">
-                {{ $goal->progress_rate }}%
+                {{ $partnerRate }}%
             </div>
 
             <a href="#" class="main-btn">
