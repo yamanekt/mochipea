@@ -34,7 +34,7 @@
       <textarea id="memo" name="memo" rows="5" placeholder="今日の内容や感想を入力"></textarea>
 
       <label for="progress_date">達成日</label>
-      <input type="date" id="progress_date" name="progress_date" required>
+      <input type="date" id="progress_date" name="progress_date" value="{{ old('progress_date', now()->toDateString()) }}" required>
 
   <div class="button-area">
     <button type="submit">登録</button>
