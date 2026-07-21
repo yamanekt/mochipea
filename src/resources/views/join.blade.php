@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>部屋に参加</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
   <link rel="stylesheet" href="{{ asset('css/join.css') }}">
 </head>
 

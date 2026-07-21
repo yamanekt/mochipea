@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>目標登録</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
   <link rel="stylesheet" href="{{ asset('css/goal.css') }}">
 </head>
 <body>

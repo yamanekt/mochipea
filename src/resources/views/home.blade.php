@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>ホーム</title>
+  <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
   <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 </head>
 <body>
