@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>タイムライン</title>
+  <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+</head>
+<body>
+
+  <div class="bg"></div>
+
+  <a href="{{ url('/home') }}" class="back-btn">戻る</a>
+
+  {{-- 達成入力（コメント）を新しい順に並べたタイムライン --}}
+  <div class="goal-list">
+    @forelse ($entries as $entry)
+      <div class="goal-card">
+        {{-- 目標名 --}}
+        <p class="goal-title">目標名：{{ $entry->title }}</p>
+
+        {{-- 投稿者名 ・ 何日前か（Carbonのロケールはapp.phpでjaに設定済みなので「3日前」と表示される） --}}
+        <p class="entry-meta">
+          {{ $entry->user_name }}・{{ \Carbon\Carbon::parse($entry->created_at)->diffForHumans() }}
+        </p>
+
+        {{-- コメント（memoが未入力ならNULLなので代わりの文言を出す） --}}
+        <p class="entry-comment">
+          {{ $entry->memo ?? '（コメントなし）' }}
+        </p>
+
+        {{-- その目標の詳細（現在状況）画面へ --}}
+        <a href="{{ route('situation.show', $entry->goal_id) }}" class="detail-btn">詳細を見る</a>
+      </div>
+    @empty
+      <div class="goal-card">
+        <p>まだ達成入力がありません。</p>
+      </div>
+    @endforelse
+  </div>
+
+</body>
+</html>

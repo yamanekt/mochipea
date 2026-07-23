@@ -16,6 +16,11 @@
 <a href="{{ url('/login') }}" class="logout-btn">ログアウト</a>
 <div class="container">
 
+  <a href="{{ url('/timeline') }}" class="box">
+    <h1>タイムライン</h1>
+    <p>目標の一覧を確認できます</p>
+  </a>
+
   <a href="{{ url('/current-goals') }}" class="box">
     <h1>進行中の目標</h1>
     <p>現在進行中のものや過去のデータを閲覧できます</p>
