@@ -157,6 +157,9 @@ p {
     background: #e53935;
     color: #fff;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
 
     padding: 20px 40px;
     border-radius: 10px;

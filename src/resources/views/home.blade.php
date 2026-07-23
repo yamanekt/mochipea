@@ -12,8 +12,11 @@
   <img src="{{ asset('images/IMG_0639.png') }}" alt="キャラ">
 </div>
 
+<form action="{{ route('logout') }}" method="POST">
+  @csrf
+  <button type="submit" class="logout-btn">ログアウト</button>
+</form>
 <div class="bg"></div>
-<a href="{{ url('/login') }}" class="logout-btn">ログアウト</a>
 <div class="container">
 
   <a href="{{ url('/timeline') }}" class="box">
