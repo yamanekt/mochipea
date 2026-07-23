@@ -2,92 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class TimeLineController extends Controller
 {
     /**
-     * Show only goals that belong to pairs joined by the current user.
+     * タイムライン画面
      */
-    public function index(\Illuminate\Http\Request $request)
+    public function index()
     {
+        // ログイン中ユーザーのID
         $userId = Auth::id();
-        $sort = $request->get('sort', 'updated');
 
-        $progressSubQuery = DB::table('goal_progress')
-            ->select(
-                'goal_id',
-                'user_id',
-                DB::raw('SUM(value) AS current_value')
-            )
-            ->groupBy('goal_id', 'user_id');
-
-        $goals = DB::table('goals')
+        $entries = DB::table('goal_progress')
+            // どの目標への入力か → goals からタイトルを取る
+            ->join('goals', 'goal_progress.goal_id', '=', 'goals.id')
+            // その目標のペア情報 → 自分が参加しているか絞り込むのに使う
             ->join('pairs', 'goals.pair_id', '=', 'pairs.id')
-            ->join('users as partner', function ($join) use ($userId) {
-                $join->on('partner.id', '=', DB::raw(
-                    "CASE
-                        WHEN pairs.user1_id = {$userId}
-                        THEN pairs.user2_id
-                        ELSE pairs.user1_id
-                    END"
-                ));
-            })
-            ->leftJoinSub($progressSubQuery, 'progress', function ($join) use ($userId) {
-                $join->on('progress.goal_id', '=', 'goals.id')
-                    ->where('progress.user_id', '=', $userId);
-            })
+            // 入力した本人 → users から名前を取る
+            ->join('users', 'goal_progress.user_id', '=', 'users.id')
+            // 自分がuser1 or user2として参加しているペアの記録だけに限定
             ->where(function ($query) use ($userId) {
                 $query->where('pairs.user1_id', $userId)
                     ->orWhere('pairs.user2_id', $userId);
             })
-            ->whereColumn('pairs.user1_id', '<>', 'pairs.user2_id')
             ->select(
-                'goals.id',
-                'goals.title',
-                'goals.category',
-                'goals.target_value',
-                'goals.unit',
-                'goals.deadline',
-                'goals.status',
-                'partner.name as partner_name',
-                DB::raw('COALESCE(progress.current_value, 0) AS current_value')
-            );
-  if ($sort === 'created') {
-    $goals->orderBy('goals.created_at', 'desc');
-} else {
-    $goals->leftJoin(
-        DB::raw('(SELECT goal_id, MAX(updated_at) AS last_update
-                  FROM goal_progress
-                  GROUP BY goal_id) gp'),
-        'gp.goal_id',
-        '=',
-        'goals.id'
-    )
-    ->orderByDesc('gp.last_update')
-    ->orderByDesc('goals.created_at');
-}
+                'goal_progress.goal_id',        // 詳細画面へのリンク用
+                'goals.title',                  // 目標名
+                'users.name as user_name',      // 入力した人の名前
+                'goal_progress.memo',           // コメント（未入力ならNULL）
+                'goal_progress.created_at'      // 入力日時（「◯日前」の計算に使う）
+            )
+            // 新しい入力を上に
+            ->orderByDesc('goal_progress.created_at')
+            ->get();
 
-$goals = $goals->get();
-
-        $goals->transform(function ($goal) {
-            $goal->progress_rate = $goal->target_value > 0
-                ? round(($goal->current_value / $goal->target_value) * 100)
-                : 0;
-
-            if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
-                $goal->display_status = '期限切れ';
-            } elseif ($goal->progress_rate >= 100) {
-                $goal->display_status = '目標達成中';
-            } else {
-                $goal->display_status = '進行中';
-            }
-
-            return $goal;
-        });
-
-        return view('current-goals', compact('goals', 'sort'));
+        return view('timeline', compact('entries'));
     }
 }

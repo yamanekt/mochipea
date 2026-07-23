@@ -3,107 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>進行中の目標</title>
+  <title>タイムライン</title>
   <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
 </head>
-<header>
-
-        <span class="sort-title">並び替え</span>
-
-    <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
-
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="updated"
-                {{ $sort == 'updated' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            更新順
-        </label>
-
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="created"
-                {{ $sort == 'created' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            登録順
-        </label>
-
-    </form>
 <body>
 
- <div class="bg"></div>
+  <div class="bg"></div>
 
+  <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
-<a href="{{ url('/home') }}" class="back-btn">戻る</a>
-
-
-
-<div class="goal-list">
-
-    @forelse ($goals as $goal)
-      @php
-        $progressRate = min(100, max(0, $goal->progress_rate));
-        $isExpired = $goal->display_status === '期限切れ';
-      @endphp
-
+  {{-- 達成入力（コメント）を新しい順に並べたタイムライン --}}
+  <div class="goal-list">
+    @forelse ($entries as $entry)
       <div class="goal-card">
-        <div class="goal-card-header">
-          <p class="goal-title">目標名：{{ $goal->title }}</p>
-          <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
-            <span class="status-dot"></span>
-            {{ $goal->display_status }}
-          </span>
-        </div>
+        {{-- 目標名 --}}
+        <p class="goal-title">目標名：{{ $entry->title }}</p>
 
-    <p>
-        カテゴリ：
-        @if ($goal->category === 'exercise')
-            運動
-        @elseif ($goal->category === 'study')
-            勉強
-        @elseif ($goal->category === 'game')
-            ゲーム
-        @else
-            {{ $goal->category }}
-        @endif
-    </p>
-
-    <p>ペア相手：{{ $goal->partner_name }}</p>
-
-    <p>
-        進捗：
-        {{ $goal->current_value }}
-        /
-        {{ $goal->target_value }}
-        {{ $goal->unit }}
-    </p>
-
-        <div class="progress-block">
-          <div class="progress-label">
-            <span>達成率</span>
-            <strong>{{ $goal->progress_rate }}%</strong>
-          </div>
-          <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
-            <div class="progress-fill" style="width: {{ $progressRate }}%;"></div>
-          </div>
-        </div>
-
-        <p>
-          期限：
-          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
+        {{-- 投稿者名 ・ 何日前か（Carbonのロケールはapp.phpでjaに設定済みなので「3日前」と表示される） --}}
+        <p class="entry-meta">
+          {{ $entry->user_name }}・{{ \Carbon\Carbon::parse($entry->created_at)->diffForHumans() }}
         </p>
 
-        <a href="{{ route('situation.show', $goal->id) }}" class="detail-btn">詳細を見る</a>
+        {{-- コメント（memoが未入力ならNULLなので代わりの文言を出す） --}}
+        <p class="entry-comment">
+          {{ $entry->memo ?? '（コメントなし）' }}
+        </p>
+
+        {{-- その目標の詳細（現在状況）画面へ --}}
+        <a href="{{ route('situation.show', $entry->goal_id) }}" class="detail-btn">詳細を見る</a>
       </div>
     @empty
       <div class="goal-card">
-        <p>現在登録されている目標はありません。</p>
+        <p>まだ達成入力がありません。</p>
       </div>
     @endforelse
   </div>
+
 </body>
 </html>
