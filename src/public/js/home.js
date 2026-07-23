@@ -1,6 +1,15 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     const intro = document.querySelector(".intro");
+    const logoutForm = document.querySelector("#logout-form");
+
+    if (logoutForm) {
+        logoutForm.addEventListener("submit", (event) => {
+            if (!window.confirm("本当にログアウトしますか？")) {
+                event.preventDefault();
+            }
+        });
+    }
 
     // 一度再生済みなら表示しない
     if (sessionStorage.getItem("introPlayed")) {

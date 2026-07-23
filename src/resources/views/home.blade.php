@@ -12,7 +12,7 @@
   <img src="{{ asset('images/IMG_0639.png') }}" alt="キャラ">
 </div>
 
-<form action="{{ route('logout') }}" method="POST">
+<form id="logout-form" action="{{ route('logout') }}" method="POST">
   @csrf
   <button type="submit" class="logout-btn">ログアウト</button>
 </form>
@@ -35,6 +35,6 @@
   </a>
 
 </div>
-  <script src="{{ asset('js/home.js') }}"></script>
+  <script src="{{ asset('js/home.js') }}?v={{ filemtime(public_path('js/home.js')) }}"></script>
 </body>
 </html>
