@@ -39,7 +39,7 @@
 </select>
 
       <label>目標名 *</label>
-      <input type="text" name="title" required>
+      <input type="text" name="title" placeholder="例：英単語を覚える" required>
 
       <label>目標値 *</label>
 
@@ -48,12 +48,13 @@
     name="target_value"
     inputmode="numeric"
     pattern="[0-9]*"
+    placeholder="例：100"
     oninput="this.value=this.value.replace(/[^0-9]/g,'')"
     required
 >
 
       <label>単位 *</label>
-      <input type="text" name="unit" required>
+      <input type="text" name="unit" placeholder="例：回・語・分" required>
 
       <label>期限 *</label>
       <input type="date" name="deadline" required>

@@ -30,7 +30,9 @@ class TimeLineController extends Controller
             ->select(
                 'goal_progress.goal_id',        // 詳細画面へのリンク用
                 'goals.title',                  // 目標名
+                'goals.unit',                   // 単位（回・歩・分など）
                 'users.name as user_name',      // 入力した人の名前
+                'goal_progress.value',          // 今回の回数（達成数）
                 'goal_progress.memo',           // コメント（未入力ならNULL）
                 'goal_progress.created_at'      // 入力日時（「◯日前」の計算に使う）
             )
