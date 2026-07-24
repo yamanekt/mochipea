@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>目標登録</title>
-  <link rel="stylesheet" href="{{ asset('css/goal.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/goal.css') }}?v={{ filemtime(public_path('css/goal.css')) }}">
 </head>
 <body>
      <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
