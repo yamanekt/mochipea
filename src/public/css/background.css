@@ -115,6 +115,13 @@ body{
     width:220px;
 
     text-align:center;
+    box-sizing:border-box;
+    padding:12px;
+    border-radius:10px;
+    background-color:#3b82f6;
+    color:white;
+    font-weight:bold;
+    text-decoration:none;
 
 }
 
@@ -134,6 +141,38 @@ body{
 
     overflow-y:auto;
 
+}
+
+.history-title{
+    position:sticky;
+    top:-15px;
+    margin:-15px -15px 12px;
+    padding:15px;
+    background:#b7f3ee;
+    font-weight:bold;
+    text-align:center;
+}
+
+.history-item{
+    padding:10px 0;
+    border-top:1px solid rgba(0,0,0,.15);
+}
+
+.history-item time{
+    display:block;
+    margin-top:3px;
+    color:#555;
+    font-size:13px;
+}
+
+.history-item p{
+    margin:6px 0 0;
+    overflow-wrap:anywhere;
+}
+
+.history-empty{
+    color:#555;
+    text-align:center;
 }
 .bg {
     position: fixed;

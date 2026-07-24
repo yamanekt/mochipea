@@ -24,21 +24,32 @@
         <div class="user-card">
 
             <div class="speech">
-                {{ $goal->current_value }}{{ $goal->unit }}覚えたよ！
+                {{ $myValue }}{{ $goal->unit }}達成したよ！
             </div>
 
             <img src="{{ asset('images/IMG_0640.png') }}" class="character">
 
             <div class="percent">
-                {{ $goal->progress_rate }}%
+                {{ $myRate }}%
             </div>
 
-            <a href="#" class="main-btn">
+            <a href="{{ route('progress.show', $goal->id) }}" class="main-btn">
                 記録を更新
             </a>
 
             <div class="history-box">
-                更新履歴を見る
+                <div class="history-title">更新履歴</div>
+                @forelse ($myHistory as $progress)
+                    <div class="history-item">
+                        <div><strong>{{ $progress->value }}{{ $goal->unit }}</strong> 達成したよ！</div>
+                        <time>{{ \Carbon\Carbon::parse($progress->progress_date)->format('Y/m/d') }}</time>
+                        @if ($progress->memo)
+                            <p>{{ $progress->memo }}</p>
+                        @endif
+                    </div>
+                @empty
+                    <p class="history-empty">まだ記録がありません</p>
+                @endforelse
             </div>
 
         </div>
@@ -47,17 +58,28 @@
         <div class="user-card">
 
             <div class="speech">
-                {{ $goal->partner_current_value }}{{ $goal->unit }}覚えたよ！
+                {{ $partnerValue }}{{ $goal->unit }}達成したよ！
             </div>
 
             <img src="{{ asset('images/IMG_0641.png') }}" class="character">
 
             <div class="percent">
-                {{ $goal->partner_progress_rate }}%
+                {{ $partnerRate }}%
             </div>
 
             <div class="history-box">
-                相手の更新履歴
+                <div class="history-title">相手の更新履歴</div>
+                @forelse ($partnerHistory as $progress)
+                    <div class="history-item">
+                        <div><strong>{{ $progress->value }}{{ $goal->unit }}</strong> 達成したよ！</div>
+                        <time>{{ \Carbon\Carbon::parse($progress->progress_date)->format('Y/m/d') }}</time>
+                        @if ($progress->memo)
+                            <p>{{ $progress->memo }}</p>
+                        @endif
+                    </div>
+                @empty
+                    <p class="history-empty">まだ記録がありません</p>
+                @endforelse
             </div>
 
         </div>

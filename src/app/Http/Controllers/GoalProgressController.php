@@ -20,14 +20,21 @@ class GoalProgressController extends Controller
 
     public function store(Request $request)
     {
-        GoalProgress::create([
-            'goal_id' => $request->goal_id,
-            'user_id' => auth()->id(),
-            'value' => $request->value,
-            'memo' => $request->memo,
-            'progress_date' => $request->progress_date,
+        $validated = $request->validate([
+            'goal_id' => ['required', 'integer', 'exists:goals,id'],
+            'value' => ['required', 'integer', 'min:1'],
+            'memo' => ['nullable', 'string', 'max:1000'],
+            'progress_date' => ['required', 'date'],
         ]);
 
-        return redirect()->route('situation.show', $request->goal_id);
+        GoalProgress::create([
+            'goal_id' => $validated['goal_id'],
+            'user_id' => auth()->id(),
+            'value' => $validated['value'],
+            'memo' => $validated['memo'] ?? null,
+            'progress_date' => $validated['progress_date'],
+        ]);
+
+        return redirect()->route('situation.show', $validated['goal_id']);
     }
 }
