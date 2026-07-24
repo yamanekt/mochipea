@@ -169,3 +169,80 @@ button:hover {
 ::-ms-clear {
     display: none;
 }
+
+/* ログイン画面：スマホ表示 */
+@media (max-width: 768px) {
+    body {
+        display: block;
+        min-height: 100svh;
+        padding: 20px 14px 28px;
+        box-sizing: border-box;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .container {
+        width: 100%;
+        padding: 22px 18px 26px;
+        box-sizing: border-box;
+        border-radius: 18px;
+    }
+
+    .top-image {
+        width: 280px;
+        height: auto;
+        margin: 0 auto -22px;
+    }
+
+    h1 {
+        margin: 8px 0 4px;
+        font-size: 30px;
+    }
+
+    h2 {
+        margin: 0 0 24px;
+        font-size: 22px;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    label {
+        margin: 16px 0 8px;
+        font-size: 16px;
+    }
+
+    input {
+        min-height: 50px;
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+
+    button,
+    .register-btn {
+        min-height: 54px;
+        padding: 14px;
+        font-size: 17px;
+    }
+
+    button {
+        margin-top: 22px;
+    }
+
+    .register-link {
+        margin-top: 16px;
+    }
+
+    .point-char {
+        right: -12px;
+        bottom: 28px;
+        width: 100px;
+    }
+
+    .error {
+        font-size: 14px;
+    }
+}

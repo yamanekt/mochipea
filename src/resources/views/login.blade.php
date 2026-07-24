@@ -3,8 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
-    <link rel="stylesheet" href="{{ asset('css/rogin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/rogin.css') }}?v={{ filemtime(public_path('css/rogin.css')) }}">
 </head>
 
 <body>
