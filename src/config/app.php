@@ -122,5 +122,8 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+    // Carbonのロケールを日本語に設定
+    // 何日後～みたいな表記を日本語に
+    \Carbon\Carbon::setLocale('ja')
 
 ];

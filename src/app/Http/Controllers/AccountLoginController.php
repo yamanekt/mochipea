@@ -1,144 +1,80 @@
 <?php
 
+// ログイン・ログアウト
+
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;           // ユーザーからのリクエスト情報（フォーム入力値など）を扱うクラス
+use Illuminate\Support\Facades\Auth;   // Laravel標準の認証（ログイン/ログアウト）機能
+use Illuminate\Support\Facades\Cookie;
 
 class AccountLoginController extends Controller
 {
-    // 登録画面表示
-    public function showRegister()
-    {
-        return view('register');
-    }
-
-    // 登録処理
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => [
-                'required',
-                'confirmed',
-                'min:8',
-                'regex:/^[a-zA-Z0-9]+$/'
-            ],
-        ], [
-            'name.required' => '名前を入力してください。',
-            'email.required' => 'メールアドレスを入力してください。',
-            'email.email' => 'メールアドレスを正しく入力してください。',
-            'email.unique' => 'このメールアドレスはすでに登録されています。',
-            'password.required' => 'パスワードを入力してください。',
-            'password.confirmed' => 'パスワードが一致しません。',
-            'password.min' => 'パスワードは8文字以上にしてください。',
-            'password.regex' => 'パスワードは英数字で入力してください。',
-        ]);
-
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        return redirect()
-            ->route('login')
-            ->with('success', 'アカウント作成に成功しました！');
-    }
-
-    // ログイン画面表示
+    /**
+     * ログイン画面を表示する
+     * Route: GET /login
+     */
     public function showLogin()
     {
-        return view('login');
+        return view('login'); // resources/views/login.blade.php を表示
     }
 
-    // ログイン処理
+    /**
+     * ログイン処理（フォーム送信時に呼ばれる）
+     * Route: POST /login
+     */
     public function login(Request $request)
     {
-        $result = [
-            "status" => true,
-            "message" => null,
-            "result" => false,
-        ];
-
-        // POSTデータ取得
-        $email = $request->input('email');
-        $password = $request->input('password');
-
-        // メールチェック
-        if ($email === null || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $result["status"] = false;
-            $result["message"] = "メールアドレスを正しく入力してください。";
-        }
-
-        // パスワードチェック
-        if ($result["status"]) {
-            if ($password === null || $password === "") {
-                $result["status"] = false;
-                $result["message"] = "パスワードを入力してください。";
-            }
-        }
-
-        // ログイン処理
-        if ($result["status"]) {
-            try {
-                // 入力されたメールアドレスのユーザーを探す
-                $user = User::where('email', $email)->first();
-
-                // ユーザーが存在しない
-                if ($user === null) {
-                    $result["status"] = false;
-                    $result["message"] = "メールアドレスまたはパスワードが違います。";
-
-                    // パスワードが違う
-                } elseif (!Hash::check($password, $user->password)) {
-                    $result["status"] = false;
-                    $result["message"] = "メールアドレスまたはパスワードが違います。";
-
-                    // ログイン成功
-                } else {
-                    $request->session()->regenerate();
-
-                    session([
-                        "user_id" => $user->id,
-                        "user_name" => $user->name,
-                        "user_email" => $user->email,
-                    ]);
-
-                    $result["result"] = true;
-                    $result["message"] = "ログインに成功しました！";
-
-                    return redirect('/')
-                        ->with('success', $result["message"]);
-                }
-
-            } catch (\Exception $e) {
-                $result["status"] = false;
-                $result["message"] = "DBエラー：" . $e->getMessage();
-            }
-        }
-
-        return back()
-            ->withErrors([
-                'login' => $result["message"],
-            ])
-            ->withInput();
-    }
-
-    // ログアウト処理
-    public function logout(Request $request)
-    {
-        $request->session()->forget([
-            'user_id',
-            'user_name',
-            'user_email',
+        // ─バリデーション（入力チェック）
+        // validate() で入力値をチェック。ルールに違反するとエラーメッセージを返して前の画面に戻る。
+        // required: 必須入力  email: メール形式かチェック
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ], [
+            // 第2引数: エラーメッセージを日本語でカスタマイズ
+            'email.required' => 'メールアドレスを入力してください。',
+            'email.email' => 'メールアドレスを正しく入力してください。',
+            'password.required' => 'パスワードを入力してください。',
         ]);
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // ログイン試行
+        // Auth::attempt() → メールアドレスとパスワードがDBと一致するかチェック
+        // 一致すればログイン状態にして true を返す
+        if (Auth::attempt($credentials)) {
+            // セッションIDを再生成（セキュリティ対策：セッション固定攻撃を防ぐ）
+            $request->session()->regenerate();
 
-        return redirect()->route('login');
+            // intended() → ログイン前にアクセスしようとしていたURLにリダイレクト（なければ/home）
+            return redirect()->intended('/home')->with('success', 'ログインに成功しました！');
+        }
+
+        // ログイン失敗
+        // back() → 前の画面（ログイン画面）に戻る
+        // withErrors() → エラーメッセージをBladeに渡す
+        // withInput() → 入力値を保持（メールアドレスが消えないようにする）
+        return back()->withErrors([
+            'login' => 'メールアドレスまたはパスワードが違います。',
+        ])->withInput();
+    }
+
+    /**
+     * ログアウト処理
+     * Route: POST /logout
+     */
+    public function logout(Request $request)
+    {
+        Auth::logout();                          // ログアウト（認証情報をクリア）
+        $request->session()->invalidate();       // セッションを無効化（全データ削除）
+        $request->session()->regenerateToken();   // CSRFトークンを再生成（セキュリティ対策）
+
+        // ブラウザに保存されているセッションCookieも期限切れにする
+        Cookie::queue(Cookie::forget(
+            config('session.cookie'),
+            config('session.path'),
+            config('session.domain')
+        ));
+
+        return redirect()->route('login');        // ログイン画面にリダイレクト
     }
 }

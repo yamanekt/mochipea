@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Room extends Model
+class Pair extends Model
 {
     protected $fillable = [
-        'room_id',
-        'content'
+        'user1_id',
+        'user2_id',
+        'pair_code',
     ];
 }
