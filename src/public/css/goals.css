@@ -363,3 +363,9 @@ body {
     }
 
 }
+
+/* タイムラインの回数表示（timelineでgoals.cssを共用） */
+.entry-count {
+    font-weight: bold;
+    color: #b45309;
+}

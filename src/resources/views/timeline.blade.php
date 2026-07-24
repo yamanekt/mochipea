@@ -4,11 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>タイムライン</title>
-  <link rel="stylesheet" href="{{ asset('css/timeline.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
 </head>
 <body>
 
   <div class="bg"></div>
+
+  {{-- 上部のページ切替バー（/current-goals と共通の goals.css のスタイルを使う） --}}
+  <header class="page-menu">
+    <div class="menu-btn current">タイムライン</div>
+    <a href="{{ url('/current-goals') }}" class="menu-btn">目標一覧</a>
+  </header>
+
+  {{-- 案内キャラクター --}}
+  <div class="guide-character">
+    <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">
+  </div>
 
   <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
@@ -23,6 +34,9 @@
         <p class="entry-meta">
           {{ $entry->user_name }}・{{ \Carbon\Carbon::parse($entry->created_at)->diffForHumans() }}
         </p>
+
+        {{-- 今回の回数（達成数）＋単位 --}}
+        <p class="entry-count">回数：{{ $entry->value }}{{ $entry->unit }}</p>
 
         {{-- コメント（memoが未入力ならNULLなので代わりの文言を出す） --}}
         <p class="entry-comment">
