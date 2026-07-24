@@ -182,7 +182,6 @@ background-image: url("../images/background_mobile.png");
 
 .back-btn:hover {
     background: #666;
-     padding-top: 90px;
 }
 .container {
     margin-top: 90px;
@@ -362,4 +361,10 @@ body {
 
     }
 
+}
+
+/* タイムラインの回数表示（timelineでgoals.cssを共用） */
+.entry-count {
+    font-weight: bold;
+    color: #b45309;
 }
