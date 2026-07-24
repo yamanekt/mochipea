@@ -48,6 +48,15 @@ body{
 
     width:320px;
 
+    /* 背景と同化しないようカード背景を付ける */
+    background:rgba(248,240,240,.9);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.3);
+
 }
 
 .character{

@@ -13,7 +13,6 @@ use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
 use App\Http\Controllers\TimeLineController;
 
-
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
 Route::post('/login', [AccountLoginController::class, 'login']);

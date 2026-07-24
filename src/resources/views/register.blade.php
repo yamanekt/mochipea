@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
 </head>
@@ -39,11 +40,11 @@
                 <label>ユーザー名 *</label>
                 <input type="text" name="name" required>
 
-                <label>Eメール *</label>
-                <input type="email" name="email" required>
+<label for="email">Eメール *</label>
+<input type="email" id="email" name="email" autocomplete="email" required>
 
-                <label>パスワード *</label>
-                <input type="password" name="password" required>
+<label for="password">パスワード *</label>
+<input type="password" id="password" name="password" autocomplete="new-password" required>
 
                 <label>パスワード確認 *</label>
                 <input type="password" name="password_confirmation" required>
@@ -64,3 +65,5 @@
 
 </body>
 </html>
+
+
