@@ -59,17 +59,6 @@ p {
     transform: scale(1.05);
 }
 
-.bg {
-    position: fixed;
-    inset: 0;
-
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-}
 /* 戻るボタン */
 .back-btn {
     position: fixed;

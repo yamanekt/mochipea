@@ -1,73 +1,68 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>目標登録</title>
-  <link rel="stylesheet" href="{{ asset('css/goal.css') }}?v={{ filemtime(public_path('css/goal.css')) }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>目標登録</title>
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/goals.css') }}?v={{ filemtime(public_path('css/goals.css')) }}">
 </head>
+
 <body>
-     <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
-  <div class="bg">
+    <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
+    <div class="bg">
 
-<div class="rolling-area">
+        <div class="rolling-area">
 
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r1">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r2">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r3">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r4">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r5">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r6">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r7">
+            <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r1">
+            <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r2">
+            <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r3">
+            <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r4">
+            <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r5">
+            <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r6">
+            <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r7">
 
-</div>
+        </div>
 
-  </div>
-  <div class="container">
-    <h1>目標登録</h1>
-    <h2>目標設定</h2>
+    </div>
+    <div class="container">
+        <h1>目標登録</h1>
+        <h2>目標設定</h2>
 
-<form action="{{ url('/goals/store') }}" method="POST">
-      @csrf
-<label for="category">目標カテゴリ *</label>
+        <form action="{{ url('/goals/store') }}" method="POST">
+            @csrf
+            <label for="category">目標カテゴリ *</label>
 
-<select name="category" id="category" required>
-    <option value="">選択してください</option>
-    <option value="exercise">運動</option>
-    <option value="study">勉強</option>
-    <option value="game">ゲーム</option>
-    <option value="other">その他</option>
-</select>
+            <select name="category" id="category" required>
+                <option value="">選択してください</option>
+                <option value="exercise">運動</option>
+                <option value="study">勉強</option>
+                <option value="game">ゲーム</option>
+                <option value="other">その他</option>
+            </select>
 
-      <label>目標名 *</label>
-      <input type="text" name="title" placeholder="例：英単語を覚える" required>
+            <label>目標名 *</label>
+            <input type="text" name="title" placeholder="例：英単語を覚える" required>
 
-      <label>目標値 *</label>
+            <label>目標値 *</label>
 
-<input
-    type="text"
-    name="target_value"
-    inputmode="numeric"
-    pattern="[0-9]*"
-    placeholder="例：100"
-    oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-    required
->
+            <input type="text" name="target_value" inputmode="numeric" pattern="[0-9]*" placeholder="例：100"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')" required>
 
-      <label>単位 *</label>
-      <input type="text" name="unit" placeholder="例：回・語・分" required>
+            <label>単位 *</label>
+            <input type="text" name="unit" placeholder="例：回・語・分" required>
 
-      <label>期限 *</label>
-      <input type="date" name="deadline" required>
+            <label>期限 *</label>
+            <input type="date" name="deadline" required>
 
-     <div class="button-area">
-    <button type="submit" class="main-btn">目標決定</button>
+            <div class="button-area">
+                <button type="submit" class="main-btn">目標決定</button>
 
-    <img src="{{ asset('images/IMG_0641.png') }}"
-         alt="キャラ"
-         class="point-char">
-</div>
-    </form>
-  </div>
+                <img src="{{ asset('images/IMG_0641.png') }}" alt="キャラ" class="point-char">
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>

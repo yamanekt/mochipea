@@ -26,16 +26,7 @@ h1 {
     gap: 30px;
 }
 
-.bg {
-    position: fixed;
-    inset: 0;
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 
-    z-index: -1;
-}
 
 .box {
     background-color: rgba(248, 240, 240, 0.85);
