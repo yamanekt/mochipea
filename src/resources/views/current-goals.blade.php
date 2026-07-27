@@ -21,27 +21,27 @@
 
     <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
 
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="updated"
-                {{ $sort == 'updated' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            更新順
-        </label>
+    <label class="sort-btn">
+        <input
+            type="radio"
+            name="sort"
+            value="updated"
+            {{ $sort == 'updated' ? 'checked' : '' }}
+            onchange="this.form.submit()">
+        <span>更新順</span>
+    </label>
 
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="created"
-                {{ $sort == 'created' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            登録順
-        </label>
+    <label class="sort-btn">
+        <input
+            type="radio"
+            name="sort"
+            value="created"
+            {{ $sort == 'created' ? 'checked' : '' }}
+            onchange="this.form.submit()">
+        <span>登録順</span>
+    </label>
 
-    </form>
+</form>
 <body>
 
  <div class="bg"></div>
