@@ -1,10 +1,12 @@
-body {
-    font-family: "Noto Sans JP", sans-serif;
-    margin: 0;
-    padding: 120px 40px 40px;
+.bg {
+    position: fixed;
+    inset: 0;
+    background-image: url("../images/background_mobile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
 }
-
-
 
 /* 戻るボタン */
 .back-btn {

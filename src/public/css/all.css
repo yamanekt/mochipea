@@ -8,3 +8,14 @@
     background-repeat: no-repeat;
     z-index: -1;
 }
+
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    display: flex;
+    justify-content: center; /* 横中央 */
+    align-items: center;     /* 縦中央 */
+    min-height: 100vh;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
