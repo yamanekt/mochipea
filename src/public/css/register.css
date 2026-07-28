@@ -1,31 +1,9 @@
-body {
-    background-color: #f7fafc;
-    color: #131212;
-    font-family: "Noto Sans JP", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
 
-.bg {
-    position: fixed;
-    inset: 0;
-    background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
-
-.container {
+.box {
     position: relative;
-      background-color: rgba(235, 235, 240, 0.85);
-    width: 600px;
-    padding: 80px 100px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 10;
+    padding: 50px 100px;
 }
 
 /* 戻るボタン */
@@ -168,20 +146,6 @@ li {
     z-index: 20;
 }
 
-.container {
-    position: relative;
-    z-index: 10;
-
-    background-color: rgba(248, 240, 240, 0.9);
-
-    width: 510px;
-    padding: 50px 100px;
-
-    border: 2px solid #f5f3f3;
-    border-radius: 20px;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
 
 h1 {
     text-align: center;
@@ -228,4 +192,76 @@ input[type="email"] {
 
 ::-ms-clear{
     display:none;
+}
+
+/* 新規登録画面：スマホ表示 */
+@media (max-width: 768px) {
+    body {
+        display: block;
+        min-height: 100svh;
+        padding: 76px 14px 28px;
+        box-sizing: border-box;
+    }
+
+    .page {
+        width: 100%;
+    }
+
+    .box {
+        padding: 22px 18px 26px;
+        border-radius: 18px;
+    }
+
+    .top-image {
+        width: 260px;
+        height: auto;
+        margin: 0 auto -20px;
+    }
+
+    h1 {
+        margin: 6px 0 2px;
+        font-size: 30px;
+    }
+
+    .sub-title {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    label {
+        margin: 16px 0 8px;
+        font-size: 16px;
+    }
+
+    input {
+        min-height: 50px;
+        padding: 12px 14px;
+        font-size: 16px;
+    }
+
+    button {
+        min-height: 54px;
+        margin-top: 26px;
+        padding: 14px;
+        font-size: 17px;
+    }
+
+    .back-btn {
+        top: -62px;
+        right: 0;
+        padding: 11px 20px;
+        font-size: 16px;
+    }
+
+    .point-char {
+        right: -10px;
+        bottom: -42px;
+        width: 100px;
+    }
+
+    ul {
+        margin: 10px 0;
+        padding-left: 20px;
+        font-size: 14px;
+    }
 }
