@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>目標登録</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
     <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
     <link rel="stylesheet" href="{{ asset('css/goals.css') }}?v={{ filemtime(public_path('css/goals.css')) }}">
 </head>
