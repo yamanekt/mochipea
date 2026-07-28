@@ -1,39 +1,9 @@
-h1 {
-    font-size: 50px;
-    color: #010101;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    /* 縦並び */
-    align-items: center;
-    /* 中央寄せ */
-    gap: 30px;
-}
-
-
-
 .box {
-    background-color: rgba(248, 240, 240, 0.85);
-    border: 2px solid #f5f3f3;
-    border-radius: 16px;
-    padding: 40px 60px;
-    max-width: 500px;
     text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 700px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-    margin: 0;
-    padding: 120px;
-    box-sizing: content-box;
 }
 
 /* テキスト装飾 */
 h1 {
-    margin-top: 0;
     color: #191818;
 }
 
@@ -45,117 +15,6 @@ p {
     font-size: 30px;
 }
 
-
-.photo {
-    width: 300px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-
-    animation: fadeOut 5s forwards;
-}
-
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-.photo:hover {
-    transform: scale(1.05);
-}
-
-.box:hover {
-    transform: scale(1.05);
-}
-/* ===== オープニング演出 ===== */
-.intro {
-    position: fixed;
-    inset: 0;
-
-    background: white; /* 背景色（好きに変えてOK） */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
-
-    animation: fadeOut 2.5s forwards;
-}
-
-.intro img {
-    width: 80%;
-    max-width: 800px;
-
-    animation: scaleUp 2s ease;
-}
-
-/* ちょっとズーム */
-@keyframes scaleUp {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* 消える */
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
-}
-/* ログアウトボタン */
-.logout-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-
-    display: inline-block;
-
-    background: #e53935;
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-family: inherit;
-
-    padding: 20px 40px;
-    border-radius: 10px;
-
-    font-size: 16px;
-    font-weight: bold;
-
-    box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-
-    transition: 0.3s;
-
-    z-index: 10000;
-}
-
-.logout-btn:hover {
-    background: #c62828;
-    transform: scale(1.05);
-}
-
 /* ホーム画面：スマホ表示 */
 @media (max-width: 768px) {
     body {
@@ -165,17 +24,8 @@ p {
         box-sizing: border-box;
     }
 
-    .container {
-        width: 100%;
-        gap: 18px;
-    }
-
     .box {
-        width: 100%;
-        max-width: none;
         min-height: 180px;
-        padding: 34px 18px;
-        box-sizing: border-box;
 
         display: flex;
         flex-direction: column;
@@ -196,6 +46,121 @@ p {
         font-size: 16px;
         line-height: 1.7;
     }
+
+    .photo {
+        width: 300px;
+        border-radius: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+        animation: fadeOut 5s forwards;
+    }
+
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    .photo:hover {
+        transform: scale(1.05);
+    }
+
+    /* ===== オープニング演出 ===== */
+    .intro {
+        position: fixed;
+        inset: 0;
+
+        background: white;
+        /* 背景色（好きに変えてOK） */
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        z-index: 9999;
+
+        animation: fadeOut 2.5s forwards;
+    }
+
+    .intro img {
+        width: 80%;
+        max-width: 800px;
+
+        animation: scaleUp 2s ease;
+    }
+
+    /* ちょっとズーム */
+    @keyframes scaleUp {
+        0% {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+
+        50% {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    /* 消える */
+    @keyframes fadeOut {
+        0% {
+            opacity: 1;
+        }
+
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+
+    /* ログアウトボタン */
+    .logout-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+
+        display: inline-block;
+
+        background: #e53935;
+        color: #fff;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+
+        padding: 20px 40px;
+        border-radius: 10px;
+
+        font-size: 16px;
+        font-weight: bold;
+
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+
+        transition: 0.3s;
+
+        z-index: 10000;
+    }
+
+    .logout-btn:hover {
+        background: #c62828;
+        transform: scale(1.05);
+    }
+
+
 
     .logout-btn {
         top: 14px;

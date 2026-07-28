@@ -17,15 +17,10 @@
 }
 
 /* ログインボックス */
-.container {
+.box {
     position: relative;
     z-index: 10;
-    background-color: rgba(248, 240, 240, 0.9);
-    width: 510px;
     padding: 30px 100px;
-    border: 2px solid #f5f3f3;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* フォームエリア（これ超重要） */
@@ -163,10 +158,8 @@ button:hover {
         width: 100%;
     }
 
-    .container {
-        width: 100%;
+    .box {
         padding: 22px 18px 26px;
-        box-sizing: border-box;
         border-radius: 18px;
     }
 

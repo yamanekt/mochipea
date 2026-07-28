@@ -8,6 +8,10 @@
     z-index: -1;
 }
 
+.container {
+    max-width: 1000px;
+    margin: auto;
+}
 /* 戻るボタン */
 .back-btn {
     position: fixed;
@@ -37,10 +41,7 @@
     transform: translateY(-2px);
 }
 
-.detail-container {
-    max-width: 1000px;
-    margin: auto;
-}
+
 
 .goal-title-box {
     background: rgba(248,240,240,.9);
@@ -169,9 +170,9 @@ body{
     padding:120px 40px 40px;
 }
 
-.detail-container{
-    max-width:1000px;
-    margin:auto;
+.container {
+    max-width: 1000px;
+    margin: auto;
 }
 
 .goal-title-box{
@@ -316,10 +317,6 @@ body{
     padding:120px 40px 40px;
 }
 
-.detail-container{
-    max-width:1000px;
-    margin:auto;
-}
 
 .goal-title-box{
 

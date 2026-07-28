@@ -13,9 +13,9 @@
 
     <div class="bg"></div>
 
-    <div class="page">
+    <div class="container">
 
-        <div class="container">
+        <div class="box">
 
             <a href="{{ url('/login') }}" class="back-btn">戻る</a>
 

@@ -15,16 +15,16 @@
 
     <a href="{{ url('/current-goals') }}" class="back-btn">戻る</a>
 
-    <div class="detail-container">
+    <div class="container">
 
-        <div class="goal-title-box">
+        <div class="box goal-title-box">
             {{ $goal->title }}
         </div>
 
         <div class="pair-area">
 
             <!-- 自分 -->
-            <div class="user-card">
+            <div class="box user-card">
 
                 <div class="speech">
                     {{ $myValue }}{{ $goal->unit }}達成したよ！
@@ -58,7 +58,7 @@
             </div>
 
             <!-- 相手 -->
-            <div class="user-card">
+            <div class="box user-card">
 
                 <div class="speech">
                     {{ $partnerValue }}{{ $goal->unit }}達成したよ！

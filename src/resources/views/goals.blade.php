@@ -27,6 +27,7 @@
 
     </div>
     <div class="container">
+        <div class="box">
         <h1>目標登録</h1>
         <h2>目標設定</h2>
 
@@ -62,6 +63,7 @@
                 <img src="{{ asset('images/IMG_0641.png') }}" alt="キャラ" class="point-char">
             </div>
         </form>
+        </div>
     </div>
 </body>
 

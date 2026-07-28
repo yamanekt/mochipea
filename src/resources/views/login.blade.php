@@ -13,9 +13,9 @@
 
     <div class="bg"></div>
 
-    <div class="page">
+    <div class="container">
 
-        <div class="container">
+        <div class="box">
 
             <img src="{{ asset('images/welcome2.png') }}" alt="ロゴ" class="top-image">
 

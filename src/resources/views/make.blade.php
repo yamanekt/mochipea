@@ -11,6 +11,7 @@
 <body>
     <div class="bg"></div>
     <div class="container">
+        <div class="box">
         <h1>部屋を作成しました</h1>
         <h2>別のアカウントでログインした相手に、この部屋番号を伝えてください</h2>
 
@@ -21,6 +22,7 @@
         </div>
 
         <a href="{{ route('pea') }}" class="main-btn">戻る</a>
+        </div>
     </div>
 
     <script src="{{ asset('js/make.js') }}"></script>

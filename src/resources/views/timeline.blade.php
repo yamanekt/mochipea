@@ -27,11 +27,11 @@
     <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
     {{-- 達成入力（コメント）を新しい順に並べたタイムライン --}}
-    <div class="goal-list">
+    <div class="container">
         @forelse ($entries as $entry)
-            <div class="goal-card">
+            <div class="box">
                 {{-- 目標名 --}}
-                <p class="goal-title">目標名：{{ $entry->title }}</p>
+                <p class="box-title">目標名：{{ $entry->title }}</p>
 
                 {{-- 投稿者名 ・ 何日前か（Carbonのロケールはapp.phpでjaに設定済みなので「3日前」と表示される） --}}
                 <p class="entry-meta">
@@ -50,7 +50,7 @@
                 <a href="{{ route('situation.show', $entry->goal_id) }}" class="detail-btn">詳細を見る</a>
             </div>
         @empty
-            <div class="goal-card">
+            <div class="box">
                 <p>まだ達成入力がありません。</p>
             </div>
         @endforelse

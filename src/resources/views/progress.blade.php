@@ -14,6 +14,7 @@
     <div class="bg"></div>
 
     <div class="container">
+        <div class="box">
 
         <h2>達成入力</h2>
 
@@ -45,6 +46,7 @@
                 <a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
         </form>
 
+        </div>
     </div>
     <!-- フォームの外 -->
     <div class="catch-area">

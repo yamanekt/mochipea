@@ -48,7 +48,7 @@
 
 
 
-        <div class="goal-list">
+        <div class="container">
 
             @forelse ($goals as $goal)
                 @php
@@ -56,9 +56,9 @@
                     $isExpired = $goal->display_status === '期限切れ';
                 @endphp
 
-                <div class="goal-card">
+                <div class="box">
                     <div class="goal-card-header">
-                        <p class="goal-title">目標名：{{ $goal->title }}</p>
+                        <p class="box-title">目標名：{{ $goal->title }}</p>
                         <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
                             <span class="status-dot"></span>
                             {{ $goal->display_status }}
@@ -106,7 +106,7 @@
                     <a href="{{ route('situation.show', $goal->id) }}" class="detail-btn">詳細を見る</a>
                 </div>
             @empty
-                <div class="goal-card">
+                <div class="box">
                     <p>現在登録されている目標はありません。</p>
                 </div>
             @endforelse
