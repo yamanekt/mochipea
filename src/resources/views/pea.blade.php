@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ペア設定</title>
   <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-  <link rel="stylesheet" href="{{ asset('css/pea.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
+  <link rel="stylesheet" href="{{ asset('css/pea.css') }}?v={{ filemtime(public_path('css/pea.css')) }}">
 </head>
 
 <body>

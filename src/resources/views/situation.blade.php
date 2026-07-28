@@ -1,72 +1,98 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-     <link rel="stylesheet" href="{{ asset('css/background.css') }}">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/situation.css') }}?v={{ filemtime(public_path('css/situation.css')) }}">
 </head>
+
 <body>
-<div class="bg"></div>
+    <div class="bg"></div>
 
 
-<a href="{{ url('/current-goals') }}" class="back-btn">戻る</a>
+    <a href="{{ url('/current-goals') }}" class="back-btn">戻る</a>
 
-<div class="detail-container">
+    <div class="container">
 
-    <div class="goal-title-box">
-        {{ $goal->title }}
-    </div>
+        <div class="box goal-title-box">
+            {{ $goal->title }}
+        </div>
 
-    <div class="pair-area">
+        <div class="pair-area">
 
-        <!-- 自分 -->
-        <div class="user-card">
+            <!-- 自分 -->
+            <div class="box user-card">
 
-            <div class="speech">
-                {{ $goal->current_value }}{{ $goal->unit }}覚えたよ！
+                <div class="speech">
+                    {{ $myValue }}{{ $goal->unit }}達成したよ！
+                </div>
+
+                <img src="{{ asset('images/IMG_0640.png') }}" class="character">
+
+                <div class="percent">
+                    {{ $myRate }}%
+                </div>
+
+                <a href="{{ route('progress.show', $goal->id) }}" class="main-btn">
+                    記録を更新
+                </a>
+
+                <div class="history-box">
+                    <div class="history-title">更新履歴</div>
+                    @forelse ($myHistory as $progress)
+                        <div class="history-item">
+                            <div><strong>{{ $progress->value }}{{ $goal->unit }}</strong> 達成したよ！</div>
+                            <time>{{ \Carbon\Carbon::parse($progress->progress_date)->format('Y/m/d') }}</time>
+                            @if ($progress->memo)
+                                <p>{{ $progress->memo }}</p>
+                            @endif
+                        </div>
+                    @empty
+                        <p class="history-empty">まだ記録がありません</p>
+                    @endforelse
+                </div>
+
             </div>
 
-            <img src="{{ asset('images/IMG_0640.png') }}" class="character">
+            <!-- 相手 -->
+            <div class="box user-card">
 
-            <div class="percent">
-                {{ $goal->progress_rate }}%
-            </div>
+                <div class="speech">
+                    {{ $partnerValue }}{{ $goal->unit }}達成したよ！
+                </div>
 
-            <a href="#" class="main-btn">
-                記録を更新
-            </a>
+                <img src="{{ asset('images/IMG_0641.png') }}" class="character">
 
-            <div class="history-box">
-                更新履歴を見る
+                <div class="percent">
+                    {{ $partnerRate }}%
+                </div>
+
+                <div class="history-box">
+                    <div class="history-title">相手の更新履歴</div>
+                    @forelse ($partnerHistory as $progress)
+                        <div class="history-item">
+                            <div><strong>{{ $progress->value }}{{ $goal->unit }}</strong> 達成したよ！</div>
+                            <time>{{ \Carbon\Carbon::parse($progress->progress_date)->format('Y/m/d') }}</time>
+                            @if ($progress->memo)
+                                <p>{{ $progress->memo }}</p>
+                            @endif
+                        </div>
+                    @empty
+                        <p class="history-empty">まだ記録がありません</p>
+                    @endforelse
+                </div>
+
             </div>
 
         </div>
 
-        <!-- 相手 -->
-        <div class="user-card">
-
-            <div class="speech">
-                {{ $goal->partner_current_value }}{{ $goal->unit }}覚えたよ！
-            </div>
-
-            <img src="{{ asset('images/IMG_0641.png') }}" class="character">
-
-            <div class="percent">
-                {{ $goal->partner_progress_rate }}%
-            </div>
-
-            <div class="history-box">
-                相手の更新履歴
-            </div>
-
-        </div>
-
     </div>
-
-</div>
 
 
 </body>
+
 </html>

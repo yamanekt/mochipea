@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;           // ユーザーからのリクエスト情報（フォーム入力値など）を扱うクラス
 use Illuminate\Support\Facades\Auth;   // Laravel標準の認証（ログイン/ログアウト）機能
+use Illuminate\Support\Facades\Cookie;
 
 class AccountLoginController extends Controller
 {
@@ -66,6 +67,14 @@ class AccountLoginController extends Controller
         Auth::logout();                          // ログアウト（認証情報をクリア）
         $request->session()->invalidate();       // セッションを無効化（全データ削除）
         $request->session()->regenerateToken();   // CSRFトークンを再生成（セキュリティ対策）
+
+        // ブラウザに保存されているセッションCookieも期限切れにする
+        Cookie::queue(Cookie::forget(
+            config('session.cookie'),
+            config('session.path'),
+            config('session.domain')
+        ));
+
         return redirect()->route('login');        // ログイン画面にリダイレクト
     }
 }

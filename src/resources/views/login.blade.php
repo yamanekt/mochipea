@@ -3,18 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
     <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/rogin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}?v={{ filemtime(public_path('css/login.css')) }}">
 </head>
 
 <body>
 
     <div class="bg"></div>
 
-    <div class="page">
+    <div class="container">
 
-        <div class="container">
+        <div class="box">
 
             <img src="{{ asset('images/welcome2.png') }}" alt="ロゴ" class="top-image">
 
