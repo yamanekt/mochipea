@@ -1,31 +1,9 @@
-body {
-    background-color: #f7fafc;
-    color: #131212;
-    font-family: "Noto Sans JP", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-}
 
-.bg {
-    position: fixed;
-    inset: 0;
-    background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
-
-.container {
+.box {
     position: relative;
-      background-color: rgba(235, 235, 240, 0.85);
-    width: 600px;
-    padding: 80px 100px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 10;
+    padding: 50px 100px;
 }
 
 /* 戻るボタン */
@@ -168,20 +146,6 @@ li {
     z-index: 20;
 }
 
-.container {
-    position: relative;
-    z-index: 10;
-
-    background-color: rgba(248, 240, 240, 0.9);
-
-    width: 510px;
-    padding: 50px 100px;
-
-    border: 2px solid #f5f3f3;
-    border-radius: 20px;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
 
 h1 {
     text-align: center;
@@ -243,10 +207,8 @@ input[type="email"] {
         width: 100%;
     }
 
-    .container {
-        width: 100%;
+    .box {
         padding: 22px 18px 26px;
-        box-sizing: border-box;
         border-radius: 18px;
     }
 
