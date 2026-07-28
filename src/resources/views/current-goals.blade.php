@@ -25,16 +25,16 @@
 
     <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
 
-        <label class="sort-option">
+        <label class="sort-btn">
             <input type="radio" name="sort" value="updated" {{ $sort == 'updated' ? 'checked' : '' }}
                 onchange="this.form.submit()">
-            更新順
+            <span>更新順</span>
         </label>
 
-        <label class="sort-option">
+        <label class="sort-btn">
             <input type="radio" name="sort" value="created" {{ $sort == 'created' ? 'checked' : '' }}
                 onchange="this.form.submit()">
-            登録順
+            <span>登録順</span>
         </label>
 
     </form>

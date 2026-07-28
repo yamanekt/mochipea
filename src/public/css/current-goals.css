@@ -1,4 +1,42 @@
 
+/* 並び替え（ボタン風） */
+.sort-form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.sort-btn input {
+    display: none;
+}
+
+.sort-btn span {
+    display: inline-block;
+    padding: 12px 28px;
+
+    background: #ffffff;
+    border: 2px solid #dcdcdc;
+    border-radius: 30px;
+
+    font-weight: bold;
+    font-size: 18px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.sort-btn span:hover {
+    background: #f3f4f6;
+}
+
+.sort-btn input:checked+span {
+    background: #3b82f6;
+    color: #fff;
+    border-color: #3b82f6;
+}
+
+
 .goal-card-header {
     display: flex;
     align-items: flex-start;
