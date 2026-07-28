@@ -1,7 +1,4 @@
-const images = [
-    "/images/IMG_0639.png",
-    "/images/IMG_0638.png"
-];
+const images = POP_IMAGES;
 
 
 function popCharacter(){
