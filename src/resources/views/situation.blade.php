@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('css/situation.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
+    <link rel="stylesheet" href="{{ asset('css/situation.css') }}?v={{ filemtime(public_path('css/situation.css')) }}">
 </head>
 
 <body>
@@ -14,16 +15,16 @@
 
     <a href="{{ url('/current-goals') }}" class="back-btn">戻る</a>
 
-    <div class="detail-container">
+    <div class="container">
 
-        <div class="goal-title-box">
+        <div class="box goal-title-box">
             {{ $goal->title }}
         </div>
 
         <div class="pair-area">
 
             <!-- 自分 -->
-            <div class="user-card">
+            <div class="box user-card">
 
                 <div class="speech">
                     {{ $myValue }}{{ $goal->unit }}達成したよ！
@@ -57,7 +58,7 @@
             </div>
 
             <!-- 相手 -->
-            <div class="user-card">
+            <div class="box user-card">
 
                 <div class="speech">
                     {{ $partnerValue }}{{ $goal->unit }}達成したよ！
