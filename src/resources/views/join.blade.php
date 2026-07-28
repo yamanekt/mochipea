@@ -25,6 +25,12 @@
       <button type="submit" class="main-btn">参加する</button>
     </form>
   </div>
+  <script>
+    const POP_IMAGES = [
+      "{{ asset('images/IMG_0639.png') }}",
+      "{{ asset('images/IMG_0638.png') }}"
+    ];
+  </script>
   <script src="{{ asset('js/join.js') }}"></script>
 </body>
 
