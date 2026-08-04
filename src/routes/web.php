@@ -12,6 +12,9 @@ use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
 use App\Http\Controllers\TimeLineController;
+use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\BackgroundController;
+
 
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
@@ -61,7 +64,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/progress', [GoalProgressController::class, 'store'])
         ->name('progress.store');
-
+    Route::get('/mypage', function () {
+    return view('mypage');
+})->name('mypage');
 
 
 });
