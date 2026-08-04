@@ -5,66 +5,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新規登録</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
-    <link rel="stylesheet" href="{{ asset('css/register.css') }}?v={{ filemtime(public_path('css/register.css')) }}">
+    @vite(['resources/css/register.css'])
 </head>
 
 <body>
 
-    <div class="bg"></div>
+<div class="bg"></div>
+
+<div class="page">
 
     <div class="container">
 
-        <div class="box">
+        <a href="{{ url('/login') }}" class="back-btn">戻る</a>
 
-            <a href="{{ url('/login') }}" class="back-btn">戻る</a>
+        <img src="{{ asset('images/welcome2.png') }}" alt="welcome" class="top-image">
 
-            <img src="{{ asset('images/welcome2.png') }}" alt="welcome" class="top-image">
+        <h1>Welcome!</h1>
+        <div class="sub-title">新規登録</div>
 
-            <h1>Welcome!</h1>
-            <div class="sub-title">新規登録</div>
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li style="color:red">{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
-            @if ($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li style="color:red">{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
+        <!-- 👇 フォームエリア -->
+        <div class="form-area">
 
-            <!-- 👇 フォームエリア -->
-            <div class="form-area">
+            <form action="{{ url('/register') }}" method="post">
+                @csrf
 
-                <form action="{{ url('/register') }}" method="post">
-                    @csrf
+                <label>ユーザー名 *</label>
+                <input type="text" name="name" required>
 
-                    <label>ユーザー名 *</label>
-                    <input type="text" name="name" required>
+<label for="email">Eメール *</label>
+<input type="email" id="email" name="email" autocomplete="email" required>
 
-                    <label for="email">Eメール *</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
+<label for="password">パスワード *</label>
+<input type="password" id="password" name="password" autocomplete="new-password" required>
 
-                    <label for="password">パスワード *</label>
-                    <input type="password" id="password" name="password" autocomplete="new-password" required>
+                <label>パスワード確認 *</label>
+                <input type="password" name="password_confirmation" required>
 
-                    <label>パスワード確認 *</label>
-                    <input type="password" name="password_confirmation" required>
+                <button type="submit">
+                    アカウント作成
+                </button>
+            </form>
 
-                    <button type="submit">
-                        アカウント作成
-                    </button>
-                </form>
-
-                <!-- 👇 キャラ（ボタンを指す） -->
-                <img src="{{ asset('images/IMG_0639.png') }}" class="point-char">
-
-            </div>
+            <!-- 👇 キャラ（ボタンを指す） -->
+            <img src="{{ asset('images/IMG_0639.png') }}" class="point-char">
 
         </div>
 
     </div>
 
-</body>
+</div>
 
+</body>
 </html>
+
+

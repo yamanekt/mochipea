@@ -4,15 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>部屋番号</title>
-    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/all.css') }}?v={{ filemtime(public_path('css/all.css')) }}">
-    <link rel="stylesheet" href="{{ asset('css/make.css') }}?v={{ filemtime(public_path('css/make.css')) }}">
+    @vite(['resources/css/make.css'])
 </head>
 
 <body>
     <div class="bg"></div>
     <div class="container">
-        <div class="box">
         <h1>部屋を作成しました</h1>
         <h2>別のアカウントでログインした相手に、この部屋番号を伝えてください</h2>
 
@@ -23,7 +20,6 @@
         </div>
 
         <a href="{{ route('pea') }}" class="main-btn">戻る</a>
-        </div>
     </div>
 
     <script src="{{ asset('js/make.js') }}"></script>

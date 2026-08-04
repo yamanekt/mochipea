@@ -1,3 +1,20 @@
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    background-color: #efe6e6;
+    margin: 0;
+    padding: 50px;
+}
+
+.container {
+    background-color: rgba(248, 240, 240, 0.9);
+    border: 2px solid #f5f3f3;
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 .container h2 {
     text-align: center;
     margin-bottom: 25px;
@@ -80,11 +97,28 @@ button:hover {
         padding: 20px;
     }
 
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
     .button-group {
         flex-direction: column;
     }
 }
 
+.bg {
+    position: fixed;
+    inset: 0;
+
+    background-image: url("../images/background_pc.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}
 .button-area {
     position: relative;
     margin-top: 25px;

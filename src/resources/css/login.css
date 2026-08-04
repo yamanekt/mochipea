@@ -1,3 +1,23 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* 背景画像 */
+.bg {
+    position: fixed;
+    inset: 0;
+    background-image: url("../images/background_mobile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
 /* 全体 */
 .page {
     display: flex;
@@ -17,10 +37,15 @@
 }
 
 /* ログインボックス */
-.box {
+.container {
     position: relative;
     z-index: 10;
+    background-color: rgba(248, 240, 240, 0.9);
+    width: 510px;
     padding: 30px 100px;
+    border: 2px solid #f5f3f3;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 /* フォームエリア（これ超重要） */
@@ -158,8 +183,10 @@ button:hover {
         width: 100%;
     }
 
-    .box {
+    .container {
+        width: 100%;
         padding: 22px 18px 26px;
+        box-sizing: border-box;
         border-radius: 18px;
     }
 

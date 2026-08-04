@@ -1,3 +1,36 @@
+body {
+    font-family: "Noto Sans JP", sans-serif;
+    background-color: #efe6e6;
+    margin: 0;
+    padding: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+
+.bg {
+    position: fixed;
+    inset: 0;
+background-image: url("../images/background_mobile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: -1;
+}
+
+.container {
+    background-color: rgba(248, 240, 240, 0.9);
+    border: 2px solid #f5f3f3;
+    border-radius: 20px;
+    padding: 40px;
+    width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
 h1 {
     text-align: center;
     margin-top: 0;
@@ -81,6 +114,11 @@ select {
 
     input[type="text"] {
         margin-bottom: 40px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 25px;
     }
 }
 
@@ -220,11 +258,22 @@ select {
 
     pointer-events: none;   /* ←追加 */
 }
+.container {
+    background-color: rgba(248, 240, 240, 0.9);
+    border: 2px solid #f5f3f3;
+    border-radius: 20px;
+    padding: 40px;
+    width: 700px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+    margin-top: 90px;
+}
 
 .back-btn:hover {
     background-color: #808080;   /* 少し濃い灰色 */
     transform: scale(1.05);
 }
+/* -------------------------------みまる作css 要修正----------------------*/
 
 /* 並び替え */
 .sort-box {
@@ -303,7 +352,11 @@ select {
     }
 
     .container {
-        margin-top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 24px 18px;
+        box-sizing: border-box;
+        border-radius: 18px;
     }
 
     h1 {
