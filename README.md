@@ -1,28 +1,5 @@
 # mochipea
 
-## 構成
-
-```
-mochipea/
-├── Dockerfile
-├── docker-compose.yml
-├── nginx.conf
-└── src/
-    ├── app/
-    ├── database/
-    │   └── migrations/
-    ├── .env.example
-    └── ...
-```
-
-| サービス | 内容 |
-|----------|------|
-| app | PHP 8.4 / Laravel |
-| web | Nginx |
-| db | MySQL 8.0 |
-
----
-
 ## 初期設定
 
 ### 1. クローン
@@ -62,7 +39,20 @@ docker compose exec app php artisan key:generate
 docker compose exec app php artisan migrate
 ```
 
-### 7. 確認
+### 7. npmのインストール
+
+```bash
+cd src
+npm install
+```
+
+### 8. npmの起動
+
+```bash
+npm run dev
+```
+
+### 9. 確認
 
 http://localhost:8080 にアクセスしてLaravelのトップが表示されればOK
 
@@ -74,6 +64,13 @@ http://localhost:8080 にアクセスしてLaravelのトップが表示されれ
 
 ```bash
 docker compose up -d
+```
+
+### コンテナ起動
+
+```bash
+cd src
+npm run dev
 ```
 
 ### コンテナ停止
