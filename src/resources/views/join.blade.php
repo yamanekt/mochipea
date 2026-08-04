@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>部屋に参加</title>
-  <link rel="stylesheet" href="{{ asset('css/join.css') }}">
+  @vite(['resources/css/join.css'])
 </head>
 
 <body>

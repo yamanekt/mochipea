@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>部屋番号</title>
-    <link rel="stylesheet" href="{{ asset('css/make.css') }}">
+    @vite(['resources/css/make.css'])
 </head>
 
 <body>

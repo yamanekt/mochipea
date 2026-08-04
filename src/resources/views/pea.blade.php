@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ペア設定</title>
-  <link rel="stylesheet" href="{{ asset('css/pea.css') }}">
+  @vite(['resources/css/pea.css'])
 </head>
 
 <body>

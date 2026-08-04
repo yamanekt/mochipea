@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>タイムライン</title>
-  <link rel="stylesheet" href="{{ asset('css/goals.css') }}">
+  @vite(['resources/css/goals.css'])
 </head>
 <body>
 
