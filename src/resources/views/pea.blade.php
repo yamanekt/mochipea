@@ -11,7 +11,7 @@
 
 <body>
   <header class="top-header">
-    <h1 class="logo">MochiPea</h1>
+    <h1 class="logo">もちぺあ</h1>
     <div class="header-right">
       <a href="#" class="icon-btn notice">
         <i class="fa-regular fa-bell"></i>

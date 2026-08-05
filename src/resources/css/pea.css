@@ -112,11 +112,40 @@ background-image: url("../images/background_mobile.png");
 
 @media (max-width: 768px) {
     body {
-        padding: 95px 20px 100px;
+        min-height: 100svh;
+        padding: 82px 16px 86px;
+        box-sizing: border-box;
+        overflow-x: hidden;
     }
 
     .container {
-        margin-top: 30px;
+        min-height: calc(100svh - 168px);
+        margin-top: 0;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .container .box {
+        width: min(100%, 340px);
+        max-width: none;
+        margin: 0;
+        padding: 24px 18px;
+        box-sizing: border-box;
+        border-radius: 16px;
+    }
+
+    .container h1 {
+        margin-bottom: 8px;
+        font-size: 24px;
+    }
+
+    .container p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.6;
     }
 }
 
