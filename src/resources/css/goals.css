@@ -2,7 +2,7 @@ body {
     font-family: "Noto Sans JP", sans-serif;
     background-color: #efe6e6;
     margin: 0;
-    padding: 50px;
+    padding: 110px 50px 110px;
 }
 
 .goal-list {
@@ -187,10 +187,6 @@ background-image: url("../images/background_mobile.png");
     margin-top: 90px;
 }
 
-body {
-    padding-top: 90px;
-}
-
 .detail-btn,
 .detail-btn:link,
 .detail-btn:visited {
@@ -317,6 +313,8 @@ body {
 }/* 案内キャラクター */
 .guide-character {
 
+    display: none; /*キャラ表示(現在は削除中)
+
     position: fixed;
 
     /* 上メニューの下 */
@@ -328,6 +326,12 @@ body {
     z-index: 9999;
 
     pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 95px 20px 100px;
+    }
 }
 
 
