@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>マイページ</title>
+    <title>マイページ | MochiPea</title>
     @vite(['resources/css/common.css'])
     @vite(['resources/css/mypage.css'])
     <link rel="stylesheet"
@@ -22,24 +22,34 @@
     </header>
 
     <main class="mypage">
-        <dl class="profile-list">
-            <div class="profile-row">
-                <dt>ユーザー名</dt>
-                <dd aria-label="ユーザー名"></dd>
-            </div>
 
-            <div class="profile-row">
-                <dt>メールアドレス</dt>
-                <dd aria-label="メールアドレス"></dd>
-            </div>
+        <section class="profile-card" aria-labelledby="profile-title">
 
-            <div class="profile-row">
-                <dt>パスワード</dt>
-                <dd aria-label="パスワード"></dd>
-            </div>
-        </dl>
 
-        <a href="#" class="password-link">パスワード変更はこちら</a>
+            <h3 id="profile-title">プロフィール</h3>
+
+            <dl class="profile-list">
+                <div class="profile-row">
+                    <dt>ユーザー名</dt>
+                    <dd aria-label="ユーザー名"></dd>
+                </div>
+
+                <div class="profile-row">
+                    <dt>メールアドレス</dt>
+                    <dd aria-label="メールアドレス"></dd>
+                </div>
+
+                <div class="profile-row">
+                    <dt>パスワード</dt>
+                    <dd class="password-value" aria-label="パスワード"></dd>
+                </div>
+            </dl>
+
+            <a href="#" class="password-link">
+                <span>パスワードを変更する</span>
+                <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
+            </a>
+        </section>
     </main>
 
     <nav class="bottom-nav">
@@ -63,7 +73,7 @@
             <span>タイムライン</span>
         </a>
 
-        <a href="{{ route('mypage') }}" class="nav-item active">
+        <a href="{{ route('mypage') }}" class="nav-item active" aria-current="page">
             <i class="fa-regular fa-user"></i>
             <span>マイページ</span>
         </a>
