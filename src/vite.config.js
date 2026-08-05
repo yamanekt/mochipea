@@ -20,6 +20,7 @@ export default defineConfig({
                 'resources/css/situation.css',
                 'resources/css/background.css',
                 'resources/css/common.css',
+                'resources/css/mypage.css',
             ],
             refresh: true,
         }),
