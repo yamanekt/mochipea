@@ -46,9 +46,25 @@
             </dl>
 
             <a href="#" class="password-link">
-                <span>パスワードを変更する</span>
+                <span>パスワード変更はこちら</span>
                 <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
             </a>
+
+            <div class="danger-actions" aria-labelledby="danger-actions-title">
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="danger-button">
+                        <i class="fa-solid fa-arrow-right-from-bracket" aria-hidden="true"></i>
+                        <span>ログアウト</span>
+                    </button>
+                </form>
+
+                <button type="button" class="danger-button danger-button--delete">
+                    <i class="fa-regular fa-trash-can" aria-hidden="true"></i>
+                    <span>アカウントを削除</span>
+                </button>
+            </div>
         </section>
     </main>
 
