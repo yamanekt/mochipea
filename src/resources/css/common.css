@@ -297,3 +297,36 @@ body {
 .detail-btn:hover {
     background: #666;
 }
+
+/* Fixed header / footer safe content area */
+body:has(> .top-header) {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: calc(70px + env(safe-area-inset-top) + 16px);
+    padding-right: clamp(12px, 3vw, 32px);
+    padding-bottom: calc(75px + env(safe-area-inset-bottom) + 16px);
+    padding-left: clamp(12px, 3vw, 32px);
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+body:has(> .top-header) > .container {
+    width: min(100%, 960px);
+    min-height: calc(
+        100svh - 70px - 75px - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 32px
+    );
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    body:has(> .top-header) {
+        padding-top: calc(70px + env(safe-area-inset-top) + 10px);
+        padding-bottom: calc(75px + env(safe-area-inset-bottom) + 10px);
+    }
+
+    body:has(> .top-header) > .container {
+        min-height: calc(
+            100svh - 70px - 75px - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px
+        );
+    }
+}
