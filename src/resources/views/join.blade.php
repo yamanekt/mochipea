@@ -3,13 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>部屋に参加</title>
-  @vite(['resources/css/join.css'])
+  @vite(['resources/css/common.css', 'resources/css/join.css'])
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
+  @include('partials.common-header')
   <div class="bg"></div>
-  <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
   <div id="pop-area"></div>
   <div class="container">
     <h1>部屋に参加</h1>
@@ -32,6 +34,7 @@
     ];
   </script>
   <script src="{{ asset('js/join.js') }}"></script>
+  @include('partials.common-footer')
 </body>
 
 </html>

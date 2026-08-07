@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>達成入力</title>
 
-    @vite(['resources/css/progress.css'])
+    @vite(['resources/css/common.css', 'resources/css/progress.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
+@include('partials.common-header')
 
 <div class="bg"></div>
 
@@ -55,5 +57,6 @@
     <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost">
 </div>
 
+@include('partials.common-footer')
 </body>
 </html>

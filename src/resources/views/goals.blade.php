@@ -19,32 +19,7 @@
             </a>
         </div>
     </header>
-    <nav class="bottom-nav">
-        <a href="{{ url('/home') }}" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>ホーム</span>
-        </a>
-
-        <a href="{{ route('current-goals') }}" class="nav-item">
-            <i class="fa-solid fa-list-check"></i>
-            <span>目標一覧</span>
-        </a>
-
-        <a href="{{ url('/pea') }}" class="nav-item">
-            <i class="fa-solid fa-circle-plus"></i>
-            <span>目標作成</span>
-        </a>
-
-        <a href="{{ url('/timeline') }}" class="nav-item">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>タイムライン</span>
-        </a>
-
-        <a href="{{ route('mypage') }}" class="nav-item active" aria-current="page">
-            <i class="fa-regular fa-user"></i>
-            <span>マイページ</span>
-        </a>
-    </nav>
+    @include('partials.common-footer')
   <div class="bg">
 
 <div class="rolling-area">
