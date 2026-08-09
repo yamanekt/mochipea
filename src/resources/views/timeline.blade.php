@@ -4,24 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>タイムライン</title>
-  @vite(['resources/css/goals.css'])
+  @vite(['resources/css/common.css','resources/css/goals.css'])
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
+  <header class="top-header">
+    <h1 class="logo">もちぺあ</h1>
+    <div class="header-right">
+      <a href="#" class="icon-btn notice">
+        <i class="fa-regular fa-bell"></i>
+        <small>お知らせ</small>
+      </a>
+    </div>
+  </header>
 
   <div class="bg"></div>
-
-  {{-- 上部のページ切替バー（/current-goals と共通の goals.css のスタイルを使う） --}}
-  <header class="page-menu">
-    <div class="menu-btn current">タイムライン</div>
-    <a href="{{ url('/current-goals') }}" class="menu-btn">目標一覧</a>
-  </header>
 
   {{-- 案内キャラクター --}}
   <div class="guide-character">
     <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">
   </div>
-
-  <a href="{{ url('/home') }}" class="back-btn">戻る</a>
 
   {{-- 達成入力（コメント）を新しい順に並べたタイムライン --}}
   <div class="goal-list">
@@ -52,6 +55,24 @@
       </div>
     @endforelse
   </div>
+
+  <nav class="bottom-nav">
+    <a href="{{ url('/home') }}" class="nav-item">
+      <i class="fa-solid fa-house"></i><span>ホーム</span>
+    </a>
+    <a href="{{ route('current-goals') }}" class="nav-item">
+      <i class="fa-solid fa-list-check"></i><span>目標一覧</span>
+    </a>
+    <a href="{{ url('/pea') }}" class="nav-item">
+      <i class="fa-solid fa-circle-plus"></i><span>目標作成</span>
+    </a>
+    <a href="{{ url('/timeline') }}" class="nav-item active" aria-current="page">
+      <i class="fa-solid fa-clock-rotate-left"></i><span>タイムライン</span>
+    </a>
+    <a href="{{ route('mypage') }}" class="nav-item">
+      <i class="fa-regular fa-user"></i><span>マイページ</span>
+    </a>
+  </nav>
 
 </body>
 </html>

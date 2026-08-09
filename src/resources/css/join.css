@@ -188,11 +188,6 @@ label {
      margin-top: 90px;
 }
 
-/* 戻るボタンも前 */
-.back-btn{
-    z-index:20;
-}
-
 /* 共通 */
 .rolling{
     position:absolute;

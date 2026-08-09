@@ -4,10 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>目標登録</title>
-  @vite(['resources/css/goal.css'])
+  @vite(['resources/css/common.css','resources/css/goal.css'])
+  <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-     <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
+    <header class="top-header">
+        <h1 class="logo">もちぺあ</h1>
+
+        <div class="header-right">
+            <a href="#" class="icon-btn notice">
+                <i class="fa-regular fa-bell"></i>
+                <small>お知らせ</small>
+            </a>
+        </div>
+    </header>
+    @include('partials.common-footer')
   <div class="bg">
 
 <div class="rolling-area">

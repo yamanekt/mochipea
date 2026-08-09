@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ホーム</title>
-  @vite(['resources/css/home.css'])
-  @vite(['resources/css/common.css'])
+  @vite(['resources/css/common.css','resources/css/home.css'])
   <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
@@ -17,7 +16,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 
     <!-- 中央 -->
-    <h1 class="logo">MochiPea</h1>
+    <h1 class="logo">もちぺあ</h1>
 
     <!-- 右 -->
     <div class="header-right">
@@ -42,19 +41,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
   <button type="submit" class="logout-btn">ログアウト</button>
 </form> --}}
 <div class="bg"></div>
-<div class="container">
 
-  <a href="{{ url('/timeline') }}" class="box">
-    <h1>タイムライン</h1>
-    <p>目標の一覧を確認できます</p>
-  </a>
-
-  <a href="{{ url('/pea') }}" class="box">
-    <h1>新しい目標</h1>
-    <p>新しく目標を設定します</p>
-  </a>
-
-</div>
   <script src="{{ asset('js/home.js') }}?v={{ filemtime(public_path('js/home.js')) }}"></script>
 </body>
 {{-- フッター --}}

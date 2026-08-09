@@ -3,11 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>部屋番号</title>
-    @vite(['resources/css/make.css'])
+    @vite(['resources/css/common.css', 'resources/css/make.css'])
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 
 <body>
+    @include('partials.common-header')
     <div class="bg"></div>
     <div class="container">
         <h1>部屋を作成しました</h1>
@@ -23,6 +26,7 @@
     </div>
 
     <script src="{{ asset('js/make.js') }}"></script>
+    @include('partials.common-footer')
 </body>
 
 </html>
