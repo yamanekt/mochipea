@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン</title>
-    @vite(['resources/css/login.css'])
+    @vite(['resources/css/common.css', 'resources/css/login.css'])
 </head>
 
 <body>

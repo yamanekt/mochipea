@@ -1,3 +1,64 @@
+:root {
+    /* ===== 色：プライマリ ===== */
+    --color-primary-500: #3b82f6;
+    --color-primary-600: #2563eb;
+
+    /* ===== 色：グレー（文字） ===== */
+    --color-gray-900: #111111;
+    --color-gray-700: #333333;
+    --color-gray-500: #555555;
+
+    /* ===== 色：グレー（面・線） ===== */
+    --color-gray-600: #666666;
+    --color-gray-400: #808080;
+    --color-gray-300: #cccccc;
+
+    /* ===== 色：ベース ===== */
+    --color-white: #ffffff;
+    --color-bg: #efe6e6;
+    --color-surface: rgba(248, 240, 240, 0.9);
+
+    /* ===== 色：状態 ===== */
+    --color-success: #22c55e;
+    --color-danger: #e53935;
+    --color-warning: #ff9800;
+    --color-info: #4fc0e3;
+
+    /* ===== 余白（8pxグリッド） ===== */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+
+    /* ===== 文字サイズ ===== */
+    --font-xs: 12px;
+    --font-sm: 14px;
+    --font-base: 16px;
+    --font-lg: 20px;
+    --font-xl: 24px;
+    --font-2xl: 32px;
+    --font-3xl: 48px;
+
+    /* ===== 角丸 ===== */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 999px;
+
+    /* ===== 影 ===== */
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.15);
+    --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.2);
+
+    /* ===== フォント ===== */
+    --font-family-base: "Noto Sans JP", sans-serif;
+}
+
+
 /* ヘッダー */
 .top-header{
     position: fixed;
