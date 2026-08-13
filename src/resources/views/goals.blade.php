@@ -9,17 +9,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
-    <header class="top-header">
-        <h1 class="logo">もちぺあ</h1>
-
-        <div class="header-right">
-            <a href="#" class="icon-btn notice">
-                <i class="fa-regular fa-bell"></i>
-                <small>お知らせ</small>
-            </a>
-        </div>
-    </header>
-    @include('partials.common-footer')
+    @include('partials.common-header')
   <div class="bg">
 
 <div class="rolling-area">
@@ -81,5 +71,8 @@
 </div>
     </form>
   </div>
+
+  @include('partials.common-footer')
 </body>
+
 </html>
