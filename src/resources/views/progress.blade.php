@@ -14,7 +14,7 @@
 
 <div class="bg"></div>
 
-<div class="container">
+<div class="container panel">
 
     <h2>達成入力</h2>
 

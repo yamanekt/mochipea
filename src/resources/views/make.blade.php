@@ -12,7 +12,7 @@
 <body>
     @include('partials.common-header')
     <div class="bg"></div>
-    <div class="container">
+    <div class="container panel">
         <h1>部屋を作成しました</h1>
         <h2>別のアカウントでログインした相手に、この部屋番号を伝えてください</h2>
 

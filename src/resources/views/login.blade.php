@@ -14,7 +14,7 @@
 
     <div class="page">
 
-        <div class="container">
+        <div class="container panel">
 
             <img src="{{ asset('images/welcome2.png') }}" alt="ロゴ" class="top-image">
 

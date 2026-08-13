@@ -5,12 +5,6 @@
     width: 120%;
     max-width: 800px;
     padding: var(--space-16) var(--space-12);
-    box-sizing: border-box;
-
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
 
     text-align: center;
 }
@@ -89,29 +83,9 @@ label {
 }
 
 
-/* ===== 戻るボタン ===== */
+/* ===== 戻るボタン（基本は common.css。文字だけ大きく） ===== */
 .main-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    height: 60px;
-    box-sizing: border-box;
-
-    background-color: var(--color-primary-500);
-    border-radius: var(--radius-md);
-
-    color: var(--color-white);
     font-size: var(--font-xl);
-    font-weight: bold;
-    text-decoration: none;
-
-    transition: background-color 0.3s;
-}
-
-.main-btn:hover {
-    background-color: var(--color-primary-600);
 }
 
 

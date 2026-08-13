@@ -13,7 +13,7 @@
   @include('partials.common-header')
   <div class="bg"></div>
   <div id="pop-area"></div>
-  <div class="container">
+  <div class="container panel">
     <h1>部屋に参加</h1>
     <h2>相手から受け取った部屋番号を入力してください</h2>
 

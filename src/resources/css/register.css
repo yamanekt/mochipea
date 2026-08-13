@@ -24,11 +24,6 @@
 
     width: 510px;
     padding: var(--space-12) 100px;
-
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
 }
 
 
@@ -123,7 +118,7 @@ button:active {
 }
 
 
-/* ===== 戻るボタン ===== */
+/* ===== 戻るボタン（色や形は common.css。位置だけ指定） ===== */
 .back-btn {
     position: absolute;
     top: var(--space-8);
@@ -132,20 +127,11 @@ button:active {
     display: inline-block;
     padding: var(--space-6) var(--space-12);
 
-    background: var(--color-gray-400);
-    border-radius: var(--radius-sm);
     box-shadow: var(--shadow-sm);
-
-    color: var(--color-white);
     font-size: var(--font-2xl);
-    font-weight: bold;
-    text-decoration: none;
-
-    transition: 0.2s;
 }
 
 .back-btn:hover {
-    background: var(--color-gray-600);
     transform: translateY(-1px);
 }
 

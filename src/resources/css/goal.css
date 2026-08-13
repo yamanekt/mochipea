@@ -9,11 +9,6 @@
     width: 700px;
     padding: var(--space-12);
     margin-top: 90px;
-
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
 }
 
 
@@ -80,25 +75,7 @@ select {
     margin-top: var(--space-8);
 }
 
-.main-btn {
-    width: 100%;
-    height: 60px;
-
-    background-color: var(--color-primary-500);
-    border: none;
-    border-radius: var(--radius-md);
-
-    color: var(--color-white);
-    font-size: var(--font-lg);
-    font-weight: bold;
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.main-btn:hover {
-    background-color: var(--color-primary-600);
-}
+/* .main-btn は common.css に集約 */
 
 
 /* ===== 案内キャラクター ===== */
@@ -116,105 +93,7 @@ select {
 }
 
 
-/* ===== 転がるキャラクター ===== */
-.rolling-area {
-    position: fixed;
-    inset: 0;
-    /* 背景より前・コンテナより後ろ */
-    z-index: 0;
-
-    overflow: hidden;
-    pointer-events: none;
-}
-
-.rolling {
-    position: absolute;
-    right: -250px;
-    width: 110px;
-    opacity: 0.9;
-}
-
-.r1 {
-    top: 8%;
-    animation: roll1 9s linear infinite;
-}
-
-.r2 {
-    top: 22%;
-    width: 90px;
-    animation: roll2 7s linear infinite;
-    animation-delay: 1s;
-}
-
-.r3 {
-    top: 38%;
-    width: 130px;
-    animation: roll3 11s linear infinite;
-    animation-delay: 3s;
-}
-
-.r4 {
-    top: 55%;
-    width: 80px;
-    animation: roll4 8s linear infinite;
-    animation-delay: 2s;
-}
-
-.r5 {
-    top: 70%;
-    width: 120px;
-    animation: roll5 10s linear infinite;
-    animation-delay: 4s;
-}
-
-.r6 {
-    top: 82%;
-    width: 100px;
-    animation: roll6 6s linear infinite;
-    animation-delay: 2.5s;
-}
-
-.r7 {
-    top: 45%;
-    width: 140px;
-    animation: roll7 12s linear infinite;
-    animation-delay: 5s;
-}
-
-@keyframes roll1 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-1800deg); }
-}
-
-@keyframes roll2 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(1440deg); }
-}
-
-@keyframes roll3 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-2160deg); }
-}
-
-@keyframes roll4 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(1800deg); }
-}
-
-@keyframes roll5 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-1440deg); }
-}
-
-@keyframes roll6 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(2520deg); }
-}
-
-@keyframes roll7 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-2880deg); }
-}
+/* 転がるキャラクターは common.css に集約 */
 
 
 /* ===== スマホ表示 ===== */

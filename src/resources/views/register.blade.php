@@ -14,7 +14,7 @@
 
 <div class="page">
 
-    <div class="container">
+    <div class="container panel">
 
         <a href="{{ url('/login') }}" class="back-btn">戻る</a>
 

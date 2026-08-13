@@ -49,25 +49,9 @@
 }
 
 
-/* ===== 転がるキャラクター ===== */
-.rolling-area {
-    position: fixed;
-    inset: 0;
-    /* 背景より前・コンテナより後ろ */
-    z-index: 0;
-
-    overflow: hidden;
-    /* エリア自体はクリックを透過し、キャラだけ拾う */
-    pointer-events: none;
-}
-
+/* ===== 転がるキャラクター =====
+   基本は common.css。この画面だけクリックで消せるようにする */
 .rolling {
-    position: absolute;
-    right: -250px;
-
-    width: 110px;
-    opacity: 0.9;
-
     cursor: pointer;
     pointer-events: auto;
     transition: transform 0.2s;
@@ -80,88 +64,6 @@
 .rolling.pop {
     transform: scale(0);
     opacity: 0;
-}
-
-.r1 {
-    top: 8%;
-    animation: roll1 9s linear infinite;
-}
-
-.r2 {
-    top: 22%;
-    width: 90px;
-    animation: roll2 7s linear infinite;
-    animation-delay: 1s;
-}
-
-.r3 {
-    top: 38%;
-    width: 130px;
-    animation: roll3 11s linear infinite;
-    animation-delay: 3s;
-}
-
-.r4 {
-    top: 55%;
-    width: 80px;
-    animation: roll4 8s linear infinite;
-    animation-delay: 2s;
-}
-
-.r5 {
-    top: 70%;
-    width: 120px;
-    animation: roll5 10s linear infinite;
-    animation-delay: 4s;
-}
-
-.r6 {
-    top: 82%;
-    width: 100px;
-    animation: roll6 6s linear infinite;
-    animation-delay: 2.5s;
-}
-
-.r7 {
-    top: 45%;
-    width: 140px;
-    animation: roll7 12s linear infinite;
-    animation-delay: 5s;
-}
-
-@keyframes roll1 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-1800deg); }
-}
-
-@keyframes roll2 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(1440deg); }
-}
-
-@keyframes roll3 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-2160deg); }
-}
-
-@keyframes roll4 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(1800deg); }
-}
-
-@keyframes roll5 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-1440deg); }
-}
-
-@keyframes roll6 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(2520deg); }
-}
-
-@keyframes roll7 {
-    from { transform: translateX(0) rotate(0deg); }
-    to { transform: translateX(calc(-100vw - 400px)) rotate(-2880deg); }
 }
 
 

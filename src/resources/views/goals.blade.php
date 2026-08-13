@@ -35,7 +35,7 @@
 </div>
 
   </div>
-  <div class="container">
+  <div class="container panel">
     <h1>目標登録</h1>
     <h2>目標設定</h2>
 
