@@ -18,7 +18,6 @@ export default defineConfig({
                 'resources/css/make.css',
                 'resources/css/progress.css',
                 'resources/css/situation.css',
-                'resources/css/background.css',
                 'resources/css/common.css',
                 'resources/css/mypage.css',
             ],

@@ -4,7 +4,7 @@
         <span>ホーム</span>
     </a>
 
-    <a href="{{ route('current-goals') }}" class="nav-item {{ request()->routeIs('current-goals', 'goals.show', 'background', 'situation.show', 'progress.show') ? 'active' : '' }}">
+    <a href="{{ route('current-goals') }}" class="nav-item {{ request()->routeIs('current-goals', 'goals.show', 'situation.show', 'progress.show') ? 'active' : '' }}">
         <i class="fa-solid fa-list-check" aria-hidden="true"></i>
         <span>目標一覧</span>
     </a>

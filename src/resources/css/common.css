@@ -24,7 +24,11 @@
     --color-danger: #e53935;
     --color-warning: #ff9800;
     --color-info: #4fc0e3;
-    --color-accent: #46d3a5;
+
+    /* アクセント（ナビ選択・マイページ） */
+    --color-accent-50: #eefaf6;
+    --color-accent-500: #46d3a5;
+    --color-accent-700: #27a97f;
 
     /* ===== 余白（8pxグリッド） ===== */
     --space-1: 4px;
@@ -215,7 +219,7 @@
 
 .nav-item:hover,
 .nav-item.active {
-    color: var(--color-accent);
+    color: var(--color-accent-500);
 }
 /*
 共通スタイル

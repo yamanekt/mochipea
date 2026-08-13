@@ -73,5 +73,3 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/current-goals/{id}', [GoalsController::class, 'show'])
     ->name('goals.show');
-Route::get('/background/{id}', [GoalsController::class, 'background'])
-    ->name('background');
