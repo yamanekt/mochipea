@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @vite(['resources/css/common.css', 'resources/css/situation.css'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+@section('title', '目標の現在状況')
 
-<body>
-    @include('partials.common-header')
+@push('css')
+    @vite(['resources/css/situation.css'])
+@endpush
+
+@section('content')
     <div class="bg"></div>
 
 
@@ -91,8 +87,4 @@
         </div>
 
     </div>
-
-    @include('partials.common-footer')
-</body>
-
-</html>
+@endsection

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>部屋に参加</title>
-  @vite(['resources/css/common.css', 'resources/css/join.css'])
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+@section('title', '部屋に参加')
 
-<body>
-  @include('partials.common-header')
+@push('css')
+    @vite(['resources/css/join.css'])
+@endpush
+
+@section('content')
   <div class="bg"></div>
   <div id="pop-area"></div>
   <div class="container panel">
@@ -27,14 +23,14 @@
       <button type="submit" class="main-btn">参加する</button>
     </form>
   </div>
-  <script>
+@endsection
+
+@push('scripts')
+    <script>
     const POP_IMAGES = [
       "{{ asset('images/IMG_0639.png') }}",
       "{{ asset('images/IMG_0638.png') }}"
     ];
   </script>
-  <script src="{{ asset('js/join.js') }}"></script>
-  @include('partials.common-footer')
-</body>
-
-</html>
+    <script src="{{ asset('js/join.js') }}"></script>
+@endpush

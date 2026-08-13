@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>タイムライン</title>
-  @vite(['resources/css/common.css','resources/css/goals.css'])
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body>
-    @include('partials.common-header')
+@extends('layouts.app')
 
+@section('title', 'タイムライン')
+
+@push('css')
+    @vite(['resources/css/goals.css'])
+@endpush
+
+@section('content')
   <div class="bg"></div>
 
   {{-- 案内キャラクター --}}
@@ -47,8 +43,4 @@
       </div>
     @endforelse
   </div>
-
-    @include('partials.common-footer')
-
-</body>
-</html>
+@endsection

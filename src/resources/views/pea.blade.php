@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ペア設定</title>
-  @vite(['resources/css/common.css','resources/css/pea.css'])
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+@extends('layouts.app')
 
-<body>
-    @include('partials.common-header')
+@section('title', 'ペア設定')
 
+@push('css')
+    @vite(['resources/css/pea.css'])
+@endpush
+
+@section('content')
   <div class="bg"></div>
 
 <div class="rolling-area">
@@ -37,9 +32,8 @@
         </a>
 
     </div>
+@endsection
 
-        <script src="{{ asset('js/pea.js') }}"></script>
-
-    @include('partials.common-footer')
-</body>
-</html>
+@push('scripts')
+    <script src="{{ asset('js/pea.js') }}"></script>
+@endpush

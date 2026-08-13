@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>部屋番号</title>
-    @vite(['resources/css/common.css', 'resources/css/make.css'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+@section('title', '部屋番号')
 
-<body>
-    @include('partials.common-header')
+@push('css')
+    @vite(['resources/css/make.css'])
+@endpush
+
+@section('content')
     <div class="bg"></div>
     <div class="container panel">
         <h1>部屋を作成しました</h1>
@@ -24,9 +20,8 @@
 
         <a href="{{ route('pea') }}" class="main-btn">戻る</a>
     </div>
+@endsection
 
+@push('scripts')
     <script src="{{ asset('js/make.js') }}"></script>
-    @include('partials.common-footer')
-</body>
-
-</html>
+@endpush

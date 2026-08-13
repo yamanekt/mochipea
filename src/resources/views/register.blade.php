@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.guest')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新規登録</title>
-    @vite(['resources/css/common.css', 'resources/css/register.css'])
-</head>
+@section('title', '新規登録')
 
-<body>
+@push('css')
+    @vite(['resources/css/register.css'])
+@endpush
 
+@section('content')
 <div class="bg"></div>
 
 <div class="page">
@@ -62,8 +59,4 @@
     </div>
 
 </div>
-
-</body>
-</html>
-
-
+@endsection

@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>目標登録</title>
-  @vite(['resources/css/common.css','resources/css/goal.css'])
-  <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
-<body>
-    @include('partials.common-header')
+@extends('layouts.app')
+
+@section('title', '目標登録')
+
+@push('css')
+    @vite(['resources/css/goal.css'])
+@endpush
+
+@section('content')
   <div class="bg">
 
 <div class="rolling-area">
@@ -71,8 +68,4 @@
 </div>
     </form>
   </div>
-
-  @include('partials.common-footer')
-</body>
-
-</html>
+@endsection
