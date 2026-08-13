@@ -35,5 +35,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/pea.js') }}"></script>
+    @vite(['resources/js/pea.js'])
 @endpush

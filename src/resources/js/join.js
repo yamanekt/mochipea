@@ -1,4 +1,5 @@
-const images = POP_IMAGES;
+// 画像URLは join.blade.php 側で window.POP_IMAGES に入れて渡される
+const images = window.POP_IMAGES ?? [];
 
 
 function popCharacter(){

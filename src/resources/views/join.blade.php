@@ -26,11 +26,12 @@
 @endsection
 
 @push('scripts')
+    {{-- 画像URLはLaravelに組み立てさせ、JSへ渡す（サブディレクトリ配置でも正しく解決するため） --}}
     <script>
-    const POP_IMAGES = [
-      "{{ asset('images/IMG_0639.png') }}",
-      "{{ asset('images/IMG_0638.png') }}"
-    ];
-  </script>
-    <script src="{{ asset('js/join.js') }}"></script>
+        window.POP_IMAGES = [
+            "{{ asset('images/IMG_0639.png') }}",
+            "{{ asset('images/IMG_0638.png') }}"
+        ];
+    </script>
+    @vite(['resources/js/join.js'])
 @endpush

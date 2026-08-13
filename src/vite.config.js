@@ -20,6 +20,11 @@ export default defineConfig({
                 'resources/css/situation.css',
                 'resources/css/common.css',
                 'resources/css/mypage.css',
+
+                'resources/js/home.js',
+                'resources/js/join.js',
+                'resources/js/make.js',
+                'resources/js/pea.js',
             ],
             refresh: true,
         }),

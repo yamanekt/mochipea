@@ -15,7 +15,7 @@
         <label>部屋番号</label>
         <div class="password-area">
             <div id="roomCode" class="code-box">{{ $room->room_id }}</div>
-            <button type="button" class="share-btn" onclick="shareCode()">共有</button>
+            <button type="button" class="share-btn">共有</button>
         </div>
 
         <a href="{{ route('pea') }}" class="main-btn">戻る</a>
@@ -23,5 +23,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/make.js') }}"></script>
+    @vite(['resources/js/make.js'])
 @endpush
