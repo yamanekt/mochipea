@@ -1,102 +1,55 @@
-/* ===== コンテナ（2枚のカードを横並び） ===== */
-.container {
-    position: relative;
-    /* 転がるキャラより前面に出す */
-    z-index: 10;
+/* ペア設定 */
 
-    margin-top: var(--space-12);
+.pea {
+    padding-top: var(--space-4);
+}
 
+
+/* ===== 行き先メニュー ===== */
+.pea-menu {
+    margin-top: var(--space-6);
+}
+
+.menu-card {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: var(--space-12);
-}
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
 
-.container a {
-    text-decoration: none;
+    padding: var(--space-4) var(--space-6);
+
     color: inherit;
+    text-decoration: none;
 }
 
-
-/* ===== カード ===== */
-.container .box {
-    width: 300px;
-    max-width: 500px;
-    margin: 0;
-    padding: var(--space-12);
-    box-sizing: content-box;
-
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-
-    text-align: center;
-    transition: transform 0.3s;
+.menu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
 }
 
-.container .box:hover {
-    transform: scale(1.05);
-}
-
-.container h1 {
-    margin-top: 0;
+.menu-title {
     color: var(--color-gray-900);
+    font-size: var(--font-base);
+    font-weight: 700;
 }
 
-.container p {
-    color: var(--color-gray-900);
+/* 押したら何が起きるかを1行で説明する */
+.menu-desc {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
 }
 
-
-/* ===== 転がるキャラクター =====
-   基本は common.css。この画面だけクリックで消せるようにする */
-.rolling {
-    cursor: pointer;
-    pointer-events: auto;
-    transition: transform 0.2s;
-}
-
-.rolling:hover {
-    transform: scale(1.1);
-}
-
-.rolling.pop {
-    transform: scale(0);
-    opacity: 0;
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
 }
 
 
-/* ===== スマホ表示 ===== */
-@media (max-width: 768px) {
-    .container {
-        min-height: calc(100svh - 168px);
-        margin-top: 0;
-
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        gap: var(--space-4);
-    }
-
-    .container .box {
-        width: min(100%, 340px);
-        max-width: none;
-        margin: 0;
-        padding: var(--space-6) var(--space-4);
-        box-sizing: border-box;
-        border-radius: var(--radius-lg);
-    }
-
-    .container h1 {
-        margin-bottom: var(--space-2);
-        font-size: var(--font-xl);
-    }
-
-    .container p {
-        margin: 0;
-        font-size: var(--font-sm);
-        line-height: 1.6;
-    }
+/* ===== キャラクター ===== */
+.pea-mascot {
+    margin-top: var(--space-12);
 }

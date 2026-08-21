@@ -1,111 +1,52 @@
-/* 部屋番号の表示 */
+/* 部屋番号の表示（目標作成の完了画面） */
 
-/* ===== パネル ===== */
-.container {
-    width: 120%;
-    max-width: 800px;
-    padding: var(--space-16) var(--space-12);
+.made {
+    padding-top: var(--space-4);
+    text-align: center;
+}
 
+.made .eyebrow,
+.made .page-title,
+.made .page-lead {
     text-align: center;
 }
 
 
-/* ===== 見出し ===== */
-h1 {
-    margin-top: 0;
-    margin-bottom: var(--space-4);
-    color: var(--color-gray-900);
+/* ===== 部屋番号 ===== */
+.code-card {
+    padding: var(--space-6);
+    margin-top: var(--space-8);
 }
 
-h2 {
-    margin-bottom: var(--space-8);
-    color: var(--color-gray-700);
-    font-size: var(--font-2xl);
+.code-label {
+    margin: 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
 }
 
-label {
-    display: block;
-    margin-bottom: var(--space-6);
-
-    color: var(--color-gray-900);
-    font-size: var(--font-2xl);
-    font-weight: bold;
-    text-align: left;
+.code-value {
+    margin: var(--space-1) 0;
+    color: var(--color-accent-700);
+    font-size: var(--font-3xl);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
 }
 
-
-/* ===== 部屋番号エリア ===== */
-.password-area {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
-    margin-bottom: var(--space-6);
-}
-
-/* 4桁コードの表示欄 */
-.code-box {
-    flex: 1;
-    height: 60px;
-    padding: 0 var(--space-4);
-
-    display: flex;
-    align-items: center;
-
-    background: var(--color-white);
-    border: 1px solid var(--color-gray-300);
-    border-radius: var(--radius-md);
-
-    color: var(--color-gray-900);
-    font-size: var(--font-2xl);
-    font-weight: bold;
-}
-
-/* 共有ボタン */
-.share-btn {
-    height: 60px;
-    padding: 0 var(--space-6);
-
-    background-color: var(--color-success);
-    border: none;
-    border-radius: var(--radius-md);
-
-    color: var(--color-white);
-    font-size: var(--font-lg);
-    font-weight: bold;
-    white-space: nowrap;
-
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.share-btn:hover {
-    background-color: var(--color-accent-700);
+.code-hint {
+    margin: 0;
+    color: var(--color-gray-400);
+    font-size: var(--font-xs);
 }
 
 
-/* ===== 戻るボタン（基本は common.css。文字だけ大きく） ===== */
-.main-btn {
-    font-size: var(--font-xl);
+/* ===== キャラクターと操作 ===== */
+.made-mascot {
+    margin: var(--space-8) auto;
 }
 
-
-/* ===== スマホ表示 ===== */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: var(--space-6);
-    }
-
-    .password-area {
-        flex-direction: column;
-    }
-
-    .code-box {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .share-btn {
-        width: 100%;
-    }
+.made-share {
+    margin-top: var(--space-4);
 }

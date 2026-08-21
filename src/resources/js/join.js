@@ -1,90 +1,82 @@
-// 画像URLは join.blade.php 側で window.POP_IMAGES に入れて渡される
+// 部屋に参加：4桁コードの入力補助と、飛び出すキャラクター演出
+
+// ===== 4桁コード =====
+// 見た目は1桁ずつの入力欄だが、サーバーへは1つの code として送る
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector("[data-code-form]");
+    if (!form) return;
+
+    const digits = Array.from(form.querySelectorAll("[data-code-digit]"));
+    const hidden = form.querySelector("[data-code-value]");
+    const submit = form.querySelector("[data-code-submit]");
+    if (!digits.length || !hidden) return;
+
+    const sync = () => {
+        const code = digits.map((d) => d.value).join("");
+        hidden.value = code;
+        if (submit) {
+            const filled = code.length === digits.length;
+            submit.disabled = !filled;
+        }
+    };
+
+    digits.forEach((input, index) => {
+        input.addEventListener("input", () => {
+            // 数字以外は受け付けない
+            input.value = input.value.replace(/[^0-9]/g, "").slice(0, 1);
+            if (input.value && index < digits.length - 1) {
+                digits[index + 1].focus();
+            }
+            sync();
+        });
+
+        // 空欄で BackSpace を押したら1つ前に戻る
+        input.addEventListener("keydown", (event) => {
+            if (event.key === "Backspace" && !input.value && index > 0) {
+                digits[index - 1].focus();
+            }
+        });
+
+        // 4桁まとめて貼り付けられたら1桁ずつ配る
+        input.addEventListener("paste", (event) => {
+            const text = (event.clipboardData || window.clipboardData).getData("text");
+            const numbers = text.replace(/[^0-9]/g, "").slice(0, digits.length);
+            if (!numbers) return;
+            event.preventDefault();
+            numbers.split("").forEach((n, i) => {
+                digits[i].value = n;
+            });
+            digits[Math.min(numbers.length, digits.length - 1)].focus();
+            sync();
+        });
+    });
+
+    sync();
+});
+
+// ===== 飛び出すキャラクター =====
 const images = window.POP_IMAGES ?? [];
 
+function popCharacter() {
+    const area = document.getElementById("pop-area");
+    if (!area || !images.length) return;
 
-function popCharacter(){
+    const img = document.createElement("img");
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.className = "pop-character";
+    img.alt = "";
 
-
-    const area =
-    document.getElementById("pop-area");
-
-
-    const img =
-    document.createElement("img");
-
-
-    img.src =
-    images[
-        Math.floor(Math.random()*images.length)
-    ];
-
-
-    img.className="pop-character";
-
-
-
-    // 左右へ飛ぶ距離
-    const x =
-    (Math.random()*800-400)+"px";
-
-
-    // 中間位置
-    const x2 =
-    (Math.random()*1000-500)+"px";
-
-
-    // 最後に左右へ落下
-    const x3 =
-    (Math.random()*1400-700)+"px";
-
-
-
-    img.style.setProperty("--x",x);
-    img.style.setProperty("--x2",x2);
-    img.style.setProperty("--x3",x3);
-
-
-
-    // 大きさランダム
-    const size =
-    70 + Math.random()*100;
-
-
-    img.style.width=size+"px";
-
-
-
-    // 発射位置
-    img.style.left =
-    (40 + Math.random()*20)+"%";
-
-
+    const start = Math.random() * 80 + 10;
+    img.style.left = `${start}%`;
+    img.style.setProperty("--x", `${(Math.random() - 0.5) * 200}px`);
+    img.style.setProperty("--x2", `${(Math.random() - 0.5) * 300}px`);
+    img.style.setProperty("--x3", `${(Math.random() - 0.5) * 400}px`);
 
     area.appendChild(img);
-
-
-
-    setTimeout(()=>{
-
-        img.remove();
-
-    },2600);
-
-
+    setTimeout(() => img.remove(), 2600);
 }
 
-
-
-// 大量発射
-setInterval(()=>{
-
-
-    // 1回で複数個
-    for(let i=0;i<3;i++){
-
-        popCharacter();
-
-    }
-
-
-},250);
+document.addEventListener("DOMContentLoaded", () => {
+    if (!document.getElementById("pop-area") || !images.length) return;
+    setInterval(popCharacter, 900);
+});

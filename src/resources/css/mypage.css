@@ -1,262 +1,101 @@
-* {
-    box-sizing: border-box;
-}
+/* マイページ */
 
-body {
-    min-height: 100vh;
-    margin: 0;
-    padding: var(--header-height) var(--space-6) 110px;
-
-    font-family: var(--font-family-base);
-    color: var(--color-gray-900);
-
-    background:
-        radial-gradient(circle at 15% 15%, rgba(70, 211, 165, 0.12), transparent 28%),
-        linear-gradient(180deg, var(--color-white) 0%, var(--color-accent-50) 100%);
-}
-
-
-/* ===== ページ見出し ===== */
 .mypage {
-    width: min(100%, 560px);
-    margin: var(--space-12) auto 0;
-}
-
-.page-heading {
-    margin-bottom: var(--space-8);
-    text-align: center;
-}
-
-.page-heading .page-eyebrow {
-    margin: 0 0 var(--space-1);
-    color: var(--color-accent-700);
-    font-size: var(--font-xs);
-    font-weight: 700;
-    letter-spacing: 0.18em;
-}
-
-.page-heading h2 {
-    margin: 0;
-    font-size: clamp(26px, 4vw, 34px);
-    line-height: 1.4;
-}
-
-.page-heading p:last-child {
-    margin: var(--space-2) 0 0;
-    color: var(--color-gray-500);
-    font-size: var(--font-sm);
+    padding-top: var(--space-4);
 }
 
 
-/* ===== プロフィールカード ===== */
-.profile-card {
-    position: relative;
-    padding: 58px var(--space-12) var(--space-8);
-
-    background: var(--color-white);
-    border: 1px solid rgba(70, 211, 165, 0.18);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-}
-
-.profile-icon {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: grid;
-    place-items: center;
-    width: 64px;
-    height: 64px;
-
-    background: var(--color-accent-500);
-    border: 5px solid var(--color-accent-50);
-    border-radius: 50%;
-    box-shadow: var(--shadow-md);
-
-    color: var(--color-white);
-    font-size: var(--font-xl);
-}
-
-.profile-card h3 {
-    margin: 0 0 var(--space-8);
-    font-size: var(--font-lg);
-    text-align: center;
-}
-
-
-/* ===== プロフィール項目 ===== */
-.profile-list {
-    display: grid;
-    gap: var(--space-6);
-    margin: 0;
-}
-
-.profile-row dt {
-    margin-bottom: var(--space-2);
-    color: var(--color-gray-500);
-    font-size: var(--font-sm);
-    font-weight: 700;
-}
-
-.profile-row dd {
-    display: flex;
-    align-items: center;
-    min-height: 50px;
-    margin: 0;
-    padding: var(--space-3) var(--space-4);
-
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-
-    font-size: var(--font-base);
-    overflow-wrap: anywhere;
-}
-
-.profile-row dd:empty::before {
-    content: "未設定";
-    color: var(--color-gray-300);
-    font-size: var(--font-sm);
-}
-
-.profile-row .password-value:not(:empty) {
-    letter-spacing: 0.16em;
-}
-
-
-/* ===== パスワード変更リンク ===== */
-.password-link {
+/* ===== 戦績（登録数を主、勝率を副） ===== */
+.battle-stats {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    margin-top: var(--space-8);
-    padding-top: var(--space-6);
-
-    border-top: 1px solid var(--color-border);
-
-    color: var(--color-accent-700);
-    font-size: var(--font-sm);
-    font-weight: 700;
-    text-decoration: none;
-
-    transition: color 0.2s ease;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
 }
 
-.password-link i {
-    font-size: var(--font-xs);
-    transition: transform 0.2s ease;
+.battle-stats-text {
+    min-width: 0;
 }
 
-.password-link:hover {
-    color: var(--color-accent-700);
-}
-
-.password-link:hover i {
-    transform: translateX(4px);
-}
-
-.password-link:focus-visible {
-    outline: 3px solid rgba(70, 211, 165, 0.35);
-    outline-offset: 5px;
-    border-radius: 3px;
-}
-
-
-/* ===== 危険な操作（ログアウト・退会） ===== */
-.danger-actions {
-    margin-top: var(--space-6);
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--color-border);
-}
-
-.danger-actions h4 {
-    margin: 0 0 var(--space-2);
-    color: var(--color-danger);
-    font-size: var(--font-xs);
-    letter-spacing: 0.08em;
-}
-
-.danger-actions form {
-    margin: 0;
-}
-
-.danger-button {
+.stats {
     display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    width: 100%;
-    min-height: 48px;
-    padding: var(--space-2) var(--space-1);
+    align-items: flex-end;
+    gap: var(--space-4);
+    margin-top: var(--space-3);
+}
 
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid var(--color-border);
-
-    color: var(--color-danger);
-    font: inherit;
-    font-size: var(--font-sm);
+.stat-value {
+    margin: 0;
+    color: var(--color-gray-900);
+    font-size: var(--font-2xl);
     font-weight: 700;
+    line-height: 1.1;
+}
+
+.stat-value--sub {
+    font-size: var(--font-lg);
+}
+
+.stat-unit {
+    margin-left: var(--space-1);
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+    font-weight: 400;
+}
+
+.stat-label {
+    margin: var(--space-1) 0 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+}
+
+/* 2つの数値がひと組だと分かるようにする区切り */
+.stat-divider {
+    width: 1px;
+    height: 34px;
+    background: var(--color-hairline);
+}
+
+
+/* ===== アバター ===== */
+.avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 76px;
+    height: 76px;
+
+    /* accent-50 だと白いキャラが沈むので一段濃い accent-100 を敷く */
+    background: var(--color-accent-100);
+    border: 1px solid rgba(70, 211, 165, 0.35);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+
+/* ===== ボタンを行として見せる ===== */
+.row-button {
+    width: 100%;
+    padding: 0;
+
+    background: none;
+    border: none;
+
+    font-family: inherit;
+    font-size: var(--font-base);
     text-align: left;
 
     cursor: pointer;
-    transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.danger-button i {
-    width: var(--space-6);
-    text-align: center;
-}
-
-.danger-button--delete {
-    border-bottom: 0;
-    font-weight: 800;
-}
-
-.danger-button:hover {
-    color: var(--color-danger);
-    background: var(--color-accent-50);
-}
-
-.danger-button:focus-visible {
-    outline: 3px solid rgba(229, 57, 53, 0.25);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
-}
-
-
-/* ===== スマホ表示 ===== */
-@media (max-width: 600px) {
-    body {
-        padding: var(--header-height) var(--space-3) 100px;
-    }
-
-    .mypage {
-        margin-top: var(--space-8);
-    }
-
-    .page-heading {
-        margin-bottom: var(--space-12);
-    }
-
-    .page-heading p:last-child {
-        font-size: var(--font-sm);
-    }
-
-    .profile-card {
-        padding: 52px var(--space-6) var(--space-6);
-        border-radius: var(--radius-lg);
-    }
-}
-
-@media (max-width: 380px) {
-    .page-heading p:last-child {
-        padding: 0 var(--space-3);
-    }
-
-    .profile-card {
-        padding-inline: var(--space-4);
-    }
+.card-danger {
+    margin-top: var(--space-12);
 }
