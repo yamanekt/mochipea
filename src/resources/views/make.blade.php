@@ -7,21 +7,32 @@
 @endpush
 
 @section('content')
-    <div class="bg"></div>
-    <div class="container panel">
-        <h1>部屋を作成しました</h1>
-        <h2>別のアカウントでログインした相手に、この部屋番号を伝えてください</h2>
+    <div class="page-bg"></div>
 
-        <label>部屋番号</label>
-        <div class="password-area">
-            <div id="roomCode" class="code-box">{{ $room->room_id }}</div>
-            <button type="button" class="share-btn">共有</button>
+    <main class="page made">
+
+        <p class="eyebrow">完了</p>
+        <h1 class="page-title">目標をつくりました</h1>
+        <p class="page-lead">この番号を相手に伝えるとペアが成立します</p>
+
+        <div class="card code-card">
+            <p class="code-label">部屋番号</p>
+            <p class="code-value" id="roomCode">{{ $room->room_id }}</p>
+            <p class="code-hint">タップでコピー</p>
         </div>
 
-        <a href="{{ route('pea') }}" class="main-btn">戻る</a>
-    </div>
+        <img src="{{ asset('images/IMG_0639.png') }}" alt="" class="mascot made-mascot">
+
+        {{-- 番号を渡さないとペアが成立しないので、共有を主操作にする --}}
+        <button type="button" class="btn-primary made-share" data-share-code="{{ $room->room_id }}">
+            この番号を共有する
+        </button>
+
+        <a href="{{ route('pair.waiting') }}" class="btn-text">あとで共有する</a>
+
+    </main>
 @endsection
 
 @push('scripts')
-    @vite(['resources/js/make.js'])
+    @vite(['resources/js/pair-waiting.js'])
 @endpush

@@ -7,33 +7,48 @@
 @endpush
 
 @section('content')
-  <div class="bg"></div>
+    <div class="page-bg"></div>
 
-<div class="rolling-area">
-       <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r1">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r2">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r3">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r4">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r5">
-    <img src="{{ asset('images/IMG_0639.png') }}" class="rolling r6">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="rolling r7">
-</div>
+    <main class="page pea">
 
-<div class="container">
+        <p class="eyebrow">ペア設定</p>
+        <h1 class="page-title">だれと競う？</h1>
+        <p class="page-lead">目標ごとに相手とペアを組みます</p>
 
-        <a href="{{ url('/goals') }}" class="box">
-            <h1>部屋を作る</h1>
-            <p>表示された部屋番号を相手に伝えてください</p>
-        </a>
+        <nav class="pea-menu" aria-label="ペア設定メニュー">
 
-        <a href="{{ url('/join') }}" class="box">
-            <h1>部屋を探す</h1>
-            <p>部屋番号を教えてもらってください</p>
-        </a>
+            <a href="{{ route('goals') }}" class="card menu-card">
+                <span class="menu-text">
+                    <span class="menu-title">目標をつくる</span>
+                    <span class="menu-desc">目標を決めて部屋番号を発行します</span>
+                </span>
+                <span class="row-chevron" aria-hidden="true">›</span>
+            </a>
 
-    </div>
+            <a href="{{ route('join') }}" class="card menu-card">
+                <span class="menu-text">
+                    <span class="menu-title">部屋に参加する</span>
+                    <span class="menu-desc">相手から聞いた番号を入力します</span>
+                </span>
+                <span class="row-chevron" aria-hidden="true">›</span>
+            </a>
+
+            <a href="{{ route('pair.waiting') }}" class="card menu-card">
+                <span class="menu-text">
+                    <span class="menu-title">待っている部屋</span>
+                    <span class="menu-desc">相手の参加を待っている番号</span>
+                </span>
+                <span class="menu-right">
+                    @if ($waitingCount > 0)
+                        <span class="pill pill-solid">{{ $waitingCount }}</span>
+                    @endif
+                    <span class="row-chevron" aria-hidden="true">›</span>
+                </span>
+            </a>
+
+        </nav>
+
+        <img src="{{ asset('images/IMG_0639.png') }}" alt="" class="mascot pea-mascot">
+
+    </main>
 @endsection
-
-@push('scripts')
-    @vite(['resources/js/pea.js'])
-@endpush

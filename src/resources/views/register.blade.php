@@ -7,56 +7,76 @@
 @endpush
 
 @section('content')
-<div class="bg"></div>
+    <div class="page-bg"></div>
 
-<div class="page">
+    <main class="page auth auth-register">
 
-    <div class="container panel">
+        <a href="{{ url('/login') }}" class="auth-back" aria-label="ログインへ戻る">←</a>
 
-        <a href="{{ url('/login') }}" class="back-btn">戻る</a>
-
-        <img src="{{ asset('images/welcome2.png') }}" alt="welcome" class="top-image">
-
-        <h1>Welcome!</h1>
-        <div class="sub-title">新規登録</div>
+        <div class="auth-head">
+            <div>
+                <h1 class="auth-title">はじめまして</h1>
+                <p class="auth-lead">アカウントをつくります</p>
+            </div>
+            <img src="{{ asset('images/IMG_0639.png') }}" alt="" class="auth-head-mascot">
+        </div>
 
         @if ($errors->any())
-            <ul>
+            <ul class="auth-error-list" role="alert">
                 @foreach ($errors->all() as $error)
-                    <li style="color:red">{{ $error }}</li>
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
         @endif
 
-        <!-- 👇 フォームエリア -->
-        <div class="form-area">
+        <form action="{{ url('/register') }}" method="post" novalidate>
+            @csrf
 
-            <form action="{{ url('/register') }}" method="post">
-                @csrf
+            <div class="field">
+                <label class="field-label" for="name">ユーザー名</label>
+                <input type="text" id="name" name="name"
+                       value="{{ old('name') }}"
+                       autocomplete="nickname" placeholder="やまね けいた" required>
+            </div>
 
-                <label>ユーザー名 *</label>
-                <input type="text" name="name" required>
+            <div class="field">
+                <label class="field-label" for="email">メールアドレス</label>
+                <input type="email" id="email" name="email"
+                       value="{{ old('email') }}"
+                       autocomplete="email" placeholder="you@example.com" required>
+            </div>
 
-<label for="email">Eメール *</label>
-<input type="email" id="email" name="email" autocomplete="email" required>
+            <div class="field">
+                <span class="field-label">
+                    <label for="password">パスワード</label>
+                    <button type="button" class="field-toggle"
+                            data-toggle-password="password" aria-pressed="false">表示</button>
+                </span>
+                <input type="password" id="password" name="password"
+                       autocomplete="new-password" placeholder="8文字以上" required>
+            </div>
 
-<label for="password">パスワード *</label>
-<input type="password" id="password" name="password" autocomplete="new-password" required>
+            <div class="field">
+                <span class="field-label">
+                    <label for="password_confirmation">パスワード（確認）</label>
+                    <button type="button" class="field-toggle"
+                            data-toggle-password="password_confirmation" aria-pressed="false">表示</button>
+                </span>
+                <input type="password" id="password_confirmation" name="password_confirmation"
+                       autocomplete="new-password" placeholder="もう一度入力" required>
+            </div>
 
-                <label>パスワード確認 *</label>
-                <input type="password" name="password_confirmation" required>
+            <button type="submit" class="btn-primary">アカウントをつくる</button>
+        </form>
 
-                <button type="submit">
-                    アカウント作成
-                </button>
-            </form>
+        <p class="auth-switch">
+            すでにアカウントをお持ちの方
+            <a href="{{ url('/login') }}">ログイン →</a>
+        </p>
 
-            <!-- 👇 キャラ（ボタンを指す） -->
-            <img src="{{ asset('images/IMG_0639.png') }}" class="point-char">
-
-        </div>
-
-    </div>
-
-</div>
+    </main>
 @endsection
+
+@push('scripts')
+    @vite(['resources/js/auth.js'])
+@endpush
