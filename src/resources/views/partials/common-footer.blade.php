@@ -1,26 +1,48 @@
+@php
+    // 選択判定はルート名で行う。アイコンは通常／選択中の2枚を差し替える
+    $navItems = [
+        [
+            'route'  => 'home',
+            'label'  => 'ホーム',
+            'icon'   => 'home',
+            'active' => request()->routeIs('home') || request()->is('home'),
+        ],
+        [
+            'route'  => 'current-goals',
+            'label'  => '目標一覧',
+            'icon'   => 'goals',
+            'active' => request()->routeIs('current-goals', 'goals.show', 'situation.show', 'progress.show'),
+        ],
+        [
+            'route'  => 'pea',
+            'label'  => '目標作成',
+            'icon'   => 'create',
+            'active' => request()->routeIs('pea', 'pair.waiting', 'goals', 'goals.store', 'make', 'join'),
+        ],
+        [
+            'route'  => 'timeline',
+            'label'  => 'タイムライン',
+            'icon'   => 'timeline',
+            'active' => request()->routeIs('timeline'),
+        ],
+        [
+            'route'  => 'mypage',
+            'label'  => 'マイページ',
+            'icon'   => 'mypage',
+            'active' => request()->routeIs('mypage'),
+        ],
+    ];
+@endphp
+
 <nav class="bottom-nav" aria-label="メインメニュー">
-    <a href="{{ route('home') }}" class="nav-item {{ request()->routeIs('home') || request()->is('home') ? 'active' : '' }}">
-        <i class="fa-solid fa-house" aria-hidden="true"></i>
-        <span>ホーム</span>
-    </a>
-
-    <a href="{{ route('current-goals') }}" class="nav-item {{ request()->routeIs('current-goals', 'goals.show', 'background', 'situation.show', 'progress.show') ? 'active' : '' }}">
-        <i class="fa-solid fa-list-check" aria-hidden="true"></i>
-        <span>目標一覧</span>
-    </a>
-
-    <a href="{{ route('pea') }}" class="nav-item {{ request()->routeIs('pea', 'goals', 'goals.store', 'make', 'join') ? 'active' : '' }}">
-        <i class="fa-solid fa-circle-plus" aria-hidden="true"></i>
-        <span>目標作成</span>
-    </a>
-
-    <a href="{{ route('timeline') }}" class="nav-item {{ request()->routeIs('timeline') ? 'active' : '' }}">
-        <i class="fa-solid fa-clock-rotate-left" aria-hidden="true"></i>
-        <span>タイムライン</span>
-    </a>
-
-    <a href="{{ route('mypage') }}" class="nav-item {{ request()->routeIs('mypage') ? 'active' : '' }}">
-        <i class="fa-regular fa-user" aria-hidden="true"></i>
-        <span>マイページ</span>
-    </a>
+    @foreach ($navItems as $item)
+        <a href="{{ route($item['route']) }}"
+           class="nav-item{{ $item['active'] ? ' active' : '' }}"
+           @if ($item['active']) aria-current="page" @endif>
+            {{-- サブディレクトリ配置でも解決できるよう asset() を通す --}}
+            <img src="{{ asset('images/nav/' . $item['icon'] . ($item['active'] ? '-active' : '') . '.svg') }}"
+                 alt="" aria-hidden="true">
+            <span>{{ $item['label'] }}</span>
+        </a>
+    @endforeach
 </nav>

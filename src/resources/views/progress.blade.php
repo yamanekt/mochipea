@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>達成入力</title>
+@extends('layouts.app')
 
-    @vite(['resources/css/common.css', 'resources/css/progress.css'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-</head>
+@section('title', '達成入力')
 
-<body>
-@include('partials.common-header')
+@push('css')
+    @vite(['resources/css/progress.css'])
+@endpush
 
+@section('content')
 <div class="bg"></div>
 
-<div class="container">
+<div class="container panel">
 
     <h2>達成入力</h2>
 
@@ -44,8 +39,10 @@
     <img src="{{ asset('images/IMG_0641.png') }}"
          alt="キャラ"
          class="point-char">
-         <a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
-          </form>
+  </div>
+</form>
+
+<a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
 
 </div>
 <!-- フォームの外 -->
@@ -56,7 +53,4 @@
 
     <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost">
 </div>
-
-@include('partials.common-footer')
-</body>
-</html>
+@endsection

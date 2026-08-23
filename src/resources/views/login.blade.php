@@ -1,63 +1,59 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.guest')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン</title>
+@section('title', 'ログイン')
+
+@push('css')
     @vite(['resources/css/login.css'])
-</head>
+@endpush
 
-<body>
+@section('content')
+    <div class="page-bg"></div>
 
-    <div class="bg"></div>
+    <main class="page auth">
 
-    <div class="page">
+        <img src="{{ asset('images/IMG_0639.png') }}" alt="" class="mascot auth-mascot">
 
-        <div class="container">
+        <h1 class="auth-title">おかえりなさい</h1>
+        <p class="auth-lead">もちぺあにログイン</p>
 
-            <img src="{{ asset('images/welcome2.png') }}" alt="ロゴ" class="top-image">
+        <form action="{{ url('/login') }}" method="post" novalidate>
+            @csrf
 
-            <h1>Welcome Back!</h1>
-            <h2>サインイン</h2>
-
-            <!-- フォーム全体を囲む -->
-            <div class="form-area">
-
-                <form id="loginForm" action="{{ url('/login') }}" method="post">
-                    @csrf
-
-                    <div class="input-group">
-                        <label for="userId">Eメール</label>
-                        <input type="email" id="userId" name="email" required>
-                    </div>
-
-                    <div class="input-group">
-                        <label for="password">パスワード</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-
-                    <p class="error">{{ $errors->first('login') }}</p>
-
-                    <button type="submit">ログイン</button>
-                </form>
-
-
+            <div class="field">
+                <label class="field-label" for="email">メールアドレス</label>
+                <input type="email" id="email" name="email"
+                       value="{{ old('email') }}"
+                       autocomplete="email" placeholder="you@example.com" required>
             </div>
 
-            <div class="register-link">
-                <a href="{{ url('/register') }}" class="register-btn">
-                    新規登録
-                </a>
-                <!-- 👇 キャラクター画像 -->
-                <img src="{{ asset('images/IMG_0639.png') }}" alt="キャラ" class="point-char">
-
+            <div class="field">
+                <span class="field-label">
+                    <label for="password">パスワード</label>
+                    <button type="button" class="field-toggle"
+                            data-toggle-password="password" aria-pressed="false">表示</button>
+                </span>
+                <input type="password" id="password" name="password"
+                       autocomplete="current-password" placeholder="password" required>
             </div>
 
-        </div>
+            @if ($errors->any())
+                <p class="auth-error" role="alert">
+                    {{ $errors->first('login') ?: $errors->first() }}
+                </p>
+            @endif
 
-    </div>
+            <button type="submit" class="btn-primary">ログイン</button>
+        </form>
 
-</body>
+        {{-- 新規登録は主操作ではないのでテキストリンク。赤は削除・退会にだけ使う --}}
+        <p class="auth-switch">
+            アカウントをお持ちでない方
+            <a href="{{ url('/register') }}">新規登録 →</a>
+        </p>
 
-</html>
+    </main>
+@endsection
+
+@push('scripts')
+    @vite(['resources/js/auth.js'])
+@endpush

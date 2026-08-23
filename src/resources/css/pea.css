@@ -1,271 +1,55 @@
-body {
-    font-family: "Noto Sans JP", sans-serif;
-    text-align: center;
-    background-color: #efe6e6;
-    margin: 0;
-    padding: 110px 50px 110px;
+/* ペア設定 */
+
+.pea {
+    padding-top: var(--space-4);
 }
 
-.container h1 {
-    color: #010101;
+
+/* ===== 行き先メニュー ===== */
+.pea-menu {
+    margin-top: var(--space-6);
 }
 
-.container {
+.menu-card {
     display: flex;
-    justify-content: center;
-    gap: 50px;
-    flex-wrap: wrap;
-}
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
 
-.container .box {
-    background-color: rgba(248, 240, 240, 0.85);
-    border: 2px solid #f5f3f3;
-    border-radius: 16px;
-    padding: 40px 60px;
-    max-width: 500px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    width: 300px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-    margin: 0;
-    padding: 50px;
-    box-sizing: content-box;
-}
+    padding: var(--space-4) var(--space-6);
 
-/* テキスト装飾 */
-.container h1 {
-    margin-top: 0;
-    color: #191818;
-}
-
-.container p {
-    color: #1c1b1b;
-}
-
-.photo {
-    width: 300px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
-}
-
-.photo:hover {
-    transform: scale(1.05);
-}
-
-.container .box:hover {
-    transform: scale(1.05);
-}
-
-.bg {
-    position: fixed;
-    inset: 0;
-
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-}
-/* 戻るボタン */
-.back-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #9e9e9e;
-    color: white;
-    text-decoration: none;
-    padding: 10px 22px;
-    border-radius: 10px;
-    font-weight: bold;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    transition: 0.3s;
-    z-index: 1000;
-}
-
-.back-btn:hover {
-    background-color: #757575;
-    transform: scale(1.05);
-}
-.container a {
-    text-decoration: none;
     color: inherit;
-}
-/* キャラ全体 */
-.rolling-area{
-    position: fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:0;      /* 背景より前 */
+    text-decoration: none;
 }
 
-/* コンテナを前面へ */
-.container{
-    position:relative;
-    z-index:10;
-     margin-top: 40px;
+.menu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
 }
 
-@media (max-width: 768px) {
-    body {
-        min-height: 100svh;
-        padding: 82px 16px 86px;
-        box-sizing: border-box;
-        overflow-x: hidden;
-    }
-
-    .container {
-        min-height: calc(100svh - 168px);
-        margin-top: 0;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
-    }
-
-    .container .box {
-        width: min(100%, 340px);
-        max-width: none;
-        margin: 0;
-        padding: 24px 18px;
-        box-sizing: border-box;
-        border-radius: 16px;
-    }
-
-    .container h1 {
-        margin-bottom: 8px;
-        font-size: 24px;
-    }
-
-    .container p {
-        margin: 0;
-        font-size: 14px;
-        line-height: 1.6;
-    }
+.menu-title {
+    color: var(--color-gray-900);
+    font-size: var(--font-base);
+    font-weight: 700;
 }
 
-/* 戻るボタンも前 */
-.back-btn{
-    z-index:20;
-
+/* 押したら何が起きるかを1行で説明する */
+.menu-desc {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
 }
 
-/* 共通 */
-.rolling{
-    position:absolute;
-    right:-250px;
-    width:110px;
-    opacity:0.9;
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
 }
 
-/* ===== キャラ1 ===== */
-.r1{
-    top:8%;
-    animation: roll1 9s linear infinite;
-}
 
-/* ===== キャラ2 ===== */
-.r2{
-    top:22%;
-    width:90px;
-    animation: roll2 7s linear infinite;
-    animation-delay:1s;
-}
-
-/* ===== キャラ3 ===== */
-.r3{
-    top:38%;
-    width:130px;
-    animation: roll3 11s linear infinite;
-    animation-delay:3s;
-}
-
-/* ===== キャラ4 ===== */
-.r4{
-    top:55%;
-    width:80px;
-    animation: roll4 8s linear infinite;
-    animation-delay:2s;
-}
-
-/* ===== キャラ5 ===== */
-.r5{
-    top:70%;
-    width:120px;
-    animation: roll5 10s linear infinite;
-    animation-delay:4s;
-}
-
-/* ===== キャラ6 ===== */
-.r6{
-    top:82%;
-    width:100px;
-    animation: roll6 6s linear infinite;
-    animation-delay:2.5s;
-}
-
-/* ===== キャラ7 ===== */
-.r7{
-    top:45%;
-    width:140px;
-    animation: roll7 12s linear infinite;
-    animation-delay:5s;
-}
-
-/* 共通アニメーション */
-@keyframes roll1{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(-1800deg);}
-}
-@keyframes roll2{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(1440deg);}
-}
-@keyframes roll3{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(-2160deg);}
-}
-@keyframes roll4{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(1800deg);}
-}
-@keyframes roll5{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(-1440deg);}
-}
-@keyframes roll6{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(2520deg);}
-}
-@keyframes roll7{
-    from{transform:translateX(0) rotate(0deg);}
-    to{transform:translateX(calc(-100vw - 400px)) rotate(-2880deg);}
-}
-.rolling{
-    position:absolute;
-    right:-250px;
-    cursor:pointer;
-    pointer-events:auto;
-    transition:transform .2s;
-}
-
-.rolling:hover{
-    transform:scale(1.1);
-}
-
-/* 潰れた */
-.rolling.pop{
-
-    animation:none !important;
-
-    transform:scaleX(1.4) scaleY(0.5);
-
-    opacity:0;
-
-    transition:.25s;
+/* ===== キャラクター ===== */
+.pea-mascot {
+    margin-top: var(--space-12);
 }

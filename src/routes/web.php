@@ -13,7 +13,9 @@ use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
 use App\Http\Controllers\TimeLineController;
 use App\Http\Controllers\MyPageController;
-use App\Http\Controllers\BackgroundController;
+use App\Http\Controllers\GoalFlowController;
+use App\Http\Controllers\PairRoomController;
+use Illuminate\Support\Facades\DB;
 
 
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
@@ -30,17 +32,40 @@ Route::middleware('auth')->group(function () {
 
     // ホーム
     Route::get('/', fn() => view('home'))->name('home');
-    Route::get('/home', fn() => view('home'));
+    // /home は名前を持たせず、正規のURL（/ ＝ route('home')）へ寄せる
+    Route::get('/home', fn() => redirect()->route('home'));
 
     // ペア設定メニュー
-    Route::get('/pea', fn() => view('pea'))->name('pea');
+    Route::get('/pea', [PairRoomController::class, 'index'])->name('pea');
 
-    // 部屋を作る → 目標登録画面へ
-    Route::get('/goals', fn() => view('goals'))->name('goals');
+    // 発行済みで、まだ相手が参加していない部屋
+    Route::get('/pea/waiting', [PairRoomController::class, 'waiting'])->name('pair.waiting');
+
+    // 目標作成（1問ずつ進めるフロー）
+    Route::get('/goals', fn() => redirect()->route('goals.new.step', ['step' => 1]))->name('goals');
+    Route::prefix('goals/new')->name('goals.new.')->group(function () {
+        Route::get('/{step}', [GoalFlowController::class, 'show'])->whereNumber('step')->name('step');
+        Route::post('/{step}', [GoalFlowController::class, 'save'])->whereNumber('step')->name('save');
+        Route::post('/', [GoalFlowController::class, 'store'])->name('store');
+        Route::post('/cancel', [GoalFlowController::class, 'cancel'])->name('cancel');
+    });
     Route::post('/goals/store', [GoalsController::class, 'store'])->name('goals.store');
 
-    // 部屋を作った後のコード表示
-    Route::get('/make', fn() => view('make'))->name('make');
+    // 部屋を作った後のコード表示。
+    // セッションではなくDBから引くので、リロードでも直リンクでも壊れない
+    Route::get('/make', function () {
+        $code = DB::table('pair_codes')
+            ->where('user_id', auth()->id())
+            ->where('status', 'waiting')
+            ->latest('id')
+            ->first();
+
+        if (! $code) {
+            return redirect()->route('pea');
+        }
+
+        return view('make', ['room' => (object) ['room_id' => $code->code]]);
+    })->name('make');
 
     // 部屋を探す（コード入力）
     Route::get('/join', fn() => view('join'))->name('join');
@@ -64,14 +89,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/progress', [GoalProgressController::class, 'store'])
         ->name('progress.store');
-    Route::get('/mypage', function () {
-    return view('mypage');
-})->name('mypage');
-
+    // マイページ（戦績＋アカウント）
+    Route::get('/mypage', [MyPageController::class, 'index'])->name('mypage');
 
 });
 
 Route::get('/current-goals/{id}', [GoalsController::class, 'show'])
     ->name('goals.show');
-Route::get('/background/{id}', [GoalsController::class, 'background'])
-    ->name('background');

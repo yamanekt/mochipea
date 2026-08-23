@@ -1,24 +1,10 @@
-body {
-    font-family: "Noto Sans JP", sans-serif;
-    margin: 0;
-    padding: 120px 40px 40px;
-}
+/* 目標の現在状況 */
 
-.bg {
-    position: fixed;
-    inset: 0;
-    background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
-
-/* 戻るボタン */
+/* ===== 戻るボタン（色や形は common.css。この画面は左上固定＋水色） ===== */
 .back-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: var(--space-6);
+    left: var(--space-6);
 
     display: flex;
     justify-content: center;
@@ -27,42 +13,42 @@ body {
     width: 120px;
     height: 45px;
 
-    background: #6fd6f5;
-    color: #fff;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,.2);
-    transition: 0.3s;
+    background: var(--color-info);
+    box-shadow: var(--shadow-sm);
+    font-size: var(--font-lg);
 }
 
 .back-btn:hover {
-    background: #4fc0e3;
+    background: var(--color-info);
     transform: translateY(-2px);
 }
 
+
+/* ===== 全体 ===== */
 .detail-container {
     max-width: 1000px;
     margin: auto;
 }
 
 .goal-title-box {
-    background: rgba(248,240,240,.9);
-    border-radius: 20px;
-    padding: 25px;
-    font-size: 42px;
+    padding: var(--space-6);
+    margin-bottom: var(--space-16);
+
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+
+    font-size: var(--font-3xl);
     font-weight: bold;
     text-align: center;
-    margin-bottom: 60px;
-    box-shadow: 0 4px 10px rgba(0,0,0,.3);
 }
 
+
+/* ===== 自分と相手のカード ===== */
 .pair-area {
     display: flex;
     justify-content: space-around;
-    gap: 60px;
+    gap: var(--space-16);
 }
 
 .user-card {
@@ -74,395 +60,121 @@ body {
 
 .character {
     width: 170px;
-    margin: 15px 0;
+    margin: var(--space-4) 0;
 }
 
+
+/* ===== 吹き出し ===== */
 .speech {
-    background: #fff;
-    border-radius: 20px;
-    padding: 15px 25px;
-    font-size: 24px;
     position: relative;
-    margin-bottom: 15px;
+    padding: var(--space-4) var(--space-6);
+    margin-bottom: var(--space-4);
+
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+
+    font-size: var(--font-xl);
 }
 
+/* 吹き出しの尻尾 */
 .speech::after {
     content: "";
     position: absolute;
-    left: 40px;
+    left: var(--space-12);
     bottom: -18px;
+
     border: 10px solid transparent;
-    border-top: 18px solid #fff;
+    border-top: var(--color-white) 18px solid;
 }
 
+
+/* ===== 達成率 ===== */
 .percent {
     width: 180px;
-    padding: 8px;
-    margin-bottom: 20px;
+    padding: var(--space-2);
+    margin-bottom: var(--space-6);
 
-    background: #d9d9d9;
-    border-radius: 10px;
+    background: var(--color-gray-300);
+    border-radius: var(--radius-md);
 
+    font-size: var(--font-2xl);
+    font-weight: bold;
     text-align: center;
-    font-size: 34px;
-    font-weight: bold;
 }
 
-/* 記録を更新ボタン */
+
+/* ===== 記録更新ボタン（基本は common.css。幅と高さだけ変更） ===== */
 .main-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     width: 220px;
-    height: 55px;
-
-    background: blue;
-    color: #fff;
-    text-decoration: none;
-
-    font-size: 22px;
-    font-weight: bold;
-
-    border-radius: 12px;
-    margin-bottom: 20px;
-
-    box-sizing: border-box;
-    transition: 0.3s;
+    height: auto;
+    padding: var(--space-3);
 }
 
-.main-btn:hover {
-    background: #4fc0e3;
-    transform: translateY(-2px);
-}
 
+/* ===== 更新履歴 ===== */
 .history-box {
     width: 220px;
     height: 220px;
+    margin-top: var(--space-6);
+    padding: var(--space-4);
 
-    padding: 15px;
-
-    background: #b7f3ee;
-    border-radius: 15px;
+    background: var(--color-info);
+    border-radius: var(--radius-lg);
 
     overflow-y: auto;
-    box-sizing: border-box;
 }
 
+.history-title {
+    position: sticky;
+    top: calc(var(--space-4) * -1);
+    margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-3);
+    padding: var(--space-4);
+
+    background: var(--color-info);
+
+    font-weight: bold;
+    text-align: center;
+}
+
+.history-item {
+    padding: var(--space-2) 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    text-align: left;
+}
+
+.history-item time {
+    display: block;
+    margin-top: var(--space-1);
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}
+
+.history-item p {
+    margin: var(--space-1) 0 0;
+    overflow-wrap: anywhere;
+}
+
+.history-empty {
+    color: var(--color-gray-500);
+    text-align: center;
+}
+
+
+/* ===== スマホ表示 ===== */
 @media (max-width: 768px) {
-    body {
-        padding: 100px 20px 20px;
+    .goal-title-box {
+        margin-bottom: var(--space-8);
+        font-size: var(--font-xl);
     }
 
     .pair-area {
         flex-direction: column;
         align-items: center;
-        gap: 40px;
-    }
-
-    .goal-title-box {
-        font-size: 28px;
+        gap: var(--space-8);
     }
 
     .user-card {
         width: 100%;
-        max-width: 320px;
+        max-width: 360px;
     }
-}
-body{
-    font-family:"Noto Sans JP",sans-serif;
-    margin:0;
-    padding:120px 40px 40px;
-}
-
-.detail-container{
-    max-width:1000px;
-    margin:auto;
-}
-
-.goal-title-box{
-
-    background:rgba(248,240,240,.9);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    font-size:42px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-    margin-bottom:60px;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.3);
-}
-
-.pair-area{
-
-    display:flex;
-
-    justify-content:space-around;
-
-    gap:60px;
-
-}
-
-.user-card{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    width:320px;
-
-}
-
-.character{
-
-    width:170px;
-
-    margin:15px 0;
-
-}
-
-.speech{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:15px 25px;
-
-    font-size:24px;
-
-    position:relative;
-
-    margin-bottom:15px;
-
-}
-
-.speech::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:40px;
-
-    bottom:-18px;
-
-    border:10px solid transparent;
-
-    border-top:white 18px solid;
-
-}
-
-.percent{
-
-    width:180px;
-
-    background:#d9d9d9;
-
-    text-align:center;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    border-radius:10px;
-
-    margin-bottom:20px;
-
-    padding:8px;
-
-}
-
-.main-btn{
-
-    width:220px;
-
-    text-align:center;
-
-}
-
-.history-box{
-
-    width:220px;
-
-    height:220px;
-
-    margin-top:20px;
-
-    background:#b7f3ee;
-
-    border-radius:15px;
-
-    padding:15px;
-
-    overflow-y:auto;
-
-}
-.bg {
-    position: fixed;
-    inset: 0;
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-}
-body{
-    font-family:"Noto Sans JP",sans-serif;
-    margin:0;
-    padding:120px 40px 40px;
-}
-
-.detail-container{
-    max-width:1000px;
-    margin:auto;
-}
-
-.goal-title-box{
-
-    background:rgba(248,240,240,.9);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    font-size:42px;
-
-    font-weight:bold;
-
-    text-align:center;
-
-    margin-bottom:60px;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.3);
-}
-
-.pair-area{
-
-    display:flex;
-
-    justify-content:space-around;
-
-    gap:60px;
-
-}
-
-.user-card{
-
-    display:flex;
-
-    flex-direction:column;
-
-    align-items:center;
-
-    width:320px;
-
-}
-
-.character{
-
-    width:170px;
-
-    margin:15px 0;
-
-}
-
-.speech{
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:15px 25px;
-
-    font-size:24px;
-
-    position:relative;
-
-    margin-bottom:15px;
-
-}
-
-.speech::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:40px;
-
-    bottom:-18px;
-
-    border:10px solid transparent;
-
-    border-top:white 18px solid;
-
-}
-
-.percent{
-
-    width:180px;
-
-    background:#d9d9d9;
-
-    text-align:center;
-
-    font-size:34px;
-
-    font-weight:bold;
-
-    border-radius:10px;
-
-    margin-bottom:20px;
-
-    padding:8px;
-
-}
-
-.main-btn{
-
-    width:220px;
-
-    text-align:center;
-
-    color: blue;
-    background-color: #3b82f6;
-
-}
-
-.history-box{
-
-    width:220px;
-
-    height:220px;
-
-    margin-top:20px;
-
-    background:#b7f3ee;
-
-    border-radius:15px;
-
-    padding:15px;
-
-    overflow-y:auto;
-
-}
-.bg {
-    position: fixed;
-    inset: 0;
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
 }

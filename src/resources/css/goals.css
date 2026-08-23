@@ -1,27 +1,57 @@
-body {
-    font-family: "Noto Sans JP", sans-serif;
-    background-color: #efe6e6;
-    margin: 0;
-    padding: 110px 50px 110px;
+/* 目標一覧（current-goals）とタイムラインで共用 */
+
+/* ===== 本文エリア ===== */
+.page-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
+
+/* ===== 並び替え ===== */
+.sort-form {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.sort-option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+
+    color: var(--color-gray-700);
+    font-size: var(--font-sm);
+    cursor: pointer;
+}
+
+.sort-option input[type="radio"] {
+    accent-color: var(--color-primary-500);
+    transform: scale(1.1);
+}
+
+
+/* ===== カード一覧 ===== */
 .goal-list {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 30px;
-
+    gap: var(--space-8);
 }
 
 .goal-card {
-    background-color: rgba(248, 240, 240, 0.9);
-    border: 2px solid #f5f3f3;
-    border-radius: 20px;
-    padding: 30px;
     width: 320px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s;
+    padding: var(--space-8);
+
+    background-color: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+
     text-align: left;
+    transition: transform 0.3s;
 }
 
 .goal-card:hover {
@@ -29,120 +59,124 @@ body {
 }
 
 .goal-card p {
-    margin: 10px 0;
-    color: #1c1b1b;
+    margin: var(--space-2) 0;
+    color: var(--color-gray-900);
     line-height: 1.6;
-}
-
-.goal-card p:first-child {
-    font-size: 20px;
-    font-weight: bold;
-    color: #111;
-    margin-bottom: 15px;
 }
 
 .goal-card-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 15px;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
 }
 
 .goal-title {
-    font-size: 20px;
-    font-weight: bold;
-    color: #111;
     margin: 0;
+    font-size: var(--font-lg);
+    font-weight: bold;
+    color: var(--color-gray-900);
 }
 
+
+/* ===== 状態バッジ ===== */
 .status-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--space-1);
     flex-shrink: 0;
-    padding: 5px 9px;
-    border-radius: 999px;
-    font-size: 12px;
+
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+
+    font-size: var(--font-xs);
     font-weight: 700;
     white-space: nowrap;
 }
 
 .status-dot {
-    width: 9px;
-    height: 9px;
+    width: var(--space-2);
+    height: var(--space-2);
     border-radius: 50%;
 }
 
 .status-active {
-    color: #166534;
-    background-color: #dcfce7;
+    color: var(--color-success);
+    background-color: var(--color-accent-50);
 }
 
 .status-active .status-dot {
-    background-color: #22c55e;
+    background-color: var(--color-success);
 }
 
 .status-expired {
-    color: #4b5563;
-    background-color: #e5e7eb;
+    color: var(--color-gray-600);
+    background-color: var(--color-gray-300);
 }
 
 .status-expired .status-dot {
-    background-color: #9ca3af;
+    background-color: var(--color-gray-400);
 }
 
+
+/* ===== 進捗バー ===== */
 .progress-block {
-    margin: 14px 0;
+    margin: var(--space-4) 0;
 }
 
 .progress-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 6px;
-    color: #1c1b1b;
+    margin-bottom: var(--space-1);
+    color: var(--color-gray-900);
 }
 
 .progress-track {
     width: 100%;
-    height: 14px;
+    height: var(--space-3);
     overflow: hidden;
-    border-radius: 999px;
-    background-color: #e5e7eb;
+
+    background-color: var(--color-gray-300);
+    border-radius: var(--radius-full);
+    /* 内側に落ちる影のため個別指定 */
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .progress-fill {
     height: 100%;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #22c55e, #84cc16);
+    border-radius: var(--radius-full);
+    background: linear-gradient(90deg, var(--color-success), #84cc16);
     transition: width 0.3s ease;
 }
 
-.goal-card a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #3b82f6;
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s;
+
+/* ===== タイムラインの投稿情報 ===== */
+.entry-meta {
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
 }
 
-.goal-card a:hover {
-    background-color: #2563eb;
+.entry-count {
+    font-weight: bold;
+    color: var(--color-warning);
 }
 
-/* スマホ対応 */
+.entry-comment {
+    overflow-wrap: anywhere;
+}
+
+
+/* ===== 案内キャラクター（現在は非表示） ===== */
+.guide-character {
+    display: none;
+}
+
+
+/* ===== スマホ表示 ===== */
 @media (max-width: 768px) {
-    body {
-        padding: 20px;
-    }
-
     .goal-list {
-        flex-direction: column;
         align-items: center;
     }
 
@@ -150,225 +184,4 @@ body {
         width: 90%;
         max-width: 400px;
     }
-}
-
-.bg {
-    position: fixed;
-    inset: 0;
-background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    z-index: -1;
-}
-
-.back-btn,
-.back-btn:link,
-.back-btn:visited {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    display: inline-block;
-    background: #808080;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-    z-index: 9999;
-
-}
-
-.back-btn:hover {
-    background: #666;
-}
-.container {
-    margin-top: 90px;
-}
-
-.detail-btn,
-.detail-btn:link,
-.detail-btn:visited {
-    display: inline-block;
-    margin-top: 10px;
-    background: #808080;
-    color: #fff;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.detail-btn:hover {
-    background: #666;
-}
-
-.detail-btn,
-.detail-btn:link,
-.detail-btn:visited {
-    display: inline-block;
-    margin-top: 10px;
-    background: #808080;
-    color: #fff;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-}
-
-.detail-btn:hover {
-    background: #666;
-}
-.back-btn,
-.back-btn:link,
-.back-btn:visited {
-    position: fixed;
-    top: 50px;
-    right: 20px;
-
-    display: inline-block;
-    background: #808080;
-    color: #fff;
-
-    /* PC用サイズ */
-    padding: 8px 14px;
-    font-size: 14px;
-
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-
-    z-index: 9998;
-}
-
-.back-btn:hover {
-    background: #666;
-}
-/* 上部ページ切替メニュー */
-.page-menu {
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-
-    gap: 5px;
-
-    z-index: 9999;
-
-    background: white;
-}
-
-
-/* ボタン */
-.menu-btn {
-
-    width: 160px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: white;
-
-    border: 2px solid #777;
-
-    color: #222;
-
-    text-decoration: none;
-
-    font-size: 22px;
-
-    font-weight: bold;
-}
-
-
-/* 現在ページ */
-.menu-btn.current {
-
-    cursor: default;
-
-}
-
-
-/* スマホ */
-@media(max-width:768px){
-
-    .menu-btn{
-
-        width:50%;
-        height:40px;
-
-        font-size:18px;
-
-    }
-
-}/* 案内キャラクター */
-.guide-character {
-
-    display: none; /*キャラ表示(現在は削除中)
-
-    position: fixed;
-
-    /* 上メニューの下 */
-    top: 50px;
-
-    /* 左側 */
-    left: 20px;
-
-    z-index: 9999;
-
-    pointer-events: none;
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 95px 20px 100px;
-    }
-}
-
-
-.guide-character img {
-
-    width: 200px;
-
-    height: auto;
-
-    display: block;
-
-    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.2));
-
-}
-
-
-/* スマホ */
-@media(max-width:768px){
-
-    .guide-character {
-
-        top: -30px;
-        left: 330px;
-
-    }
-
-
-    .guide-character img {
-
-        width: 100px;
-
-    }
-
-}
-
-/* タイムラインの回数表示（timelineでgoals.cssを共用） */
-.entry-count {
-    font-weight: bold;
-    color: #b45309;
 }
