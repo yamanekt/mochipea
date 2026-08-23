@@ -39,8 +39,10 @@
     <img src="{{ asset('images/IMG_0641.png') }}"
          alt="キャラ"
          class="point-char">
-         <a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
-          </form>
+  </div>
+</form>
+
+<a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
 
 </div>
 <!-- フォームの外 -->

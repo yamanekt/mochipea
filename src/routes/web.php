@@ -32,7 +32,8 @@ Route::middleware('auth')->group(function () {
 
     // ホーム
     Route::get('/', fn() => view('home'))->name('home');
-    Route::get('/home', fn() => view('home'));
+    // /home は名前を持たせず、正規のURL（/ ＝ route('home')）へ寄せる
+    Route::get('/home', fn() => redirect()->route('home'));
 
     // ペア設定メニュー
     Route::get('/pea', [PairRoomController::class, 'index'])->name('pea');

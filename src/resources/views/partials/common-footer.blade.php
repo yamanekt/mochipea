@@ -17,7 +17,7 @@
             'route'  => 'pea',
             'label'  => '目標作成',
             'icon'   => 'create',
-            'active' => request()->routeIs('pea', 'goals', 'goals.store', 'make', 'join'),
+            'active' => request()->routeIs('pea', 'pair.waiting', 'goals', 'goals.store', 'make', 'join'),
         ],
         [
             'route'  => 'timeline',
