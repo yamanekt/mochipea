@@ -1,0 +1,57 @@
+/* ペア設定 */
+
+.pea {
+    padding-top: 20px;
+}
+
+
+/* ===== 行き先メニュー ===== */
+.pea-menu {
+    margin-top: 28px;
+}
+
+.menu-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+
+    min-height: 64px;
+    padding: 13px 18px;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.menu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.menu-title {
+    color: var(--color-gray-900);
+    font-size: 15px;
+    font-weight: 700;
+}
+
+/* 押したら何が起きるかを1行で説明する */
+.menu-desc {
+    color: var(--color-gray-500);
+    font-size: 11px;
+}
+
+.menu-right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    flex-shrink: 0;
+}
+
+
+/* ===== キャラクター ===== */
+.pea-mascot {
+    width: 130px;
+    margin-top: 52px;
+}

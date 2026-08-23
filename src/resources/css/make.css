@@ -1,0 +1,53 @@
+/* 部屋番号の表示（目標作成の完了画面） */
+
+.made {
+    padding-top: var(--space-4);
+    text-align: center;
+}
+
+.made .eyebrow,
+.made .page-title,
+.made .page-lead {
+    text-align: center;
+}
+
+
+/* ===== 部屋番号 ===== */
+.code-card {
+    padding: var(--space-6) var(--space-4);
+    margin-top: var(--space-6);
+}
+
+.code-label {
+    margin: 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+    font-weight: 700;
+    letter-spacing: var(--tracking-wide);
+}
+
+.code-value {
+    margin: var(--space-1) 0;
+    color: var(--color-accent-700);
+    font-size: var(--font-3xl);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
+}
+
+.code-hint {
+    margin: 0;
+    color: var(--color-gray-400);
+    font-size: var(--font-xs);
+}
+
+
+/* ===== キャラクターと操作 ===== */
+.made-mascot {
+    width: 96px;
+    margin: var(--space-8) auto var(--space-6);
+}
+
+.made-share {
+    margin-top: var(--space-4);
+}
