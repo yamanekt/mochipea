@@ -12,3 +12,4 @@
         <a href="{{ route($item['route']) }}" class="nav-item{{ $item['active'] ? ' active' : '' }}" @if($item['active']) aria-current="page" @endif><i class="fa-solid {{ $item['icon'] }}" aria-hidden="true"></i><span>{{ $item['label'] }}</span></a>
     @endforeach
 </nav>
+

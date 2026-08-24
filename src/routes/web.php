@@ -49,3 +49,4 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/current-goals/{id}', [GoalsController::class, 'show'])->name('goals.show');
+

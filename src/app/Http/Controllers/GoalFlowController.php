@@ -59,3 +59,4 @@ class GoalFlowController extends Controller
 
     public function cancel() { session()->forget(self::KEY); return redirect()->route('pea'); }
 }
+

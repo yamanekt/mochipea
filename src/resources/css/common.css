@@ -919,3 +919,4 @@ body:has(> .page-bg) {
     from { transform: translateX(0) rotate(0deg); }
     to { transform: translateX(calc(-100vw - 400px)) rotate(-2880deg); }
 }
+

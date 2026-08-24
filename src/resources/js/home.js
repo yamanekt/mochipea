@@ -11,6 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 演出の要素が無いページでは何もしない
+    if (!intro) {
+        return;
+    }
+
     // 一度再生済みなら表示しない
     if (sessionStorage.getItem("introPlayed")) {
         intro.style.display = "none";

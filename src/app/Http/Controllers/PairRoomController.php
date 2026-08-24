@@ -18,3 +18,4 @@ class PairRoomController extends Controller
         return view('pair-waiting', compact('rooms'));
     }
 }
+

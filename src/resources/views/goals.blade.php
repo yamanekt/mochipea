@@ -1,12 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <title>目標登録</title>
-  <link rel="stylesheet" href="{{ asset('css/goal.css') }}">
-</head>
-<body>
-     <a href="{{ url('/pea') }}" class="back-btn">戻る</a>
+@extends('layouts.app')
+
+@section('title', '目標登録')
+
+@push('css')
+    @vite(['resources/css/goal.css'])
+@endpush
+
+@section('content')
   <div class="bg">
 
 <div class="rolling-area">
@@ -22,7 +22,7 @@
 </div>
 
   </div>
-  <div class="container">
+  <div class="container panel">
     <h1>目標登録</h1>
     <h2>目標設定</h2>
 
@@ -68,5 +68,4 @@
 </div>
     </form>
   </div>
-</body>
-</html>
+@endsection

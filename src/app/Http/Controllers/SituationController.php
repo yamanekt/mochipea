@@ -67,3 +67,4 @@ class SituationController extends Controller
         ));
     }
 }
+
