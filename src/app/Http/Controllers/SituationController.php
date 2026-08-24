@@ -24,6 +24,12 @@ class SituationController extends Controller
             ? round($myValue / $goal->target_value * 100)
             : 0;
 
+        $myHistory = GoalProgress::where('goal_id', $id)
+            ->where('user_id', $userId)
+            ->orderByDesc('progress_date')
+            ->orderByDesc('id')
+            ->get();
+
         // ペア相手
         $partnerId = DB::table('pairs')
             ->join('goals', 'pairs.id', '=', 'goals.pair_id')
@@ -44,12 +50,20 @@ class SituationController extends Controller
             ? round($partnerValue / $goal->target_value * 100)
             : 0;
 
+        $partnerHistory = GoalProgress::where('goal_id', $id)
+            ->where('user_id', $partnerId)
+            ->orderByDesc('progress_date')
+            ->orderByDesc('id')
+            ->get();
+
         return view('situation', compact(
             'goal',
             'myValue',
             'myRate',
+            'myHistory',
             'partnerValue',
-            'partnerRate'
+            'partnerRate',
+            'partnerHistory'
         ));
     }
 }

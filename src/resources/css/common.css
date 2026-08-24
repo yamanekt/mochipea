@@ -45,13 +45,13 @@
     --space-16: 64px;
 
     /* ===== 文字サイズ ===== */
-    --font-xs: 12px;
-    --font-sm: 14px;
-    --font-base: 16px;
-    --font-lg: 20px;
-    --font-xl: 24px;
-    --font-2xl: 32px;
-    --font-3xl: 48px;
+    --font-xs: 14px;
+    --font-sm: 16px;
+    --font-base: 18px;
+    --font-lg: 22px;
+    --font-xl: 28px;
+    --font-2xl: 36px;
+    --font-3xl: 52px;
 
     /* ===== 角丸 ===== */
     --radius-sm: 8px;
@@ -73,8 +73,8 @@
     --font-family-base: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
 
     /* ===== レイアウト（固定ヘッダー・フッターの高さ） ===== */
-    --header-height: 64px;
-    --footer-height: 72px;
+    --header-height: 78px;
+    --footer-height: 88px;
     /* 目標作成フロー専用ヘッダー */
     --flow-header-height: 56px;
     /* 設定行・メニュー行の高さ（iOS 44pt / Material 48dp を上回る） */
@@ -114,7 +114,7 @@
     gap: 5px;
     margin: 0;
     color: #ef6672;
-    font-size: 27px;
+    font-size: 33px;
     font-weight: bold;
     letter-spacing: 0.04em;
     line-height: 1;
@@ -122,7 +122,7 @@
     white-space: nowrap;
 }
 
-.logo img { width: 56px; height: 48px; object-fit: contain; }
+.logo img { width: 67px; height: 58px; object-fit: contain; }
 .logo em { color: #35afa8; font-style: normal; }
 .logo-last { color: #35afa8; }
 
@@ -239,9 +239,25 @@
     display: block;
 }
 
+.nav-item i {
+    display: grid;
+    place-items: center;
+    width: 35px;
+    height: 35px;
+    font-size: 28px;
+}
+
+.nav-item.active i {
+    background: #222;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 19px;
+}
+
+
 .nav-item span {
-    margin-top: -3px;
-    font-size: 9px;
+    margin-top: 1px;
+    font-size: 11px;
     font-weight: bold;
     white-space: nowrap;
 }
@@ -479,7 +495,7 @@ body:has(> .page-bg) {
 
 /* ===== 本文の枠 ===== */
 .page {
-    width: min(100%, 560px);
+    width: min(100%, 620px);
     margin: 0 auto;
     padding-top: var(--space-4);
 }
@@ -602,7 +618,7 @@ body:has(> .page-bg) {
     justify-content: center;
 
     width: 100%;
-    min-height: 52px;
+    min-height: 64px;
     padding: var(--space-3) var(--space-4);
     box-sizing: border-box;
 
