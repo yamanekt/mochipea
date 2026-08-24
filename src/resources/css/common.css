@@ -242,22 +242,31 @@
 .nav-item i {
     display: grid;
     place-items: center;
-    width: 35px;
-    height: 35px;
-    font-size: 28px;
+    width: 30px;
+    height: 30px;
+    color: #252a31;
+    font-size: 25px;
 }
 
 .nav-item.active i {
-    background: #222;
+    background: transparent;
+    color: #252a31;
+}
+
+/* 参考デザインでは「目標作成」だけが黒い丸＋で強調される */
+.nav-item.active .fa-plus {
+    width: 30px;
+    height: 30px;
+    background: #252525;
     border-radius: 50%;
     color: #fff;
-    font-size: 19px;
+    font-size: 17px;
 }
 
 
 .nav-item span {
-    margin-top: 1px;
-    font-size: 11px;
+    margin-top: 2px;
+    font-size: 10px;
     font-weight: bold;
     white-space: nowrap;
 }
