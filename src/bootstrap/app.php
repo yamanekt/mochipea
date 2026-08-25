@@ -24,6 +24,11 @@ return Application::configure(basePath: dirname(__DIR__))
     // 自動的に /login にリダイレクトさせる設定
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->redirectGuestsTo(fn () => '/login');
+
+        // セッション期限切れ後でもログアウト操作はログイン画面へ進めるようにする
+        $middleware->validateCsrfTokens(except: [
+            'logout',
+        ]);
     })
 
     // ── エラーハンドリング設定 ──

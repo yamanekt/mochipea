@@ -16,14 +16,16 @@
         <h1 class="auth-title">おかえりなさい</h1>
         <p class="auth-lead">もちぺあにログイン</p>
 
-        <form action="{{ url('/login') }}" method="post" novalidate>
+        <form action="{{ url('/login') }}" method="post" novalidate
+              @if ($loggedOut ?? false) autocomplete="off" @endif>
             @csrf
 
             <div class="field">
                 <label class="field-label" for="email">メールアドレス</label>
                 <input type="email" id="email" name="email"
-                       value="{{ old('email') }}"
-                       autocomplete="email" placeholder="you@example.com" required>
+                       value="{{ ($loggedOut ?? false) ? '' : old('email') }}"
+                       autocomplete="{{ ($loggedOut ?? false) ? 'off' : 'email' }}"
+                       placeholder="you@example.com" required>
             </div>
 
             <div class="field">
@@ -33,7 +35,8 @@
                             data-toggle-password="password" aria-pressed="false">表示</button>
                 </span>
                 <input type="password" id="password" name="password"
-                       autocomplete="current-password" placeholder="password" required>
+                       autocomplete="{{ ($loggedOut ?? false) ? 'new-password' : 'current-password' }}"
+                       placeholder="password" required>
             </div>
 
             @if ($errors->any())
@@ -52,8 +55,22 @@
         </p>
 
     </main>
+
 @endsection
 
 @push('scripts')
     @vite(['resources/js/auth.js'])
+    @if ($loggedOut ?? false)
+        <script>
+            (() => {
+                const clearLoginFields = () => {
+                    document.getElementById('email').value = '';
+                    document.getElementById('password').value = '';
+                };
+
+                clearLoginFields();
+                window.addEventListener('pageshow', clearLoginFields);
+            })();
+        </script>
+    @endif
 @endpush
