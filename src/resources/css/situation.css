@@ -102,6 +102,10 @@
     text-align: center;
 }
 
+.percentage-decimal {
+    font-size: 0.7em;
+}
+
 
 /* ===== 記録更新ボタン（基本は common.css。幅と高さだけ変更） ===== */
 .main-btn {

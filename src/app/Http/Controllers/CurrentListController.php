@@ -74,12 +74,12 @@ $goals = $goals->get();
 
         $goals->transform(function ($goal) {
             $goal->progress_rate = $goal->target_value > 0
-                ? round(($goal->current_value / $goal->target_value) * 100)
+                ? round(($goal->current_value / $goal->target_value) * 100, 2)
                 : 0;
 
             if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
                 $goal->display_status = '期限切れ';
-            } elseif ($goal->progress_rate >= 100) {
+            } elseif ($goal->current_value >= $goal->target_value) {
                 $goal->display_status = '目標達成中';
             } else {
                 $goal->display_status = '進行中';
