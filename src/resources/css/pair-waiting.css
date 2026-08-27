@@ -77,9 +77,40 @@
 }
 
 /* 取り消し処理は未実装。導線だけ置いている */
+.room-cancel-form {
+    margin: 0;
+}
+
+/* span から button に変えたので、ブラウザ標準の装飾を消して見た目を保つ */
 .room-cancel {
+    padding: 0;
+    background: none;
+    border: none;
+
     color: var(--color-gray-500);
+    font-family: inherit;
     font-size: var(--font-sm);
+
+    cursor: pointer;
+}
+
+
+/* ===== 取り消しの結果表示 ===== */
+.waiting-flash {
+    margin: var(--space-4) 0 0;
+    padding: var(--space-3) var(--space-4);
+
+    background: var(--color-accent-50);
+    border-radius: var(--radius-md);
+
+    color: var(--color-accent-700);
+    font-size: var(--font-sm);
+    font-weight: 700;
+}
+
+.waiting-flash-error {
+    background: rgba(229, 57, 53, 0.06);
+    color: var(--color-danger);
 }
 
 

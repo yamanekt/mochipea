@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     // 発行済みで、まだ相手が参加していない部屋
     Route::get('/pea/waiting', [PairRoomController::class, 'waiting'])->name('pair.waiting');
+    Route::post('/pea/waiting/cancel', [PairRoomController::class, 'cancel'])->name('pair.waiting.cancel');
 
     // 目標作成（1問ずつ進めるフロー）
     Route::get('/goals', fn() => redirect()->route('goals.new.step', ['step' => 1]))->name('goals');
