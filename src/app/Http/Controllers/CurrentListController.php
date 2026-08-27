@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Goal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -73,9 +74,8 @@ class CurrentListController extends Controller
 $goals = $goals->get();
 
         $goals->transform(function ($goal) {
-            $goal->progress_rate = $goal->target_value > 0
-                ? round(($goal->current_value / $goal->target_value) * 100)
-                : 0;
+            $goal->progress_rate = Goal::progressRate($goal->current_value, $goal->target_value);
+            $goal->overflow_value = Goal::overflowValue($goal->current_value, $goal->target_value);
 
             if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
                 $goal->display_status = '期限切れ';

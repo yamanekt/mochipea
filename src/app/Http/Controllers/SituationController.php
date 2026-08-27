@@ -20,13 +20,12 @@ class SituationController extends Controller
             ->where('user_id', $userId)
             ->sum('value');
 
-        $myRate = $goal->target_value > 0
-            ? round($myValue / $goal->target_value * 100)
-            : 0;
+        $myRate = Goal::progressRate($myValue, $goal->target_value);
 
+        // 入力した達成日の順に並べる（記録した日時ではない）
         $myHistory = GoalProgress::where('goal_id', $id)
             ->where('user_id', $userId)
-            ->orderByDesc('created_at')
+            ->orderByDesc('progress_date')
             ->orderByDesc('id')
             ->get();
 
@@ -46,13 +45,11 @@ class SituationController extends Controller
             ->where('user_id', $partnerId)
             ->sum('value');
 
-        $partnerRate = $goal->target_value > 0
-            ? round($partnerValue / $goal->target_value * 100)
-            : 0;
+        $partnerRate = Goal::progressRate($partnerValue, $goal->target_value);
 
         $partnerHistory = GoalProgress::where('goal_id', $id)
             ->where('user_id', $partnerId)
-            ->orderByDesc('created_at')
+            ->orderByDesc('progress_date')
             ->orderByDesc('id')
             ->get();
 
