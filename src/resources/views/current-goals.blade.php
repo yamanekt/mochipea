@@ -32,6 +32,9 @@
 
     </form>
 
+    {{-- 決着した目標はここから振り返る --}}
+    <a href="{{ route('goal.results') }}" class="results-link">対戦履歴を見る ›</a>
+
  <div class="bg"></div>
 <div class="guide-character">
     <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">

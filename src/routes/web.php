@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\CurrentListController;
+use App\Http\Controllers\GoalResultController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\SituationController;
@@ -74,6 +75,9 @@ Route::middleware('auth')->group(function () {
 
     // 目標一覧（進捗付き）
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
+
+    // 決着済みの目標（対戦履歴）
+    Route::get('/results', [GoalResultController::class, 'index'])->name('goal.results');
 
     // 進行中の目標（タイムライン）
     Route::get('/timeline', [TimeLineController::class, 'index'])->name('timeline');

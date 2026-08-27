@@ -185,3 +185,73 @@
         max-width: 400px;
     }
 }
+
+
+/* ===== 対戦履歴 ===== */
+.results-page {
+    padding-top: var(--space-4);
+}
+
+/* 通算成績（勝ち／負け／引き分けの件数） */
+.result-summary {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--space-6) var(--space-4);
+    margin-bottom: var(--space-6);
+    text-align: center;
+}
+
+.result-summary-item strong {
+    display: block;
+    color: var(--color-gray-900);
+    font-size: var(--font-xl);
+    line-height: 1.2;
+}
+
+.result-summary-item span {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+}
+
+/* 勝敗バッジ。状態バッジ（.status-badge）と同じ形に揃えている */
+.result-badge {
+    flex-shrink: 0;
+    align-self: flex-start;
+
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-full);
+
+    font-size: var(--font-xs);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.result-badge-win {
+    color: var(--color-accent-700);
+    background: var(--color-accent-50);
+}
+
+.result-badge-lose {
+    color: var(--color-gray-600);
+    background: var(--color-gray-300);
+}
+
+.result-badge-draw {
+    color: var(--color-gray-700);
+    background: var(--color-accent-50);
+}
+
+.result-date {
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}
+
+.results-link {
+    display: inline-block;
+    margin-bottom: var(--space-6);
+
+    color: var(--color-accent-700);
+    font-size: var(--font-sm);
+    font-weight: 700;
+    text-decoration: none;
+}

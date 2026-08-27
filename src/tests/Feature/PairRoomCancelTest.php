@@ -17,6 +17,7 @@ class PairRoomCancelTest extends TestCase
         $this->actingAs($user)
             ->withSession(['goal_draft' => [
                 'category'     => 'study',
+                'mode'         => \App\Models\Goal::MODE_ACCUMULATE,
                 'title'        => '英単語を覚える',
                 'target_value' => 100,
                 'unit'         => '語',
