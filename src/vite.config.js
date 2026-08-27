@@ -30,6 +30,7 @@ export default defineConfig({
                 'resources/js/auth.js',
                 'resources/js/goal-flow.js',
                 'resources/js/pair-waiting.js',
+                'resources/js/pwa.js',
             ],
             refresh: true,
         }),

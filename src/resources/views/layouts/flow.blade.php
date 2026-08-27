@@ -6,6 +6,7 @@
     <title>@yield('title') | もちぺあ</title>
     @vite(['resources/css/common.css', 'resources/css/goal-flow.css'])
     @stack('css')
+    @include('partials.pwa-head')
 </head>
 <body class="flow">
     <div class="page-bg"></div>
@@ -42,6 +43,7 @@
 
     <img src="{{ asset('images/IMG_0639.png') }}" alt="" class="flow-mascot">
 
+    @vite(['resources/js/pwa.js'])
     @stack('scripts')
 </body>
 </html>

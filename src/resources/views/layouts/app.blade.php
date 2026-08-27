@@ -21,6 +21,7 @@
     @stack('css')
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    @include('partials.pwa-head')
     @stack('head')
 </head>
 
@@ -31,6 +32,7 @@
 
     @include('partials.common-footer')
 
+    @vite(['resources/js/pwa.js'])
     @stack('scripts')
 </body>
 

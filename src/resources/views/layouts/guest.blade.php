@@ -20,12 +20,14 @@
     @vite(['resources/css/common.css'])
     @stack('css')
 
+    @include('partials.pwa-head')
     @stack('head')
 </head>
 
 <body>
     @yield('content')
 
+    @vite(['resources/js/pwa.js'])
     @stack('scripts')
 </body>
 
