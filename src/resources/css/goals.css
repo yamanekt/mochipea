@@ -255,3 +255,34 @@
     font-weight: 700;
     text-decoration: none;
 }
+
+
+/* ===== お知らせ ===== */
+.notices-page {
+    padding-top: var(--space-4);
+}
+
+/* カード全体をリンクにするので、下線と文字色を打ち消す */
+.notice-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.notice-time {
+    flex-shrink: 0;
+    color: var(--color-gray-400);
+    font-size: var(--font-xs);
+}
+
+.notice-body {
+    color: var(--color-gray-900);
+}
+
+.notice-memo {
+    padding: var(--space-2) var(--space-3);
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-sm);
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}

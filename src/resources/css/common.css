@@ -103,6 +103,7 @@
 }
 
 /* ロゴ */
+/* h1 から a に変えたので、リンクの装飾と文字色を打ち消して見た目を保つ */
 .logo {
     position: absolute;
     left: 50%;
@@ -110,8 +111,11 @@
 
     margin: 0;
 
+    color: var(--color-gray-900);
     font-size: var(--font-2xl);
     font-weight: bold;
+    text-decoration: none;
+    white-space: nowrap;
 }
 
 /* 左メニュー */

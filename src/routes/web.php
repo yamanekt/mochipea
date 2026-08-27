@@ -6,6 +6,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
+use App\Http\Controllers\AccountSettingController;
 use App\Http\Controllers\CurrentListController;
 use App\Http\Controllers\GoalResultController;
 use App\Http\Controllers\GoalsController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
 use App\Http\Controllers\TimeLineController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\GoalFlowController;
 use App\Http\Controllers\PairRoomController;
 use App\Http\Controllers\PushSubscriptionController;
@@ -79,6 +81,17 @@ Route::middleware('auth')->group(function () {
 
     // 決着済みの目標（対戦履歴）
     Route::get('/results', [GoalResultController::class, 'index'])->name('goal.results');
+
+    // お知らせ（既存データから組み立てる）
+    Route::get('/notices', [NoticeController::class, 'index'])->name('notices');
+
+    // アカウント設定（マイページから開く）
+    Route::get('/account/profile', [AccountSettingController::class, 'editProfile'])->name('account.profile');
+    Route::patch('/account/profile', [AccountSettingController::class, 'updateProfile'])->name('account.profile.update');
+    Route::get('/account/password', [AccountSettingController::class, 'editPassword'])->name('account.password');
+    Route::patch('/account/password', [AccountSettingController::class, 'updatePassword'])->name('account.password.update');
+    Route::get('/account/delete', [AccountSettingController::class, 'confirmDelete'])->name('account.delete');
+    Route::delete('/account', [AccountSettingController::class, 'destroy'])->name('account.destroy');
 
     // プッシュ通知の購読（ブラウザから fetch で呼ばれる）
     Route::post('/push/subscribe', [PushSubscriptionController::class, 'store'])->name('push.subscribe');
