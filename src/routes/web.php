@@ -16,6 +16,7 @@ use App\Http\Controllers\TimeLineController;
 use App\Http\Controllers\MyPageController;
 use App\Http\Controllers\GoalFlowController;
 use App\Http\Controllers\PairRoomController;
+use App\Http\Controllers\PushSubscriptionController;
 use Illuminate\Support\Facades\DB;
 
 
@@ -78,6 +79,10 @@ Route::middleware('auth')->group(function () {
 
     // 決着済みの目標（対戦履歴）
     Route::get('/results', [GoalResultController::class, 'index'])->name('goal.results');
+
+    // プッシュ通知の購読（ブラウザから fetch で呼ばれる）
+    Route::post('/push/subscribe', [PushSubscriptionController::class, 'store'])->name('push.subscribe');
+    Route::post('/push/unsubscribe', [PushSubscriptionController::class, 'destroy'])->name('push.unsubscribe');
 
     // 進行中の目標（タイムライン）
     Route::get('/timeline', [TimeLineController::class, 'index'])->name('timeline');

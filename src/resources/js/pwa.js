@@ -38,6 +38,46 @@ export async function requestNotificationPermission() {
     return await Notification.requestPermission();
 }
 
+// VAPID公開鍵は base64url で渡されるので、Push API が求める Uint8Array に直す
+function urlBase64ToUint8Array(base64String) {
+    const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+    const raw = window.atob(base64);
+    return Uint8Array.from([...raw].map((c) => c.charCodeAt(0)));
+}
+
+/** 購読を作ってサーバーに預ける。鍵が未設定なら何もしない */
+async function subscribeToPush(registration) {
+    const publicKey = window.MOCHIPEA_VAPID_KEY;
+    if (!publicKey) return false;
+
+    let subscription = await registration.pushManager.getSubscription();
+
+    if (!subscription) {
+        subscription = await registration.pushManager.subscribe({
+            userVisibleOnly: true, // 届いた通知は必ず表示する（ブラウザの必須条件）
+            applicationServerKey: urlBase64ToUint8Array(publicKey),
+        });
+    }
+
+    const json = subscription.toJSON();
+
+    const response = await fetch(window.MOCHIPEA_SUBSCRIBE_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')?.content ?? "",
+        },
+        body: JSON.stringify({
+            endpoint: subscription.endpoint,
+            publicKey: json.keys.p256dh,
+            authToken: json.keys.auth,
+        }),
+    });
+
+    return response.ok;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     registerServiceWorker();
 
@@ -64,8 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
             button.textContent = "通知をオンにしました";
             button.disabled = true;
 
-            // 動作確認を兼ねて1件出す
             const registration = await navigator.serviceWorker.ready;
+
+            // 購読をサーバーに預ける（アプリを閉じていても届くようにする）
+            try {
+                await subscribeToPush(registration);
+            } catch (error) {
+                console.warn("プッシュの購読に失敗しました", error);
+            }
+
+            // 動作確認を兼ねて1件出す
             registration.showNotification("もちぺあ", {
                 body: "通知をオンにしました。相手の記録をお知らせします。",
                 icon: "./images/icons/icon-192.png",

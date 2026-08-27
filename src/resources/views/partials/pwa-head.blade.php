@@ -14,7 +14,18 @@
 <meta name="apple-mobile-web-app-title" content="もちぺあ">
 <link rel="apple-touch-icon" href="{{ asset('images/icons/icon-192.png') }}">
 
+@auth
+    {{-- 購読の保存はPOSTなのでCSRFトークンが要る --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endauth
+
 <script>
     // Service Worker の位置を JS へ渡す（サブディレクトリ対応）
     window.MOCHIPEA_SW_URL = "{{ asset('sw.js') }}";
+
+    // VAPID公開鍵。未設定なら空文字になり、購読処理は行われない
+    window.MOCHIPEA_VAPID_KEY = @json(config('webpush.public_key') ?? '');
+    @auth
+        window.MOCHIPEA_SUBSCRIBE_URL = "{{ route('push.subscribe') }}";
+    @endauth
 </script>
