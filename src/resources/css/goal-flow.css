@@ -153,6 +153,29 @@ body.flow {
 }
 
 
+/* ===== モードの説明 =====
+   JSで選択中のものだけ出す。JSが動かない場合に全部並ばないよう、
+   CSSだけでも「チェックされている方」を出せるようにしてある */
+.flow-mode-help {
+    margin: var(--space-3) 0 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}
+
+.flow-mode-help span {
+    display: none;
+}
+
+.flow-mode-help span:not([hidden]) {
+    display: inline;
+}
+
+.chip-group:has(input[value="accumulate"]:checked) ~ .flow-mode-help span[data-mode-help="accumulate"],
+.chip-group:has(input[value="survival"]:checked) ~ .flow-mode-help span[data-mode-help="survival"] {
+    display: inline;
+}
+
+
 /* ===== 選択肢 ===== */
 .flow-chips {
     margin-top: var(--space-2);

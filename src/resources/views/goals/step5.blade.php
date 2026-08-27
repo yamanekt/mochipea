@@ -4,8 +4,11 @@
 
 @php
     $categories = \App\Http\Controllers\GoalFlowController::CATEGORIES;
+    $modes = \App\Models\Goal::MODES;
+    $mode = $draft['mode'] ?? \App\Models\Goal::MODE_ACCUMULATE;
     $rows = [
         ['label' => 'カテゴリ', 'value' => $categories[$draft['category']] ?? $draft['category'], 'step' => 1],
+        ['label' => 'すすめかた', 'value' => $modes[$mode] ?? $mode, 'step' => 1],
         ['label' => '目標名',   'value' => $draft['title'], 'step' => 2],
         ['label' => '目標値',   'value' => $draft['target_value'] . ' ' . $draft['unit'], 'step' => 3],
         ['label' => '期限',     'value' => \Carbon\Carbon::parse($draft['deadline'])->format('Y / m / d'), 'step' => 4],

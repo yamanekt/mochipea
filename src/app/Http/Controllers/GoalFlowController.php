@@ -27,7 +27,7 @@ class GoalFlowController extends Controller
 
     /** 各ステップで確定する項目 */
     private const FIELDS = [
-        1 => ['category'],
+        1 => ['category', 'mode'],
         2 => ['title'],
         3 => ['target_value', 'unit'],
         4 => ['deadline'],
@@ -114,6 +114,7 @@ class GoalFlowController extends Controller
             Goal::create([
                 'pair_id'      => $pair->id,
                 'category'     => $draft['category'],
+                'mode'         => $draft['mode'] ?? Goal::MODE_ACCUMULATE,
                 'title'        => $draft['title'],
                 'target_value' => $draft['target_value'],
                 'unit'         => $draft['unit'],
@@ -140,7 +141,10 @@ class GoalFlowController extends Controller
     private function rules(int $step): array
     {
         return match ($step) {
-            1 => ['category' => ['required', 'in:' . implode(',', array_keys(self::CATEGORIES))]],
+            1 => [
+                'category' => ['required', 'in:' . implode(',', array_keys(self::CATEGORIES))],
+                'mode'     => ['required', 'in:' . implode(',', array_keys(Goal::MODES))],
+            ],
             2 => ['title' => ['required', 'string', 'max:30']],
             3 => [
                 'target_value' => ['required', 'integer', 'min:1', 'max:99999'],
@@ -156,6 +160,8 @@ class GoalFlowController extends Controller
     {
         return [
             'category.required'     => 'カテゴリを選んでください。',
+            'mode.required'         => 'モードを選んでください。',
+            'mode.in'               => 'モードを選んでください。',
             'title.required'        => '目標名を入力してください。',
             'title.max'             => '目標名は30文字以内で入力してください。',
             'target_value.required' => '目標値を入力してください。',
