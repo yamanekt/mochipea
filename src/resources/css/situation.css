@@ -160,11 +160,53 @@
 }
 
 
+/* ===== 勝敗の結果（期限到達後） ===== */
+.goal-result {
+    padding: var(--space-3) var(--space-6);
+    margin-bottom: var(--space-8);
+
+    border-radius: var(--radius-full);
+
+    font-size: var(--font-lg);
+    font-weight: bold;
+    text-align: center;
+}
+
+.goal-result-win {
+    background: var(--color-accent-50);
+    color: var(--color-accent-700);
+}
+
+.goal-result-lose {
+    background: var(--color-gray-300);
+    color: var(--color-gray-700);
+}
+
+.goal-result-draw {
+    background: var(--color-accent-50);
+    color: var(--color-gray-700);
+}
+
+
+/* ===== 目標値を超えて積み上げた分 ===== */
+.overflow-note {
+    margin: var(--space-2) 0 0;
+    color: var(--color-accent-700);
+    font-size: var(--font-sm);
+    font-weight: bold;
+}
+
+
 /* ===== スマホ表示 ===== */
 @media (max-width: 768px) {
     .goal-title-box {
         margin-bottom: var(--space-8);
         font-size: var(--font-xl);
+    }
+
+    .goal-result {
+        margin-bottom: var(--space-6);
+        font-size: var(--font-base);
     }
 
     .pair-area {

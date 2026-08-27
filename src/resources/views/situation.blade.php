@@ -18,6 +18,13 @@
             {{ $goal->title }}
         </div>
 
+        {{-- 期限が来て勝敗が確定したら結果を出す --}}
+        @if ($result)
+            <div class="goal-result goal-result-{{ $result }}">
+                {{ \App\Models\Goal::RESULT_LABELS[$result] }}
+            </div>
+        @endif
+
         <div class="pair-area">
 
             <!-- 自分 -->
@@ -30,8 +37,17 @@
                 <img src="{{ asset('images/IMG_0640.png') }}" class="character">
 
                 <div class="percent">
-                    {{ $myRate }}%
+                    @if ($goal->isSurvival())
+                        相手のHP {{ $partnerRemainingHp }}
+                    @else
+                        {{ $myRate }}%
+                    @endif
                 </div>
+
+                {{-- 100%到達後も積み上げが見えるようにして、続ける理由を残す --}}
+                @if ($myOverflow > 0)
+                    <p class="overflow-note">目標達成！さらに {{ $myOverflow }}{{ $goal->unit }} 上乗せ中</p>
+                @endif
 
                 <a href="{{ route('progress.show', $goal->id) }}" class="main-btn">
                     記録を更新
@@ -64,8 +80,16 @@
                 <img src="{{ asset('images/IMG_0641.png') }}" class="character">
 
                 <div class="percent">
-                    {{ $partnerRate }}%
+                    @if ($goal->isSurvival())
+                        あなたのHP {{ $myRemainingHp }}
+                    @else
+                        {{ $partnerRate }}%
+                    @endif
                 </div>
+
+                @if ($partnerOverflow > 0)
+                    <p class="overflow-note">目標達成！さらに {{ $partnerOverflow }}{{ $goal->unit }} 上乗せ中</p>
+                @endif
 
                 <div class="history-box">
                     <div class="history-title">相手の更新履歴</div>
