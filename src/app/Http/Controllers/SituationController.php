@@ -21,7 +21,7 @@ class SituationController extends Controller
             ->sum('value');
 
         $myRate = $goal->target_value > 0
-            ? round($myValue / $goal->target_value * 100, 2)
+            ? floor(($myValue / $goal->target_value) * 1000) / 10
             : 0;
 
         $myHistory = GoalProgress::where('goal_id', $id)
@@ -47,7 +47,7 @@ class SituationController extends Controller
             ->sum('value');
 
         $partnerRate = $goal->target_value > 0
-            ? round($partnerValue / $goal->target_value * 100, 2)
+            ? floor(($partnerValue / $goal->target_value) * 1000) / 10
             : 0;
 
         $partnerHistory = GoalProgress::where('goal_id', $id)

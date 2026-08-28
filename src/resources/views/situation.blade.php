@@ -8,8 +8,8 @@
 
 @section('content')
     @php
-        [$myRateInteger, $myRateDecimal] = explode('.', number_format($myRate, 2, '.', ''));
-        [$partnerRateInteger, $partnerRateDecimal] = explode('.', number_format($partnerRate, 2, '.', ''));
+        [$myRateInteger, $myRateDecimal] = explode('.', number_format($myRate, 1, '.', ''));
+        [$partnerRateInteger, $partnerRateDecimal] = explode('.', number_format($partnerRate, 1, '.', ''));
     @endphp
     <div class="bg"></div>
 

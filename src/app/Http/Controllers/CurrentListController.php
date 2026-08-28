@@ -74,7 +74,7 @@ $goals = $goals->get();
 
         $goals->transform(function ($goal) {
             $goal->progress_rate = $goal->target_value > 0
-                ? round(($goal->current_value / $goal->target_value) * 100, 2)
+                ? floor(($goal->current_value / $goal->target_value) * 1000) / 10
                 : 0;
 
             if (Carbon::parse($goal->deadline)->isBefore(Carbon::today())) {
