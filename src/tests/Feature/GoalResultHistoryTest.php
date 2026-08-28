@@ -51,7 +51,8 @@ class GoalResultHistoryTest extends TestCase
             ->assertSee('英単語を覚える')
             ->assertSee('はなこ')
             ->assertSee('勝ち')
-            ->assertSee('あなた 600語 ／ 相手 400語');
+            ->assertSee('600語')
+            ->assertSee('400語');
     }
 
     public function test_相手側では勝敗が反転して出る(): void
@@ -63,7 +64,8 @@ class GoalResultHistoryTest extends TestCase
         $this->actingAs($partner)->get('/results')
             ->assertOk()
             ->assertSee('負け')
-            ->assertSee('あなた 400語 ／ 相手 600語');
+            ->assertSee('400語')
+            ->assertSee('600語');
     }
 
     public function test_通算成績が集計される(): void

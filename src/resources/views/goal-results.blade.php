@@ -27,7 +27,7 @@
 
         <div class="goal-list">
             @forelse ($goals as $goal)
-                <article class="goal-card">
+                <article class="card goal-card">
                     <div class="goal-card-header">
                         <p class="goal-title">{{ $goal->title }}</p>
                         <span class="result-badge result-badge-{{ $goal->my_result }}">
@@ -35,20 +35,27 @@
                         </span>
                     </div>
 
-                    <p>ペア相手：{{ $goal->partner_name }}</p>
-                    <p>すすめかた：{{ \App\Models\Goal::MODES[$goal->mode] ?? $goal->mode }}</p>
-                    <p>あなた {{ $goal->my_value }}{{ $goal->unit }} ／ 相手 {{ $goal->partner_value }}{{ $goal->unit }}</p>
+                    <p class="goal-partner">
+                        ペア相手：{{ $goal->partner_name }}／{{ \App\Models\Goal::MODES[$goal->mode] ?? $goal->mode }}
+                    </p>
 
-                    @if ($goal->finished_at)
-                        <p class="result-date">
-                            {{ \Carbon\Carbon::parse($goal->finished_at)->format('Y/m/d') }} に決着
-                        </p>
-                    @endif
+                    <p class="result-score">
+                        あなた {{ $goal->my_value }}{{ $goal->unit }}
+                        <span>／</span>
+                        相手 {{ $goal->partner_value }}{{ $goal->unit }}
+                    </p>
 
-                    <a href="{{ route('situation.show', $goal->id) }}" class="detail-btn">詳細を見る</a>
+                    <div class="goal-card-footer">
+                        <span>
+                            @if ($goal->finished_at)
+                                {{ \Carbon\Carbon::parse($goal->finished_at)->format('n月j日') }} に決着
+                            @endif
+                        </span>
+                        <a href="{{ route('situation.show', $goal->id) }}">詳細を見る ›</a>
+                    </div>
                 </article>
             @empty
-                <div class="goal-card">
+                <div class="card empty-card">
                     <p>まだ決着した目標がありません。</p>
                 </div>
             @endforelse

@@ -1,107 +1,85 @@
 @extends('layouts.app')
 
-@section('title', '進行中の目標')
+@section('title', '目標一覧')
 
 @push('css')
     @vite(['resources/css/goals.css'])
 @endpush
 
 @section('content')
-<div class="page-content">
-    <form method="GET" action="{{ route('current-goals') }}" class="sort-form">
+    <div class="page-bg"></div>
 
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="updated"
-                {{ $sort == 'updated' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            更新順
-        </label>
+    <main class="page goals-page">
 
-        <label class="sort-option">
-            <input
-                type="radio"
-                name="sort"
-                value="created"
-                {{ $sort == 'created' ? 'checked' : '' }}
-                onchange="this.form.submit()">
-            登録順
-        </label>
+        <p class="eyebrow">目標一覧</p>
+        <h1 class="page-title">いま頑張っている目標</h1>
+        <p class="page-lead">ペアと進み具合を見比べながら続けよう</p>
 
-    </form>
+        <form method="GET" action="{{ route('current-goals') }}" class="sort-form" aria-label="並び順">
+            <label class="sort-option">
+                <input type="radio" name="sort" value="updated"
+                       {{ $sort === 'updated' ? 'checked' : '' }} onchange="this.form.submit()">
+                更新順
+            </label>
+            <label class="sort-option">
+                <input type="radio" name="sort" value="created"
+                       {{ $sort === 'created' ? 'checked' : '' }} onchange="this.form.submit()">
+                登録順
+            </label>
+        </form>
 
-    {{-- 決着した目標はここから振り返る --}}
-    <a href="{{ route('goal.results') }}" class="results-link">対戦履歴を見る ›</a>
+        <a href="{{ route('goal.results') }}" class="results-link">対戦履歴を見る ›</a>
 
- <div class="bg"></div>
-<div class="guide-character">
-    <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">
-</div>
+        <div class="goal-list">
+            @forelse ($goals as $goal)
+                @php
+                    $rate = min(100, max(0, $goal->progress_rate));
+                    $isExpired = $goal->display_status === '期限切れ';
+                @endphp
 
-<div class="goal-list">
+                <article class="card goal-card">
+                    <div class="goal-card-header">
+                        <div>
+                            <p class="goal-category">
+                                {{ \App\Http\Controllers\GoalFlowController::CATEGORIES[$goal->category] ?? $goal->category }}
+                            </p>
+                            <h2 class="goal-title">{{ $goal->title }}</h2>
+                        </div>
+                        <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
+                            {{ $goal->display_status }}
+                        </span>
+                    </div>
 
-    @forelse ($goals as $goal)
-      @php
-        $progressRate = min(100, max(0, $goal->progress_rate));
-        $isExpired = $goal->display_status === '期限切れ';
-      @endphp
+                    <p class="goal-partner">ペア相手：{{ $goal->partner_name }}</p>
 
-      <div class="goal-card">
-        <div class="goal-card-header">
-          <p class="goal-title">目標名：{{ $goal->title }}</p>
-          <span class="status-badge {{ $isExpired ? 'status-expired' : 'status-active' }}">
-            <span class="status-dot"></span>
-            {{ $goal->display_status }}
-          </span>
+                    <div class="progress-block">
+                        <div class="progress-label">
+                            <span>{{ $goal->current_value }} / {{ $goal->target_value }}{{ $goal->unit }}</span>
+                            <strong>{{ $goal->progress_rate }}%</strong>
+                        </div>
+                        <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
+                            <span class="progress-fill" style="width: {{ $rate }}%"></span>
+                        </div>
+                    </div>
+
+                    {{-- 目標値を超えても記録が積み上がっていることを見せる --}}
+                    @if (($goal->overflow_value ?? 0) > 0)
+                        <p class="goal-overflow">目標達成！さらに {{ $goal->overflow_value }}{{ $goal->unit }} 上乗せ中</p>
+                    @endif
+
+                    <div class="goal-card-footer">
+                        <span>期限 {{ \Carbon\Carbon::parse($goal->deadline)->format('n月j日') }}</span>
+                        <a href="{{ route('situation.show', $goal->id) }}">詳細を見る ›</a>
+                    </div>
+                </article>
+            @empty
+                <div class="card empty-card">
+                    <img src="{{ asset('images/IMG_0639.png') }}" alt="">
+                    <p>まだ目標がありません</p>
+                    <a href="{{ route('goals') }}" class="btn-primary">目標をつくる</a>
+                </div>
+            @endforelse
         </div>
 
-    <p>
-        カテゴリ：
-        @if ($goal->category === 'exercise')
-            運動
-        @elseif ($goal->category === 'study')
-            勉強
-        @elseif ($goal->category === 'game')
-            ゲーム
-        @else
-            {{ $goal->category }}
-        @endif
-    </p>
-
-    <p>ペア相手：{{ $goal->partner_name }}</p>
-
-    <p>
-        進捗：
-        {{ $goal->current_value }}
-        /
-        {{ $goal->target_value }}
-        {{ $goal->unit }}
-    </p>
-
-        <div class="progress-block">
-          <div class="progress-label">
-            <span>達成率</span>
-            <strong>{{ $goal->progress_rate }}%</strong>
-          </div>
-          <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
-            <div class="progress-fill" style="width: {{ $progressRate }}%;"></div>
-          </div>
-        </div>
-
-        <p>
-          期限：
-          {{ \Carbon\Carbon::parse($goal->deadline)->format('Y/m/d') }}
-        </p>
-
-        <a href="{{ route('situation.show', $goal->id) }}" class="detail-btn">詳細を見る</a>
-      </div>
-    @empty
-      <div class="goal-card">
-        <p>現在登録されている目標はありません。</p>
-      </div>
-    @endforelse
-  </div>
-</div>
+    </main>
 @endsection

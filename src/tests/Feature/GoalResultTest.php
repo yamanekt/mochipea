@@ -148,7 +148,9 @@ class GoalResultTest extends TestCase
 
         $this->actingAs($owner)->get("/situation/{$goal->id}")
             ->assertOk()
-            ->assertSee('相手のHP 700')   // 自分が300削った
-            ->assertSee('あなたのHP 1000'); // 相手はまだ削っていない
+            ->assertSee('相手の残りHP')
+            ->assertSee('>700<', false)    // 自分が300削った
+            ->assertSee('>1000<', false)   // 相手はまだ削っていない
+            ->assertDontSee('達成率');     // サバイバルでは達成率を出さない
     }
 }

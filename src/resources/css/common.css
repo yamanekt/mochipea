@@ -241,14 +241,17 @@
 */
 
 /* 背景 */
+/* 旧デザインの背景画像は廃止。
+   .bg が残っているページでも新しいグラデーション背景になるよう別名にせず残す */
 .bg {
     position: fixed;
     inset: 0;
-    background-image: url("../images/background_mobile.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     z-index: -1;
+
+    background: linear-gradient(180deg,
+        var(--color-white) 0%,
+        var(--color-white) 60%,
+        var(--color-accent-50) 100%);
 }
 
 /* ===== body ===== */

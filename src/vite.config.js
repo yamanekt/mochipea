@@ -12,7 +12,6 @@ export default defineConfig({
                 'resources/css/login.css',
                 'resources/css/register.css',
                 'resources/css/pea.css',
-                'resources/css/goal.css',
                 'resources/css/goals.css',
                 'resources/css/join.css',
                 'resources/css/make.css',

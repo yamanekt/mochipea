@@ -17,7 +17,7 @@
 
         <div class="goal-list">
             @forelse ($notices as $notice)
-                <a href="{{ route('situation.show', $notice->goal_id) }}" class="goal-card notice-card">
+                <a href="{{ route('situation.show', $notice->goal_id) }}" class="card notice-card">
                     <div class="goal-card-header">
                         <p class="goal-title">{{ $notice->title }}</p>
                         <span class="notice-time">
@@ -32,7 +32,7 @@
                     @endif
                 </a>
             @empty
-                <div class="goal-card">
+                <div class="card empty-card">
                     <p>お知らせはまだありません。</p>
                 </div>
             @endforelse

@@ -7,50 +7,65 @@
 @endpush
 
 @section('content')
-<div class="bg"></div>
+    <div class="page-bg"></div>
 
-<div class="container panel">
+    <main class="page progress-page">
 
-    <h2>達成入力</h2>
+        <a href="{{ route('situation.show', $goal->id) }}" class="page-back">← 目標にもどる</a>
 
-    <div class="goal-info">
-        <p><strong>目標名：</strong>{{ $goal->title }}</p>
+        <p class="eyebrow">達成入力</p>
+        <h1 class="page-title">今日はどれくらい？</h1>
+        <p class="page-lead">続けた分だけ相手との差がつきます</p>
 
-        <p><strong>現在の達成数：</strong>{{ $current }}{{ $goal->unit }}</p>
+        {{-- いまの状況を先に出して、あとどれくらいかが分かるようにする --}}
+        <div class="card progress-goal-card">
+            <span class="card-label">{{ $goal->title }}</span>
+            <p class="progress-current">
+                <strong>{{ $current }}</strong>
+                <span>/ {{ $goal->target_value }}{{ $goal->unit }}</span>
+            </p>
+        </div>
 
-        <p><strong>目標値：</strong>{{ $goal->target_value }}{{ $goal->unit }}</p>
-    </div>
+        @if ($errors->any())
+            <ul class="auth-error-list" role="alert">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        @endif
 
- <form action="{{ route('progress.store') }}" method="POST">
-    @csrf
-    <input type="hidden" name="goal_id" value="{{ $goal->id }}">
-      <label for="value">達成数</label>
-      <input type="number" id="value" name="value" placeholder="達成した数を入力" required>
+        <form action="{{ route('progress.store') }}" method="POST" class="progress-form">
+            @csrf
+            <input type="hidden" name="goal_id" value="{{ $goal->id }}">
 
-      <label for="memo">メモ</label>
-      <textarea id="memo" name="memo" rows="5" placeholder="今日の内容や感想を入力"></textarea>
+            <div class="field">
+                <label class="field-label" for="value">達成数</label>
+                <input type="text" id="value" name="value"
+                       inputmode="numeric" pattern="[0-9]*" maxlength="5"
+                       value="{{ old('value') }}"
+                       placeholder="例：10" autofocus required data-numeric-only>
+            </div>
 
-      <label for="progress_date">達成日</label>
-      <input type="date" id="progress_date" name="progress_date" value="{{ old('progress_date', now()->toDateString()) }}" required>
+            <div class="field">
+                <label class="field-label" for="memo">メモ（任意）</label>
+                <textarea id="memo" name="memo" rows="4"
+                          placeholder="今日の内容や感想">{{ old('memo') }}</textarea>
+            </div>
 
-  <div class="button-area">
-    <button type="submit">登録</button>
+            <div class="field">
+                <label class="field-label" for="progress_date">達成日</label>
+                <input type="date" id="progress_date" name="progress_date"
+                       value="{{ old('progress_date', now()->toDateString()) }}" required>
+            </div>
 
-    <img src="{{ asset('images/IMG_0641.png') }}"
-         alt="キャラ"
-         class="point-char">
-  </div>
-</form>
+            <button type="submit" class="btn-primary">記録する</button>
+        </form>
 
-<a href="{{ route('situation.show', $goal->id) }}" class="back-btn">戻る</a>
+        <img src="{{ asset('images/IMG_0641.png') }}" alt="" class="mascot progress-mascot">
 
-</div>
-<!-- フォームの外 -->
-<div class="catch-area">
-    <img src="{{ asset('images/IMG_0638.png') }}" class="ghost left-ghost">
-
-    <div class="ball"></div>
-
-    <img src="{{ asset('images/IMG_0639.png') }}" class="ghost right-ghost">
-</div>
+    </main>
 @endsection
+
+@push('scripts')
+    @vite(['resources/js/goal-flow.js'])
+@endpush

@@ -1,175 +1,40 @@
-/* 目標の現在状況 */
+/* 目標の現在状況。カード・ボタンなどは common.css */
 
-/* ===== 戻るボタン（色や形は common.css。この画面は左上固定＋水色） ===== */
-.back-btn {
-    position: fixed;
-    top: var(--space-6);
-    left: var(--space-6);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 120px;
-    height: 45px;
-
-    background: var(--color-info);
-    box-shadow: var(--shadow-sm);
-    font-size: var(--font-lg);
+.situation-page {
+    padding-top: var(--space-4);
 }
 
-.back-btn:hover {
-    background: var(--color-info);
-    transform: translateY(-2px);
-}
-
-
-/* ===== 全体 ===== */
-.detail-container {
-    max-width: 1000px;
-    margin: auto;
-}
-
-.goal-title-box {
-    padding: var(--space-6);
-    margin-bottom: var(--space-16);
-
-    background: var(--color-surface);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-
-    font-size: var(--font-3xl);
-    font-weight: bold;
-    text-align: center;
-}
-
-
-/* ===== 自分と相手のカード ===== */
-.pair-area {
-    display: flex;
-    justify-content: space-around;
-    gap: var(--space-16);
-}
-
-.user-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 320px;
-}
-
-.character {
-    width: 170px;
-    margin: var(--space-4) 0;
-}
-
-
-/* ===== 吹き出し ===== */
-.speech {
-    position: relative;
-    padding: var(--space-4) var(--space-6);
-    margin-bottom: var(--space-4);
-
-    background: var(--color-white);
-    border-radius: var(--radius-lg);
-
-    font-size: var(--font-xl);
-}
-
-/* 吹き出しの尻尾 */
-.speech::after {
-    content: "";
-    position: absolute;
-    left: var(--space-12);
-    bottom: -18px;
-
-    border: 10px solid transparent;
-    border-top: var(--color-white) 18px solid;
-}
-
-
-/* ===== 達成率 ===== */
-.percent {
-    width: 180px;
-    padding: var(--space-2);
+.page-back {
+    display: inline-block;
     margin-bottom: var(--space-6);
 
-    background: var(--color-gray-300);
-    border-radius: var(--radius-md);
-
-    font-size: var(--font-2xl);
-    font-weight: bold;
-    text-align: center;
-}
-
-
-/* ===== 記録更新ボタン（基本は common.css。幅と高さだけ変更） ===== */
-.main-btn {
-    width: 220px;
-    height: auto;
-    padding: var(--space-3);
-}
-
-
-/* ===== 更新履歴 ===== */
-.history-box {
-    width: 220px;
-    height: 220px;
-    margin-top: var(--space-6);
-    padding: var(--space-4);
-
-    background: var(--color-info);
-    border-radius: var(--radius-lg);
-
-    overflow-y: auto;
-}
-
-.history-title {
-    position: sticky;
-    top: calc(var(--space-4) * -1);
-    margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-3);
-    padding: var(--space-4);
-
-    background: var(--color-info);
-
-    font-weight: bold;
-    text-align: center;
-}
-
-.history-item {
-    padding: var(--space-2) 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-    text-align: left;
-}
-
-.history-item time {
-    display: block;
-    margin-top: var(--space-1);
     color: var(--color-gray-500);
     font-size: var(--font-sm);
-}
-
-.history-item p {
-    margin: var(--space-1) 0 0;
-    overflow-wrap: anywhere;
-}
-
-.history-empty {
-    color: var(--color-gray-500);
-    text-align: center;
+    font-weight: 700;
+    text-decoration: none;
 }
 
 
-/* ===== 勝敗の結果（期限到達後） ===== */
-.goal-result {
+/* ===== 決着とリードの表示 ===== */
+.goal-result,
+.lead-note {
+    margin: var(--space-6) 0 0;
     padding: var(--space-3) var(--space-6);
-    margin-bottom: var(--space-8);
 
     border-radius: var(--radius-full);
 
-    font-size: var(--font-lg);
-    font-weight: bold;
+    font-weight: 700;
     text-align: center;
+}
+
+.lead-note {
+    background: var(--color-accent-50);
+    color: var(--color-accent-700);
+    font-size: var(--font-sm);
+}
+
+.goal-result {
+    font-size: var(--font-lg);
 }
 
 .goal-result-win {
@@ -188,35 +53,196 @@
 }
 
 
-/* ===== 目標値を超えて積み上げた分 ===== */
-.overflow-note {
-    margin: var(--space-2) 0 0;
-    color: var(--color-accent-700);
+/* ===== 自分と相手を横に並べる（Figma準拠） ===== */
+.pair-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3);
+    margin: var(--space-6) 0;
+}
+
+.member-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    margin: 0 0 var(--space-2);
+    padding: var(--space-1) var(--space-3);
+
+    background: var(--color-gray-300);
+    border-radius: var(--radius-full);
+
+    color: var(--color-white);
     font-size: var(--font-sm);
-    font-weight: bold;
+    font-weight: 700;
+}
+
+/* 自分の側だけアクセント色にして、どちらが自分か一目で分かるようにする */
+.member-me .member-name {
+    background: var(--color-accent-500);
+}
+
+.member-avatar {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+
+    background: var(--color-white);
+    border-radius: 50%;
+}
+
+.member-avatar img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.member-card {
+    padding: var(--space-4) var(--space-3);
+    text-align: center;
+}
+
+.member-speech {
+    margin: 0 0 var(--space-3);
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
 }
 
 
-/* ===== スマホ表示 ===== */
-@media (max-width: 768px) {
-    .goal-title-box {
-        margin-bottom: var(--space-8);
-        font-size: var(--font-xl);
-    }
+/* ===== 円形の達成率リング =====
+   conic-gradient で外周を塗り、中央を白で抜いてドーナツにする */
+.ring {
+    display: grid;
+    place-items: center;
 
-    .goal-result {
-        margin-bottom: var(--space-6);
-        font-size: var(--font-base);
-    }
+    width: 116px;
+    height: 116px;
+    margin: 0 auto;
 
+    border-radius: 50%;
+    background: conic-gradient(
+        var(--color-accent-500) calc(var(--rate) * 1%),
+        var(--color-gray-300) 0
+    );
+}
+
+.member:not(.member-me) .ring {
+    background: conic-gradient(
+        var(--color-gray-400) calc(var(--rate) * 1%),
+        var(--color-gray-300) 0
+    );
+}
+
+.ring-inner {
+    display: grid;
+    place-items: center;
+    gap: 2px;
+
+    width: 88px;
+    height: 88px;
+
+    background: var(--color-white);
+    border-radius: 50%;
+}
+
+.ring-inner strong {
+    color: var(--color-gray-900);
+    font-size: var(--font-xl);
+    line-height: 1;
+}
+
+.member-me .ring-inner strong {
+    color: var(--color-accent-700);
+}
+
+.ring-inner span {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+}
+
+
+/* ===== サバイバルの残HP ===== */
+.member-hp {
+    display: grid;
+    gap: 2px;
+    margin: var(--space-4) 0;
+}
+
+.member-hp strong {
+    color: var(--color-accent-700);
+    font-size: var(--font-2xl);
+    line-height: 1;
+}
+
+.member:not(.member-me) .member-hp strong {
+    color: var(--color-gray-700);
+}
+
+.member-hp span {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
+}
+
+.member-overflow {
+    margin: var(--space-3) 0 0;
+    color: var(--color-accent-700);
+    font-size: var(--font-xs);
+    font-weight: 700;
+}
+
+
+/* ===== 更新履歴 ===== */
+.history-card {
+    padding: 0 var(--space-6) var(--space-4);
+    margin-top: var(--space-4);
+}
+
+.history-row {
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--color-hairline);
+}
+
+.history-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.history-head strong {
+    color: var(--color-gray-900);
+    font-size: var(--font-base);
+}
+
+.history-head time {
+    color: var(--color-gray-400);
+    font-size: var(--font-sm);
+}
+
+.history-row p {
+    margin: var(--space-2) 0 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.history-empty {
+    margin: 0;
+    padding: var(--space-4) 0;
+    color: var(--color-gray-400);
+    font-size: var(--font-sm);
+}
+
+
+/* 狭い端末では2カラムだと窮屈なので縦に積む */
+@media (max-width: 360px) {
     .pair-area {
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-8);
-    }
-
-    .user-card {
-        width: 100%;
-        max-width: 360px;
+        grid-template-columns: 1fr;
     }
 }
