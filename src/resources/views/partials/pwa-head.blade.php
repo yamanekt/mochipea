@@ -8,7 +8,12 @@
 <link rel="manifest" href="{{ asset('manifest.json') }}">
 <meta name="theme-color" content="#46d3a5">
 
-{{-- iOS はまだ manifest だけでは足りないので個別に指定する --}}
+{{-- 標準の指定。Chrome はこちらを見る --}}
+<meta name="mobile-web-app-capable" content="yes">
+
+{{-- iOS Safari はまだ標準名に対応しておらず apple- 付きしか見ないので両方書く。
+     Chrome では apple- 付きが非推奨の警告になるが、消すと iOS で
+     ホーム画面から開いたときに全画面にならなくなるため残す --}}
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="もちぺあ">

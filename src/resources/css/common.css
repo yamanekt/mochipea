@@ -224,9 +224,10 @@
 }
 
 /* 選択中はアイコン画像を差し替える。文字色は変えない */
+/* Figma のボトムナビのアイコンと同じ大きさに合わせる */
 .nav-item img {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
     display: block;
 }
 
