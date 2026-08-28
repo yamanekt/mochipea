@@ -125,6 +125,10 @@
     margin: var(--space-4) 0;
 }
 
+.percentage-decimal {
+    font-size: 0.7em;
+}
+
 .progress-label {
     display: flex;
     justify-content: space-between;

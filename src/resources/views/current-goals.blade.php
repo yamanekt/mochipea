@@ -42,6 +42,7 @@
     @forelse ($goals as $goal)
       @php
         $progressRate = min(100, max(0, $goal->progress_rate));
+        [$progressInteger, $progressDecimal] = explode('.', number_format($goal->progress_rate, 1, '.', ''));
         $isExpired = $goal->display_status === '期限切れ';
       @endphp
 
@@ -80,9 +81,9 @@
         <div class="progress-block">
           <div class="progress-label">
             <span>達成率</span>
-            <strong>{{ $goal->progress_rate }}%</strong>
+            <strong class="progress-percentage"><span>{{ $progressInteger }}</span><span class="percentage-decimal">.{{ $progressDecimal }}</span>%</strong>
           </div>
-          <div class="progress-track" aria-label="達成率 {{ $goal->progress_rate }}%">
+          <div class="progress-track" aria-label="達成率 {{ number_format($goal->progress_rate, 1) }}%">
             <div class="progress-fill" style="width: {{ $progressRate }}%;"></div>
           </div>
         </div>

@@ -7,6 +7,10 @@
 @endpush
 
 @section('content')
+    @php
+        [$myRateInteger, $myRateDecimal] = explode('.', number_format($myRate, 1, '.', ''));
+        [$partnerRateInteger, $partnerRateDecimal] = explode('.', number_format($partnerRate, 1, '.', ''));
+    @endphp
     <div class="bg"></div>
 
 
@@ -30,7 +34,7 @@
                 <img src="{{ asset('images/IMG_0640.png') }}" class="character">
 
                 <div class="percent">
-                    {{ $myRate }}%
+                    <span>{{ $myRateInteger }}</span><span class="percentage-decimal">.{{ $myRateDecimal }}</span>%
                 </div>
 
                 <a href="{{ route('progress.show', $goal->id) }}" class="main-btn">
@@ -64,7 +68,7 @@
                 <img src="{{ asset('images/IMG_0641.png') }}" class="character">
 
                 <div class="percent">
-                    {{ $partnerRate }}%
+                    <span>{{ $partnerRateInteger }}</span><span class="percentage-decimal">.{{ $partnerRateDecimal }}</span>%
                 </div>
 
                 <div class="history-box">
