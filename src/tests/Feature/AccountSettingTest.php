@@ -11,6 +11,16 @@ class AccountSettingTest extends TestCase
 {
     use RefreshDatabase;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        // 退会機能そのものを確かめるテストなので、
+        // デモ用の一時停止（config/demo.php）は効かせない。
+        // 停止側の挙動は AccountDeletionToggleTest で確認している
+        config(['demo.account_deletion_enabled' => true]);
+    }
+
     public function test_マイページの各行が実際のページに繋がっている(): void
     {
         $user = User::factory()->create();

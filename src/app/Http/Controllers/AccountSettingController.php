@@ -69,9 +69,20 @@ class AccountSettingController extends Controller
         return redirect()->route('mypage')->with('success', 'パスワードを変更しました。');
     }
 
+    /**
+     * 削除を受け付けるかどうか。デモ期間中は config/demo.php で止める。
+     */
+    private function deletionEnabled(): bool
+    {
+        return (bool) config('demo.account_deletion_enabled', true);
+    }
+
     public function confirmDelete()
     {
-        return view('account.delete');
+        return view('account.delete', [
+            'deletionEnabled' => $this->deletionEnabled(),
+            'notice' => config('demo.account_deletion_notice'),
+        ]);
     }
 
     /**
@@ -79,6 +90,12 @@ class AccountSettingController extends Controller
      */
     public function destroy(Request $request)
     {
+        // 画面を隠すだけでは直接POSTされると通ってしまうので、ここでも止める
+        if (! $this->deletionEnabled()) {
+            return redirect()->route('account.delete')
+                ->withErrors(['password' => config('demo.account_deletion_notice')]);
+        }
+
         $request->validate(
             ['password' => ['required']],
             ['password.required' => 'パスワードを入力してください。']

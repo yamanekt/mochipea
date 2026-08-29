@@ -206,3 +206,39 @@
     color: var(--color-danger);
     font-size: var(--font-sm);
 }
+
+
+/* ===== アカウント削除の一時停止（デモ期間中） ===== */
+.deletion-paused {
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.deletion-paused-title {
+    margin: 0 0 var(--space-3);
+    color: var(--color-gray-900);
+    font-size: var(--font-base);
+    font-weight: 700;
+}
+
+.deletion-paused p {
+    margin: 0 0 var(--space-3);
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+    line-height: 1.7;
+}
+
+/* 補足は一段落として見せる */
+.deletion-paused-sub {
+    padding-top: var(--space-3);
+    border-top: 1px solid var(--color-hairline);
+}
+
+.deletion-paused p:last-child {
+    margin-bottom: 0;
+}
+
+.deletion-mascot {
+    width: 120px;
+    margin: 0 auto var(--space-8);
+}
