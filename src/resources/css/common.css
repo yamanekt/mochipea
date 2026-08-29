@@ -168,28 +168,6 @@
     font-weight: 600;
 }
 
-/* 通知バッジ */
-.badge {
-    position: absolute;
-    top: calc(var(--space-1) * -0.5);
-    right: calc(var(--space-1) * -1);
-
-    width: var(--space-4);
-    height: var(--space-4);
-    /* 円形は 50% を使う（999px だと非正方形で楕円にならない） */
-    border-radius: 50%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: var(--color-danger);
-    color: var(--color-white);
-
-    font-size: var(--font-xs);
-    font-weight: bold;
-}
-
 
 /* ===== フッター（ボトムナビ） ===== */
 .bottom-nav {

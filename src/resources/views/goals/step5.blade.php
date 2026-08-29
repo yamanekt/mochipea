@@ -17,7 +17,7 @@
 
 @section('content')
     <h1 class="flow-question">これでいい？</h1>
-    <p class="flow-help">決定するとペア相手にも通知されます</p>
+    <p class="flow-help">決定すると部屋番号が発行されます</p>
 
     <div class="card summary-card">
         @foreach ($rows as $row)

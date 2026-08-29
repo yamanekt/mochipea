@@ -14,7 +14,9 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable; // HasFactory: テスト用ダミーデータ生成, Notifiable: 通知機能
+    // HasFactory: テスト用ダミーデータ生成
+    // Notifiable: Laravel標準のメール送信用トレイト（プッシュ通知とは無関係）
+    use HasFactory, Notifiable;
 
     /**
      * $fillable — 一括代入を許可するカラム名のリスト
