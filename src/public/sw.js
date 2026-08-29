@@ -5,7 +5,7 @@
 // HTML（＝ログイン状態で中身が変わる）はキャッシュしない。
 // 古い画面が出続ける事故を避けるため、迷ったらネットワーク優先にする。
 
-const VERSION = "v1";
+const VERSION = "v2";
 const ASSET_CACHE = `mochipea-assets-${VERSION}`;
 
 // 相対パスにしておくとサブディレクトリ配置でも動く
@@ -65,46 +65,4 @@ self.addEventListener("fetch", (event) => {
             })
         );
     }
-});
-
-// ===== プッシュ通知 =====
-// サーバーから届いた通知を表示する
-self.addEventListener("push", (event) => {
-    let payload = {};
-    try {
-        payload = event.data ? event.data.json() : {};
-    } catch {
-        payload = { body: event.data ? event.data.text() : "" };
-    }
-
-    const title = payload.title || "もちぺあ";
-    const options = {
-        body: payload.body || "",
-        icon: "./images/icons/icon-192.png",
-        badge: "./images/icons/icon-192.png",
-        data: { url: payload.url || "./" },
-        // 同じタグの通知は上書きする（同じ相手から連続で来ても積み上がらない）
-        tag: payload.tag || "mochipea",
-    };
-
-    event.waitUntil(self.registration.showNotification(title, options));
-});
-
-// 通知をタップしたとき：既に開いているタブがあればそれを使う
-self.addEventListener("notificationclick", (event) => {
-    event.notification.close();
-    const target = (event.notification.data && event.notification.data.url) || "./";
-
-    event.waitUntil(
-        self.clients.matchAll({ type: "window", includeUncontrolled: true })
-            .then((clients) => {
-                for (const client of clients) {
-                    if ("focus" in client) {
-                        client.navigate(target);
-                        return client.focus();
-                    }
-                }
-                return self.clients.openWindow(target);
-            })
-    );
 });

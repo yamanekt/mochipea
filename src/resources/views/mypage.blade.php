@@ -68,16 +68,6 @@
             </a>
         </div>
 
-        {{-- 通知の許可はブラウザの仕様上、ユーザーの操作の中からしか求められない --}}
-        <div class="card">
-            <span class="card-label">通知</span>
-
-            <button type="button" class="row row-button" data-enable-notification>
-                <span class="row-label">通知をオンにする</span>
-                <span class="row-chevron" aria-hidden="true">›</span>
-            </button>
-        </div>
-
         <div class="card">
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
