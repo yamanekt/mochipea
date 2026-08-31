@@ -18,9 +18,7 @@ class AccountSettingTest extends TestCase
         $this->actingAs($user)->get('/mypage')
             ->assertOk()
             ->assertSee(route('account.profile'), false)
-            ->assertSee(route('account.password'), false)
-            ->assertSee(route('account.delete'), false)
-            ->assertDontSee('href="#"', false);
+            ->assertSee(route('account.password'), false);
     }
 
     public function test_名前とメールを変更できる(): void

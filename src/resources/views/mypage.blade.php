@@ -78,11 +78,12 @@
             </form>
         </div>
 
-        {{-- 取り返しがつかない操作なので、他から離して単独で置く --}}
+        {{-- 取り返しがつかない操作なので、他から離して単独で置く。
+             デモ配布中は押しても進まないよう href="#"。終わったら route('account.delete') に戻す --}}
         <div class="card card-danger">
-            <a href="{{ route('account.delete') }}" class="row row-danger">
-                <span class="row-label">アカウントを削除</span>
-                <span class="row-chevron" aria-hidden="true">›</span>
+            <a href="#" class="row row-danger">
+                <span class="row-label">アカウントを削除(一時停止中)</span>
+                <span class="row-chevron" aria-hidden="true"></span>
             </a>
         </div>
 
