@@ -50,7 +50,7 @@
                        autocomplete="current-password" placeholder="パスワード" required>
             </div>
 
-            <button type="submit" class="btn-danger">アカウントを削除する</button>
+            <button type="submit" class="btn-danger" disabled>アカウントを削除する(一時停止中)</button>
         </form>
 
     </main>

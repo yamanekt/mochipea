@@ -79,6 +79,9 @@ class AccountSettingController extends Controller
      */
     public function destroy(Request $request)
     {
+        // デモ用に配ったアカウントを消させないため、ここで止める
+        return back()->withErrors(['password' => 'デモ期間中は退会できません。']);
+
         $request->validate(
             ['password' => ['required']],
             ['password.required' => 'パスワードを入力してください。']

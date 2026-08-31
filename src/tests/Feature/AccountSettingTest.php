@@ -88,16 +88,17 @@ class AccountSettingTest extends TestCase
         $this->assertTrue(Hash::check('oldpassword1', $user->fresh()->password));
     }
 
-    public function test_退会できる(): void
+    public function test_デモ期間中は退会できない(): void
     {
         $user = User::factory()->create(['password' => Hash::make('mypassword1')]);
 
         $this->actingAs($user)
+            ->from('/account/delete')
             ->delete('/account', ['password' => 'mypassword1'])
-            ->assertRedirect(route('login'));
+            ->assertSessionHasErrors('password');
 
-        $this->assertDatabaseMissing('users', ['id' => $user->id]);
-        $this->assertGuest();
+        $this->assertDatabaseHas('users', ['id' => $user->id]);
+        $this->assertAuthenticated();
     }
 
     public function test_パスワードが違えば退会できない(): void

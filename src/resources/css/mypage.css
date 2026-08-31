@@ -206,3 +206,8 @@
     color: var(--color-danger);
     font-size: var(--font-sm);
 }
+
+.btn-danger:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
