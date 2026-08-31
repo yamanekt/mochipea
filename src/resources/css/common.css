@@ -157,8 +157,9 @@
     font-size: var(--font-2xl);
 }
 
-.icon-btn i {
-    font-size: var(--font-xl);
+.icon-btn svg {
+    width: 22px;
+    height: 22px;
     margin-bottom: var(--space-1);
 }
 
