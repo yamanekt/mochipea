@@ -78,19 +78,11 @@
             </form>
         </div>
 
-        {{-- 取り返しがつかない操作なので、他から離して単独で置く。
-             デモ期間中は赤くせず「停止中」を添えて、押す前に分かるようにする --}}
-        @php $canDelete = config('demo.account_deletion_enabled', true); @endphp
-
+        {{-- 取り返しがつかない操作なので、他から離して単独で置く --}}
         <div class="card card-danger">
-            <a href="{{ route('account.delete') }}" class="row{{ $canDelete ? ' row-danger' : '' }}">
+            <a href="{{ route('account.delete') }}" class="row row-danger">
                 <span class="row-label">アカウントを削除</span>
-                <span class="row-value">
-                    @unless ($canDelete)
-                        <span>停止中</span>
-                    @endunless
-                    <span class="row-chevron" aria-hidden="true">›</span>
-                </span>
+                <span class="row-chevron" aria-hidden="true">›</span>
             </a>
         </div>
 
