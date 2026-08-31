@@ -5,8 +5,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\WelcomeMail;               // 登録完了メール
 use App\Models\User;                    // Userモデル（usersテーブルを操作するクラス）
 use Illuminate\Support\Facades\Hash;    // パスワードをハッシュ化（暗号化）するクラス
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class AccountRegisterController extends Controller
 {
@@ -54,11 +57,22 @@ class AccountRegisterController extends Controller
         // ユーザーをDBに保存
         // User::create() → usersテーブルに1行INSERTする
         // Hash::make() → パスワードを平文のまま保存しない（セキュリティの基本！）
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // 登録完了メール。
+        // 送信に失敗しても登録自体は成功しているので、例外で画面を落とさず記録だけ残す
+        try {
+            Mail::to($user->email)->send(new WelcomeMail($user));
+        } catch (\Throwable $e) {
+            Log::warning('登録完了メールの送信に失敗しました', [
+                'user_id' => $user->id,
+                'error' => $e->getMessage(),
+            ]);
+        }
 
         // ログイン画面にリダイレクト
         // with('success', '...') → セッションに成功メッセージを入れて渡す（Blade側で表示）

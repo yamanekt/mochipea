@@ -1,3 +1,5 @@
+/* ホーム。カード・シェブロンなどは common.css */
+
 /* ===== オープニング演出 ===== */
 .intro {
     position: fixed;
@@ -9,55 +11,91 @@
     align-items: center;
 
     background: var(--color-white);
-
-    animation: fadeOut 2.5s forwards;
+    animation: introFadeOut 0.4s ease 1.4s forwards;
+    pointer-events: none;
 }
 
 .intro img {
-    width: 80%;
-    max-width: 800px;
-
-    animation: scaleUp 2s ease;
+    width: 180px;
+    height: auto;
+    animation: introScaleUp 0.9s ease forwards;
 }
 
-/* ふわっと拡大 */
-@keyframes scaleUp {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(1);
-    }
+@keyframes introScaleUp {
+    from { transform: scale(0.6); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
 }
 
-/* しばらく表示してから消える */
-@keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
+@keyframes introFadeOut {
+    to { opacity: 0; visibility: hidden; }
 }
 
 
-/* ===== スマホ表示 ===== */
-@media (max-width: 768px) {
-    .intro img {
-        width: 90%;
-        max-width: 360px;
-    }
+/* ===== 見出し ===== */
+.home-page {
+    padding-top: var(--space-4);
+}
+
+.home-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-8);
+}
+
+.home-hero h1 {
+    margin: var(--space-1) 0 var(--space-2);
+    color: var(--color-gray-900);
+    font-size: var(--font-xl);
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.home-hero-lead {
+    margin: 0;
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}
+
+.home-hero img {
+    flex-shrink: 0;
+    width: 110px;
+    height: auto;
+}
+
+
+/* ===== メニュー ===== */
+.home-menu {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.home-menu-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+
+    padding: var(--space-4) var(--space-6);
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.home-menu-text {
+    display: grid;
+    gap: 2px;
+    min-width: 0;
+}
+
+.home-menu-text strong {
+    color: var(--color-gray-900);
+    font-size: var(--font-base);
+    font-weight: 700;
+}
+
+.home-menu-text small {
+    color: var(--color-gray-500);
+    font-size: var(--font-xs);
 }

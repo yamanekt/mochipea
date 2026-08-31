@@ -15,6 +15,13 @@
         <h1 class="page-title">待っている部屋</h1>
         <p class="page-lead">相手が番号を入力するとペアが成立します</p>
 
+        @if (session('success'))
+            <p class="waiting-flash" role="status">{{ session('success') }}</p>
+        @endif
+        @error('cancel')
+            <p class="waiting-flash waiting-flash-error" role="alert">{{ $message }}</p>
+        @enderror
+
         @forelse ($rooms as $room)
             <div class="card room-card">
                 <div class="room-head">
@@ -32,7 +39,13 @@
                     <button type="button" class="room-share" data-share-code="{{ $room->code }}">
                         番号を共有
                     </button>
-                    <span class="room-cancel">取り消す</span>
+                    {{-- 目標ごと消える操作なので、確認を挟んでから送信する --}}
+                    <form action="{{ route('pair.waiting.cancel') }}" method="post" class="room-cancel-form"
+                          data-confirm="この部屋を取り消しますか？設定した目標も一緒に削除されます。">
+                        @csrf
+                        <input type="hidden" name="code" value="{{ $room->code }}">
+                        <button type="submit" class="room-cancel">取り消す</button>
+                    </form>
                 </div>
             </div>
         @empty

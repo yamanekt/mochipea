@@ -11,6 +11,10 @@
 
     <main class="page mypage">
 
+        @if (session('success'))
+            <p class="account-flash" role="status">{{ session('success') }}</p>
+        @endif
+
         {{-- 戦績。登録数は実データ、勝率は勝敗テーブルが無いため暫定のベタ書き --}}
         <section class="battle-stats" aria-label="戦績">
             <div class="battle-stats-text">
@@ -39,7 +43,7 @@
         <div class="card">
             <span class="card-label">アカウント</span>
 
-            <a href="#" class="row">
+            <a href="{{ route('account.profile') }}" class="row">
                 <span class="row-label">ユーザー名</span>
                 <span class="row-value">
                     <span>{{ $user->name }}</span>
@@ -47,7 +51,7 @@
                 </span>
             </a>
 
-            <a href="#" class="row">
+            <a href="{{ route('account.profile') }}" class="row">
                 <span class="row-label">メールアドレス</span>
                 <span class="row-value">
                     <span>{{ $user->email }}</span>
@@ -55,7 +59,7 @@
                 </span>
             </a>
 
-            <a href="#" class="row">
+            <a href="{{ route('account.password') }}" class="row">
                 <span class="row-label">パスワード</span>
                 <span class="row-value">
                     <span class="row-accent">変更する</span>
@@ -76,10 +80,10 @@
 
         {{-- 取り返しがつかない操作なので、他から離して単独で置く --}}
         <div class="card card-danger">
-            <button type="button" class="row row-button row-danger">
-                <span class="row-label">アカウントを削除</span>
-                <span class="row-chevron" aria-hidden="true">›</span>
-            </button>
+            <a href="#" class="row row-danger">
+                <span class="row-label">アカウントを削除(一時停止中)</span>
+                <span class="row-chevron" aria-hidden="true"></span>
+            </a>
         </div>
 
     </main>

@@ -6,13 +6,16 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountLoginController;
 use App\Http\Controllers\AccountRegisterController;
+use App\Http\Controllers\AccountSettingController;
 use App\Http\Controllers\CurrentListController;
+use App\Http\Controllers\GoalResultController;
 use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
 use App\Http\Controllers\TimeLineController;
 use App\Http\Controllers\MyPageController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\GoalFlowController;
 use App\Http\Controllers\PairRoomController;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +43,7 @@ Route::middleware('auth')->group(function () {
 
     // 発行済みで、まだ相手が参加していない部屋
     Route::get('/pea/waiting', [PairRoomController::class, 'waiting'])->name('pair.waiting');
+    Route::post('/pea/waiting/cancel', [PairRoomController::class, 'cancel'])->name('pair.waiting.cancel');
 
     // 目標作成（1問ずつ進めるフロー）
     Route::get('/goals', fn() => redirect()->route('goals.new.step', ['step' => 1]))->name('goals');
@@ -73,6 +77,21 @@ Route::middleware('auth')->group(function () {
 
     // 目標一覧（進捗付き）
     Route::get('/current-goals', [CurrentListController::class, 'index'])->name('current-goals');
+
+    // 決着済みの目標（対戦履歴）
+    Route::get('/results', [GoalResultController::class, 'index'])->name('goal.results');
+
+    // お知らせ（既存データから組み立てる）
+    Route::get('/notices', [NoticeController::class, 'index'])->name('notices');
+
+    // アカウント設定（マイページから開く）
+    Route::get('/account/profile', [AccountSettingController::class, 'editProfile'])->name('account.profile');
+    Route::patch('/account/profile', [AccountSettingController::class, 'updateProfile'])->name('account.profile.update');
+    Route::get('/account/password', [AccountSettingController::class, 'editPassword'])->name('account.password');
+    Route::patch('/account/password', [AccountSettingController::class, 'updatePassword'])->name('account.password.update');
+    Route::get('/account/delete', [AccountSettingController::class, 'confirmDelete'])->name('account.delete');
+    Route::delete('/account', [AccountSettingController::class, 'destroy'])->name('account.destroy');
+
 
     // 進行中の目標（タイムライン）
     Route::get('/timeline', [TimeLineController::class, 'index'])->name('timeline');

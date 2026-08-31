@@ -1,180 +1,92 @@
-/* 達成入力 */
+/* 達成入力。カード・入力欄・ボタンは common.css */
 
-/* ===== パネル ===== */
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: var(--space-8);
+.progress-page {
+    padding-top: var(--space-4);
 }
 
-.container h2 {
-    margin-bottom: var(--space-6);
-    color: var(--color-gray-900);
-    text-align: center;
-}
-
-
-/* ===== 目標情報 ===== */
-.goal-info {
-    padding: var(--space-6);
+.page-back {
+    display: inline-block;
     margin-bottom: var(--space-6);
 
-    background-color: var(--color-white);
-    border-radius: var(--radius-lg);
-}
-
-.goal-info p {
-    margin: var(--space-2) 0;
-    color: var(--color-gray-900);
-    line-height: 1.6;
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+    font-weight: 700;
+    text-decoration: none;
 }
 
 
-/* ===== 入力欄 ===== */
-label {
-    display: block;
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-1);
-
-    color: var(--color-gray-900);
-    font-weight: bold;
+/* ===== 現在の進み具合 ===== */
+.progress-goal-card {
+    padding: var(--space-4) var(--space-6) var(--space-6);
+    margin: var(--space-6) 0;
 }
 
-input,
-textarea {
+.progress-current {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    margin: var(--space-2) 0 0;
+}
+
+.progress-current strong {
+    color: var(--color-accent-700);
+    font-size: var(--font-2xl);
+    line-height: 1;
+}
+
+.progress-current span {
+    color: var(--color-gray-500);
+    font-size: var(--font-sm);
+}
+
+
+/* ===== 入力欄 =====
+   .field は common.css。textarea だけは枠を持たせて入力量が分かるようにする */
+.progress-form textarea {
     width: 100%;
     padding: var(--space-3);
+    margin-top: var(--space-2);
     box-sizing: border-box;
 
+    background: var(--color-white);
     border: 1px solid var(--color-gray-300);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-sm);
 
+    color: var(--color-gray-900);
+    font-family: inherit;
     font-size: var(--font-base);
-}
-
-textarea {
     resize: vertical;
 }
 
-
-/* ===== ボタン ===== */
-.button-area {
-    position: relative;
-    margin-top: var(--space-6);
+.progress-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-500);
 }
 
-.button-area button {
-    width: 100%;
-    padding: var(--space-3);
+.progress-form textarea::placeholder {
+    color: var(--color-gray-300);
+}
 
-    background-color: var(--color-primary-500);
-    border: none;
+.progress-form .btn-primary {
+    margin-top: var(--space-8);
+}
+
+
+/* ===== エラー ===== */
+.auth-error-list {
+    margin: 0 0 var(--space-6);
+    padding: var(--space-3) var(--space-4) var(--space-3) var(--space-8);
+
+    background: rgba(229, 57, 53, 0.06);
     border-radius: var(--radius-md);
 
-    color: var(--color-white);
-    font-size: var(--font-base);
-    cursor: pointer;
-}
-
-.button-area button:hover {
-    background-color: var(--color-primary-600);
-}
-
-/* 色や形は common.css。この画面ではフォーム内の全幅ボタン */
-.back-btn {
-    display: block;
-    width: 100%;
-    margin-top: var(--space-4);
-    padding: var(--space-3);
+    color: var(--color-danger);
+    font-size: var(--font-sm);
 }
 
 
-/* ===== 案内キャラクター ===== */
-.point-char {
-    position: absolute;
-    z-index: 10;
-
-    top: -20px;
-    right: -25px;
-
-    width: 90px;
-    height: auto;
-}
-
-
-/* ===== キャッチボール演出 ===== */
-.catch-area {
-    position: relative;
-    width: 320px;
-    height: 160px;
-    margin: var(--space-12) auto 0;
-}
-
-.ghost {
-    position: absolute;
-    width: 110px;
-    height: auto;
-}
-
-.left-ghost {
-    left: 0;
-    bottom: 0;
-    animation: leftMove 1.8s infinite alternate;
-}
-
-.right-ghost {
-    right: 0;
-    bottom: 0;
-    animation: rightMove 1.8s infinite alternate;
-}
-
-.ball {
-    position: absolute;
-    left: 45px;
-    bottom: 70px;
-
-    width: var(--space-4);
-    height: var(--space-4);
-
-    background: var(--color-warning);
-    border-radius: 50%;
-
-    animation: catchBall 1.8s linear infinite;
-}
-
-@keyframes catchBall {
-    0% {
-        left: 55px;
-        bottom: 70px;
-    }
-
-    25% {
-        left: 120px;
-        bottom: 120px;
-    }
-
-    50% {
-        left: 250px;
-        bottom: 70px;
-    }
-
-    75% {
-        left: 120px;
-        bottom: 120px;
-    }
-
-    100% {
-        left: 55px;
-        bottom: 70px;
-    }
-}
-
-@keyframes leftMove {
-    from { transform: rotate(-5deg); }
-    to { transform: rotate(5deg); }
-}
-
-@keyframes rightMove {
-    from { transform: rotate(5deg); }
-    to { transform: rotate(-5deg); }
+/* ===== キャラクター ===== */
+.progress-mascot {
+    width: 120px;
+    margin: var(--space-8) auto var(--space-4);
 }

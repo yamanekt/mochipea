@@ -36,10 +36,14 @@
                        autocomplete="current-password" placeholder="password" required>
             </div>
 
+            {{-- 複数の指摘があっても1件しか出ないと、直しても直しても弾かれる。
+                 全件まとめて出す（新規登録画面と同じ見せ方） --}}
             @if ($errors->any())
-                <p class="auth-error" role="alert">
-                    {{ $errors->first('login') ?: $errors->first() }}
-                </p>
+                <ul class="auth-error-list" role="alert">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             @endif
 
             <button type="submit" class="btn-primary">ログイン</button>

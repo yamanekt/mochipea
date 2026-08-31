@@ -37,6 +37,20 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     });
 
+    // ===== モードの説明を、選んだ方だけ出す =====
+    const modeHelps = document.querySelectorAll("[data-mode-help]");
+    if (modeHelps.length) {
+        const modeInputs = document.querySelectorAll('input[name="mode"]');
+        const showSelectedHelp = () => {
+            const selected = document.querySelector('input[name="mode"]:checked');
+            modeHelps.forEach((help) => {
+                help.hidden = !selected || help.dataset.modeHelp !== selected.value;
+            });
+        };
+        modeInputs.forEach((input) => input.addEventListener("change", showSelectedHelp));
+        showSelectedHelp();
+    }
+
     // ===== 期限のクイック選択 =====
     document.querySelectorAll("[data-set-date]").forEach((button) => {
         button.addEventListener("click", () => {

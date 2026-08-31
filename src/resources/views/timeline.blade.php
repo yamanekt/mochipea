@@ -7,40 +7,52 @@
 @endpush
 
 @section('content')
-  <div class="bg"></div>
+    <div class="page-bg"></div>
 
-  {{-- 案内キャラクター --}}
-  <div class="guide-character">
-    <img src="{{ asset('images/IMG_0639.png') }}" alt="案内キャラクター">
-  </div>
+    <main class="page timeline-page">
 
-  {{-- 達成入力（コメント）を新しい順に並べたタイムライン --}}
-  <div class="goal-list">
-    @forelse ($entries as $entry)
-      <div class="goal-card">
-        {{-- 目標名 --}}
-        <p class="goal-title">目標名：{{ $entry->title }}</p>
+        <p class="eyebrow">タイムライン</p>
+        <h1 class="page-title">みんなの記録</h1>
+        <p class="page-lead">ペアのがんばりを見て、自分も続けよう</p>
 
-        {{-- 投稿者名 ・ 何日前か（Carbonのロケールはapp.phpでjaに設定済みなので「3日前」と表示される） --}}
-        <p class="entry-meta">
-          {{ $entry->user_name }}・{{ \Carbon\Carbon::parse($entry->created_at)->diffForHumans() }}
-        </p>
+        <div class="timeline-list">
+            @forelse ($entries as $entry)
+                {{-- 左のカラーバーでカテゴリを示す --}}
+                <article class="card timeline-card category-{{ $entry->category ?? 'other' }}">
+                    <div class="timeline-body">
+                        <div class="timeline-head">
+                            <div class="timeline-who">
+                                <span class="timeline-avatar">
+                                    <img src="{{ asset('images/IMG_0639.png') }}" alt="">
+                                </span>
+                                <span class="timeline-names">
+                                    <strong>{{ $entry->title }}</strong>
+                                    <small>
+                                        {{ $entry->user_name }}・{{ \Carbon\Carbon::parse($entry->created_at)->diffForHumans() }}
+                                    </small>
+                                </span>
+                            </div>
 
-        {{-- 今回の回数（達成数）＋単位 --}}
-        <p class="entry-count">回数：{{ $entry->value }}{{ $entry->unit }}</p>
+                            <span class="timeline-count">{{ $entry->value }}{{ $entry->unit }}</span>
+                        </div>
 
-        {{-- コメント（memoが未入力ならNULLなので代わりの文言を出す） --}}
-        <p class="entry-comment">
-          {{ $entry->memo ?? '（コメントなし）' }}
-        </p>
+                        @if ($entry->memo)
+                            <p class="timeline-memo">{{ $entry->memo }}</p>
+                        @endif
 
-        {{-- その目標の詳細（現在状況）画面へ --}}
-        <a href="{{ route('situation.show', $entry->goal_id) }}" class="detail-btn">詳細を見る</a>
-      </div>
-    @empty
-      <div class="goal-card">
-        <p>まだ達成入力がありません。</p>
-      </div>
-    @endforelse
-  </div>
+                        <a href="{{ route('situation.show', $entry->goal_id) }}" class="timeline-link">
+                            詳細を見る ›
+                        </a>
+                    </div>
+                </article>
+            @empty
+                <div class="card empty-card">
+                    <img src="{{ asset('images/IMG_0639.png') }}" alt="">
+                    <p>まだ記録がありません</p>
+                    <a href="{{ route('current-goals') }}" class="btn-primary">目標を見る</a>
+                </div>
+            @endforelse
+        </div>
+
+    </main>
 @endsection

@@ -4,8 +4,11 @@
 
 @php
     $categories = \App\Http\Controllers\GoalFlowController::CATEGORIES;
+    $modes = \App\Models\Goal::MODES;
+    $mode = $draft['mode'] ?? \App\Models\Goal::MODE_ACCUMULATE;
     $rows = [
         ['label' => 'カテゴリ', 'value' => $categories[$draft['category']] ?? $draft['category'], 'step' => 1],
+        ['label' => 'すすめかた', 'value' => $modes[$mode] ?? $mode, 'step' => 1],
         ['label' => '目標名',   'value' => $draft['title'], 'step' => 2],
         ['label' => '目標値',   'value' => $draft['target_value'] . ' ' . $draft['unit'], 'step' => 3],
         ['label' => '期限',     'value' => \Carbon\Carbon::parse($draft['deadline'])->format('Y / m / d'), 'step' => 4],
@@ -14,7 +17,7 @@
 
 @section('content')
     <h1 class="flow-question">これでいい？</h1>
-    <p class="flow-help">決定するとペア相手にも通知されます</p>
+    <p class="flow-help">決定すると部屋番号が発行されます</p>
 
     <div class="card summary-card">
         @foreach ($rows as $row)
