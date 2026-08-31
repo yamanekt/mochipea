@@ -17,7 +17,7 @@
 
         <div class="timeline-list">
             @forelse ($entries as $entry)
-                {{-- Figmaの「フラット型」：左のカラーバーでカテゴリを示す --}}
+                {{-- 左のカラーバーでカテゴリを示す --}}
                 <article class="card timeline-card category-{{ $entry->category ?? 'other' }}">
                     <div class="timeline-body">
                         <div class="timeline-head">

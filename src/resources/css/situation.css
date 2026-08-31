@@ -53,7 +53,7 @@
 }
 
 
-/* ===== 自分と相手を横に並べる（Figma準拠） ===== */
+/* ===== 自分と相手を横に並べる ===== */
 .pair-area {
     display: grid;
     grid-template-columns: 1fr 1fr;

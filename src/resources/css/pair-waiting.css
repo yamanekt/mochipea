@@ -81,7 +81,7 @@
     margin: 0;
 }
 
-/* span から button に変えたので、ブラウザ標準の装飾を消して見た目を保つ */
+/* ブラウザ標準の装飾を消して、文字だけに見せる */
 .room-cancel {
     padding: 0;
     background: none;

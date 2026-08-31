@@ -63,7 +63,7 @@
     --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.15);
     --shadow-md: 0 4px 10px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.2);
-    /* 新デザインのカード用。上3つは alpha が高く白いカードだと濁る */
+    /* 上3つは alpha が高く、白いカードだと濁る */
     --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.04);
 
     /* ===== 字間 ===== */
@@ -103,7 +103,7 @@
 }
 
 /* ロゴ */
-/* h1 から a に変えたので、リンクの装飾と文字色を打ち消して見た目を保つ */
+/* リンクの装飾と文字色を打ち消して、見出しのまま見せる */
 .logo {
     position: absolute;
     left: 50%;
@@ -203,7 +203,6 @@
 }
 
 /* 選択中はアイコン画像を差し替える。文字色は変えない */
-/* Figma のボトムナビのアイコンと同じ大きさに合わせる */
 .nav-item img {
     width: 36px;
     height: 36px;
@@ -215,14 +214,8 @@
     font-weight: bold;
     white-space: nowrap;
 }
-/*
-共通スタイル
-余白は8pxの倍数を基本にする
-*/
-
 /* 背景 */
-/* 旧デザインの背景画像は廃止。
-   .bg が残っているページでも新しいグラデーション背景になるよう別名にせず残す */
+/* .bg は他のページでも使われているので、クラス名は変えずに中身だけ差し替えている */
 .bg {
     position: fixed;
     inset: 0;
@@ -248,8 +241,7 @@ body {
     text-align: center;
 }
 
-/* 新デザインのページは上の中央寄せ flex を打ち消して、通常の縦積みに戻す。
-   目印は .page-bg（新デザインの全画面が持っている） */
+/* .page-bg を持つページは、上の中央寄せ flex を打ち消して通常の縦積みに戻す */
 body:has(> .page-bg) {
     display: block;
     text-align: left;
@@ -427,10 +419,8 @@ body:has(> .top-header) > .container {
     }
 }
 
-/* 新デザインの左右余白は 24px 固定。
-   旧ページ用の clamp(12px, 3vw, 32px) だとスマホ幅で 12px になり、
-   Figma（390px幅でカード342px＝左右24px）と合わないため。
-   上の指定と同じ詳細度なので、必ずこの位置（後ろ）に置くこと */
+/* .page-bg を持つページは左右 24px 固定。上の clamp だとスマホ幅で 12px まで縮んでしまう。
+   上と同じ詳細度なので、必ずこの位置（後ろ）に置くこと */
 body:has(> .page-bg) {
     padding-left: var(--space-6);
     padding-right: var(--space-6);

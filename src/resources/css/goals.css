@@ -168,7 +168,7 @@
 }
 
 
-/* ===== タイムライン（Figmaの「フラット型」） ===== */
+/* ===== タイムライン ===== */
 .timeline-card {
     display: flex;
     padding: 0;

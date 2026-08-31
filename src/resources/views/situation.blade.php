@@ -40,7 +40,6 @@
             </p>
         @endif
 
-        {{-- Figma準拠：自分と相手を横に並べて見比べる --}}
         <div class="pair-area">
             @foreach ([
                 ['me' => true,  'name' => 'あなた',   'value' => $myValue,      'rate' => $myRate,      'over' => $myOverflow,      'hp' => $partnerRemainingHp, 'img' => 'IMG_0640.png'],
