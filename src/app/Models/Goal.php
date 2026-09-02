@@ -24,6 +24,23 @@ class Goal extends Model
         'finished_at' => 'datetime',
     ];
 
+    /**
+     * 自分が属するペアの目標だけに絞る。
+     *
+     * 詳細・達成入力の各画面は目標IDをURLやhiddenで受け取るので、
+     * この絞り込みを通さないと他人の目標をID指定で開けてしまう。
+     * findOrFail と組み合わせて404にする（403だと目標の存在自体が漏れる）。
+     */
+    public function scopeVisibleTo($query, int $userId)
+    {
+        return $query->whereIn('pair_id', function ($sub) use ($userId) {
+            $sub->select('id')
+                ->from('pairs')
+                ->where('user1_id', $userId)
+                ->orWhere('user2_id', $userId);
+        });
+    }
+
     /** 0から目標値まで積み上げる（従来の方式） */
     public const MODE_ACCUMULATE = 'accumulate';
 

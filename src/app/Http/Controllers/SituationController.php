@@ -11,9 +11,9 @@ class SituationController extends Controller
 {
     public function show($id)
     {
-        $goal = Goal::findOrFail($id);
-
         $userId = Auth::id();
+
+        $goal = Goal::visibleTo($userId)->findOrFail($id);
 
         // 自分
         $myValue = GoalProgress::where('goal_id', $id)
