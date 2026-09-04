@@ -1,4 +1,4 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('title', 'パスワード変更')
 
@@ -67,4 +67,4 @@
 
 @push('scripts')
     @vite(['resources/js/auth.js'])
-@endpush
+@endpush --}}

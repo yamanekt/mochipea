@@ -28,10 +28,10 @@
 
                     <span class="stat-divider" aria-hidden="true"></span>
 
-                    <div class="stat">
+                    {{-- <div class="stat">
                         <p class="stat-value stat-value--sub">{{ $winRate }}<span class="stat-unit">%</span></p>
                         <p class="stat-label">勝率</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
@@ -59,13 +59,13 @@
                 </span>
             </a>
 
-            <a href="{{ route('account.password') }}" class="row">
+            {{-- <a href="{{ route('account.password') }}" class="row">
                 <span class="row-label">パスワード</span>
                 <span class="row-value">
                     <span class="row-accent">変更する</span>
                     <span class="row-chevron" aria-hidden="true">›</span>
                 </span>
-            </a>
+            </a> --}}
         </div>
 
         <div class="card">
