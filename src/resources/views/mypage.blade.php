@@ -28,10 +28,10 @@
 
                     <span class="stat-divider" aria-hidden="true"></span>
 
-                    <div class="stat">
+                    {{-- <div class="stat">
                         <p class="stat-value stat-value--sub">{{ $winRate }}<span class="stat-unit">%</span></p>
                         <p class="stat-label">勝率</p>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
