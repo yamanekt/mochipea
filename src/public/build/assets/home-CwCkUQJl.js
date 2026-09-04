@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelector(".intro"),t=document.querySelector("#logout-form");t&&t.addEventListener("submit",o=>{window.confirm("本当にログアウトしますか？")||o.preventDefault()}),e&&(sessionStorage.getItem("introPlayed")?e.style.display="none":(sessionStorage.setItem("introPlayed","true"),setTimeout(()=>{e.style.display="none"},2500)))});
