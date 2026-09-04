@@ -9,7 +9,6 @@ use App\Http\Controllers\AccountRegisterController;
 use App\Http\Controllers\AccountSettingController;
 use App\Http\Controllers\CurrentListController;
 use App\Http\Controllers\GoalResultController;
-use App\Http\Controllers\GoalsController;
 use App\Http\Controllers\PairCodeCheckController;
 use App\Http\Controllers\SituationController;
 use App\Http\Controllers\GoalProgressController;
@@ -23,7 +22,9 @@ use Illuminate\Support\Facades\DB;
 
 // ── ゲスト用ルート（ログインしていなくてもアクセスできる）──
 Route::get('/login', [AccountLoginController::class, 'showLogin'])->name('login');
-Route::post('/login', [AccountLoginController::class, 'login']);
+Route::post('/login', [AccountLoginController::class, 'login'])
+    // 総当たり対策。5回/分を超えたら 429 を返す
+    ->middleware('throttle:5,1');
 Route::get('/register', [AccountRegisterController::class, 'showRegister'])->name('register');
 Route::post('/register', [AccountRegisterController::class, 'register']);
 
@@ -53,7 +54,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [GoalFlowController::class, 'store'])->name('store');
         Route::post('/cancel', [GoalFlowController::class, 'cancel'])->name('cancel');
     });
-    Route::post('/goals/store', [GoalsController::class, 'store'])->name('goals.store');
 
     // 部屋を作った後のコード表示。
     // セッションではなくDBから引くので、リロードでも直リンクでも壊れない
@@ -113,5 +113,3 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/current-goals/{id}', [GoalsController::class, 'show'])
-    ->name('goals.show');

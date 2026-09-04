@@ -11,13 +11,13 @@
             'route'  => 'current-goals',
             'label'  => '目標一覧',
             'icon'   => 'goals',
-            'active' => request()->routeIs('current-goals', 'goals.show', 'situation.show', 'progress.show'),
+            'active' => request()->routeIs('current-goals', 'situation.show', 'progress.show'),
         ],
         [
             'route'  => 'pea',
             'label'  => '目標作成',
             'icon'   => 'create',
-            'active' => request()->routeIs('pea', 'pair.waiting', 'goals', 'goals.store', 'make', 'join'),
+            'active' => request()->routeIs('pea', 'pair.waiting', 'goals', 'make', 'join'),
         ],
         [
             'route'  => 'timeline',
