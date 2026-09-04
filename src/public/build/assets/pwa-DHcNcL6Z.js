@@ -1,0 +1,1 @@
+function e(){return window.MOCHIPEA_SW_URL||"/sw.js"}document.addEventListener("DOMContentLoaded",async()=>{if("serviceWorker"in navigator)try{await navigator.serviceWorker.register(e())}catch(r){console.warn("Service Worker を登録できませんでした",r)}});

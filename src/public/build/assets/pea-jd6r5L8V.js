@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelectorAll(".rolling");console.log(e.length),e.forEach(n=>{n.addEventListener("click",function(){this.style.display="none"})})});document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll(".rolling").forEach(e=>{e.onclick=function(){this.style.display="none"}})});

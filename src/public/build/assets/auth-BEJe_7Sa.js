@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{document.querySelectorAll("[data-toggle-password]").forEach(t=>{t.addEventListener("click",()=>{const e=document.getElementById(t.dataset.togglePassword);if(!e)return;const s=e.type==="password";e.type=s?"text":"password",t.textContent=s?"隠す":"表示",t.setAttribute("aria-pressed",String(s))})})});
